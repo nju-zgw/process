@@ -4,7 +4,7 @@ node {
     }
     stage('QA') {
         def sonarHome = '/home/common/sonar-scanner-2.8'
-        sh '${sonarHome}/bin/sonar-scanner'
+        sh "${sonarHome}/bin/sonar-scanner"
     }
     stage('build') {
         def mvnHome = tool 'M3'
