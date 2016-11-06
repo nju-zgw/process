@@ -3,7 +3,7 @@ node {
         git 'https://github.com/nju-zgw/process.git'
     }
     stage('QA') {
-        sh 'sonar-scanner'
+        sh '/home/common/sonar-scanner-2.8/bin/sonar-scanner'
     }
     stage('build') {
         def mvnHome = tool 'M3'
