@@ -12,6 +12,7 @@ public class HelloController {
 	public String printWelcome(ModelMap model) {
 		model.addAttribute("message", "Hello world!");
 		return "hello";
+		//comment added by wh to test git push
 	}
 
 }
