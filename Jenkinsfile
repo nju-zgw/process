@@ -8,6 +8,9 @@ node {
     }
     stage('build') {
         def mvnHome = tool 'M3'
+        env.JAVA_HOME = "/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.111-1.b15.el7_2.x86_64/"
+        env.PATH = "${env.JAVA_HOME}/bin:${env.PATH}"
+        env.CLASSPATH = "${env.JAVA_HOME}/jre/lib/ext:${env.JAVA_HOME}/lib/tools.jar"
         sh "${mvnHome}/bin/mvn -B clean package"
     }
     stage('deploy') {
