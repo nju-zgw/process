@@ -54,7 +54,7 @@
         <!--logo end-->
         <div class="top-menu">
             <ul class="nav pull-right top-menu">
-                <li><a class="logout" href="login.html">Logout</a></li>
+                <li><a class="logout" href="login.html">退出</a></li>
             </ul>
         </div>
     </header>
@@ -103,16 +103,16 @@
                     </ul>
                 </li>
 
-                <li class="sub-menu">
-                    <a href="javascript:;" >
-                        <i class=" fa fa-bar-chart-o"></i>
-                        <span>Charts</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a  href="morris.html">Morris</a></li>
-                        <li><a  href="chartjs.html">Chartjs</a></li>
-                    </ul>
-                </li>
+                <%--<li class="sub-menu">--%>
+                    <%--<a href="javascript:;" >--%>
+                        <%--<i class=" fa fa-bar-chart-o"></i>--%>
+                        <%--<span>Charts</span>--%>
+                    <%--</a>--%>
+                    <%--<ul class="sub">--%>
+                        <%--<li><a  href="morris.html">Morris</a></li>--%>
+                        <%--<li><a  href="chartjs.html">Chartjs</a></li>--%>
+                    <%--</ul>--%>
+                <%--</li>--%>
 
             </ul>
             <!-- sidebar menu end-->
@@ -129,141 +129,96 @@
 
             <div class="row">
                 <div class="col-lg-9 main-chart">
+                    <nav class="navbar navbar-default" role="navigation" style="position:relative;left:14%;width:87%;top:-19px">
+                        <div style="position:relative;left:2%">
+                            <ul class="nav navbar-nav">
+                              <li><a href="#">所有风险</a></li>
+                              <li><a href="#">我的待办</a></li>
+                              <li><a href="#">我的已办</a></li>
+                              <li><a href="#">我提出的</a></li>
+                             </ul>
+                       </div>
+                    </nav>
 
-                    <div class="row mtbox">
-                        <div class="col-md-2 col-sm-2 col-md-offset-1 box0">
-                            <div class="box1">
-                                <span class="li_lab"></span>
-                                <h3>33</h3>
-                            </div>
-                            <p>风险数量</p>
-                        </div>
-                        <div class="col-md-2 col-sm-2 box0">
-                            <div class="box1">
-                                <span class="li_params"></span>
-                                <h3>高</h3>
-                            </div>
-                            <p>风险级别</p>
-                        </div>
-                        <div class="col-md-2 col-sm-2 box0">
-                            <div class="box1">
-                                <span class="li_clock"></span>
-                                <h3>23</h3>
-                            </div>
-                            <p>事件措施</p>
-                        </div>
-                        <div class="col-md-2 col-sm-2 box0">
-                            <div class="box1">
-                                <span class="li_user"></span>
-                                <h3>10</h3>
-                            </div>
-                            <p>用户数量</p>
-                        </div>
-                        <div class="col-md-2 col-sm-2 box0">
-                            <div class="box1">
-                                <span class="li_lock"></span>
-                                <h3>6</h3>
-                            </div>
-                            <p>角色数量</p>
-                        </div>
+                    <%--<div class="row mtbox " style="position:relative;width: 100%;left:9%;top: -75px;" >--%>
+                        <%--<div class="col-md-2 col-md-offset-2 box0">--%>
+                            <%--<div class="box1">--%>
+                                <%--<span class="li_lab"></span>--%>
+                                <%--<h3>风险数:33</h3>--%>
+                            <%--</div>--%>
+                            <%--<p>风险数量</p>--%>
+                        <%--</div>--%>
+                        <%--<div class="col-md-2  box0">--%>
+                            <%--<div class="box1">--%>
+                                <%--<span class="li_params"></span>--%>
+                                <%--<h3>风险级别：高</h3>--%>
+                            <%--</div>--%>
+                            <%--<p>风险级别</p>--%>
+                        <%--</div>--%>
+                        <%--<div class="col-md-2  box0">--%>
+                            <%--<div class="box1">--%>
+                                <%--<span class="li_user"></span>--%>
+                                <%--<h3>用户数10</h3>--%>
+                            <%--</div>--%>
+                            <%--<p>用户数量</p>--%>
+                        <%--</div>--%>
+                    <%--</div><!-- /row mt -->--%>
 
-                    </div><!-- /row mt -->
-
-                    <div class="row mt">
+                    <div class="row mt" style="position:relative;">
                         <!--col-md-4 mb starts-->
-                        <div class="col-md-3 mb">
+                        <div class="col-md-8 col-md-offset-3 mb" >
                             <!-- WHITE PANEL - TOP USER -->
-                            <div class="white-panel pn">
+                            <div class="white-panel pn" style="height:20%">
                                 <div class="white-header">
-                                    <h5>TOP USER</h5>
+                                    <h5> 糖果屋项目</h5>
                                 </div>
-                                <p><img src="/resources/img/ui-zac.jpg" class="img-circle" width="80"></p>
-                                <p><b>Zac Snider</b></p>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <p class="small mt">MEMBER SINCE</p>
-                                        <p>2012</p>
+                                    <div class="col-md-3">
+                                        <p class="mt">风险类别：性能风险</p>
                                     </div>
-                                    <div class="col-md-6">
-                                        <p class="small mt">TOTAL SPEND</p>
-                                        <p>$ 47,60</p>
+                                    <div class="col-md-3">
+                                        <p class="mt">风险严重性：高</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="mt">风险状态：跟踪中</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="mt">关注人数：6</p>
                                     </div>
                                 </div>
+
+                                <button type="button" class="btn btn-round btn-info" style="position:relative;width:6%;left:40%;top:40px">查看</button>
                             </div>
                         </div>
-                        <!--col-md-4 mb ends-->
-
-                        <!--col-md-4 mb starts-->
-                        <div class="col-md-3 mb">
-                            <!-- WHITE PANEL - TOP USER -->
-                            <div class="white-panel pn">
-                                <div class="white-header">
-                                    <h5>TOP USER</h5>
-                                </div>
-                                <p><img src="/resources/img/ui-zac.jpg" class="img-circle" width="80"></p>
-                                <p><b>Zac Snider</b></p>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <p class="small mt">MEMBER SINCE</p>
-                                        <p>2012</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p class="small mt">TOTAL SPEND</p>
-                                        <p>$ 47,60</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--col-md-4 mb ends-->
-
-                        <!--col-md-4 mb starts-->
-                        <div class="col-md-3 mb">
-                            <!-- WHITE PANEL - TOP USER -->
-                            <div class="white-panel pn">
-                                <div class="white-header">
-                                    <h5>TOP USER</h5>
-                                </div>
-                                <p><img src="/resources/img/ui-zac.jpg" class="img-circle" width="80"></p>
-                                <p><b>Zac Snider</b></p>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <p class="small mt">MEMBER SINCE</p>
-                                        <p>2012</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p class="small mt">TOTAL SPEND</p>
-                                        <p>$ 47,60</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--col-md-4 mb ends-->
-
-                        <!--col-md-4 mb starts-->
-                        <div class="col-md-3 mb">
-                            <!-- WHITE PANEL - TOP USER -->
-                            <div class="white-panel pn">
-                                <div class="white-header">
-                                    <h5>TOP USER</h5>
-                                </div>
-                                <p><img src="/resources/img/ui-zac.jpg" class="img-circle" width="80"></p>
-                                <p><b>Zac Snider</b></p>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <p class="small mt">MEMBER SINCE</p>
-                                        <p>2012</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p class="small mt">TOTAL SPEND</p>
-                                        <p>$ 47,60</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--col-md-4 mb ends-->
-
                     </div><!-- /row -->
 
+                    <div class="row mt" style="position:relative;">
+                        <!--col-md-4 mb starts-->
+                        <div class="col-md-8 col-md-offset-3 mb" >
+                            <!-- WHITE PANEL - TOP USER -->
+                            <div class="white-panel pn" style="height:20%">
+                                <div class="white-header">
+                                    <h5> 糖果屋项目</h5>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <p class="mt">风险类别：性能风险</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="mt">风险严重性：高</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="mt">风险状态：跟踪中</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p class="mt">关注人数：6</p>
+                                    </div>
+                                </div>
+
+                                <button type="button" class="btn btn-round btn-info" style="position:relative;width:6%;left:40%;top:40px">查看</button>
+                            </div>
+                        </div>
+                    </div><!-- /row -->
                 </div><!-- /col-lg-9 END SECTION MIDDLE -->
 
 
@@ -273,52 +228,43 @@
 
                 <div class="col-lg-3 ds">
                     <!--COMPLETED ACTIONS DONUTS CHART-->
-                    <h3>NOTIFICATIONS</h3>
+                    <h3>通知</h3>
 
                     <!-- First Action -->
                     <div class="desc">
                         <div class="thumb">
                             <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
                         </div>
-                        <div class="details">
-                            <p><muted>2 Minutes Ago</muted><br/>
-                                <a href="#">James Brown</a> subscribed to your newsletter.<br/>
+                        <div class="details" style="position: relative;left:15%;top:-19px;width:200%">
+                            <p><muted>2 分钟前</muted><br/>
+                                <a href="#">糖果屋项目</a>风险正在跟进中.<a href="#">张冠炜</a>更新了新的风险状态<br/>
+
                             </p>
                         </div>
                     </div>
-                    <!-- Second Action -->
                     <div class="desc">
                         <div class="thumb">
                             <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
                         </div>
-                        <div class="details">
-                            <p><muted>3 Hours Ago</muted><br/>
-                                <a href="#">Diana Kennedy</a> purchased a year subscription.<br/>
+                        <div class="details" style="position: relative;left:15%;top:-19px;width:200%">
+                            <p><muted>2 分钟前</muted><br/>
+                                <a href="#">糖果屋项目</a>风险正在跟进中.<a href="#">张冠炜</a>更新了新的风险状态<br/>
+
                             </p>
                         </div>
                     </div>
-                    <!-- Third Action -->
                     <div class="desc">
                         <div class="thumb">
                             <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
                         </div>
-                        <div class="details">
-                            <p><muted>7 Hours Ago</muted><br/>
-                                <a href="#">Brandon Page</a> purchased a year subscription.<br/>
+                        <div class="details" style="position: relative;left:15%;top:-19px;width:200%">
+                            <p><muted>2 分钟前</muted><br/>
+                                <a href="#">糖果屋项目</a>风险正在跟进中.<a href="#">张冠炜</a>更新了新的风险状态<br/>
+
                             </p>
                         </div>
                     </div>
-                    <!-- Fourth Action -->
-                    <div class="desc">
-                        <div class="thumb">
-                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details">
-                            <p><muted>7 Hours Ago</muted><br/>
-                                <a href="#">Brandon Page</a> purchased a year subscription.<br/>
-                            </p>
-                        </div>
-                    </div>
+
                 </div><!-- /col-lg-3 -->
             </div><! --/row -->
         </section>
@@ -326,14 +272,14 @@
 
     <!--main descript end-->
     <!--footer start-->
-    <footer class="site-footer">
-        <div class="text-center">
-            2014 - Alvarez.is
-            <a href="index.html#" class="go-top">
-                <i class="fa fa-angle-up"></i>
-            </a>
-        </div>
-    </footer>
+    <%--<footer class="site-footer">--%>
+        <%--<div class="text-center">--%>
+            <%--2014 - Alvarez.is--%>
+            <%--<a href="index.html#" class="go-top">--%>
+                <%--<i class="fa fa-angle-up"></i>--%>
+            <%--</a>--%>
+        <%--</div>--%>
+    <%--</footer>--%>
     <!--footer end-->
 </section>
 
