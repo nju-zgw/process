@@ -44,11 +44,12 @@ a, a:hover, a:focus {
 
 /* Bootstrap Modifications */
 .modal-header {
-	background: #68dff0;
+	background:white;
+    border-radius: 6px;
 }
 
 .modal-title {
-	color: white;
+	color: black;
 }
 
 .btn-round {
@@ -2238,6 +2239,10 @@ label {
 
 .site-min-height {
     min-height: 900px;
+}
+
+.text-right{
+    text-align: right;
 }
 
 
