@@ -182,7 +182,7 @@
                            </div>
                        </div>
                        <div class="form-group row">
-                           <label class="col-sm-2 col-sm-2 control-label">触发值</label>
+                           <label class="col-sm-2 col-sm-2 control-label">阈值</label>
                            <div class="col-sm-3">
                                <input type="text" class="form-control round-form">
                            </div>
