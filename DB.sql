@@ -39,7 +39,7 @@ create table role_right_rel(
   CONSTRAINT `FK_RR_REF_RIGHT` FOREIGN KEY (`right_id`) REFERENCES `rights` (`right_id`)
 );
 
-//创建风险表
+
 create table risk_items (
   risk_item_id int not null auto_increment,
   project_id int not null,
@@ -99,3 +99,14 @@ create table user_project_rel (
   CONSTRAINT `FK_UP_REF_USER` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `FK_UP_REF_PROJECT` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`)
 );
+
+#用户角色关联
+INSERT INTO user_role_rel (user_id, role_id) VALUES
+  (1,1), (2,2), (3,3), (4,4);
+
+#角色权限关联
+INSERT INTO role_right_rel (role_id, right_id) VALUES (1,1), (1,2), (1,4),
+  (1,8), (1,9),
+  (2,1), (2,2), (2,3), (2,4), (2,8), (2,9),
+  (3,5), (3,6), (3,7), (3,8), (3,9);
+
