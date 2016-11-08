@@ -45,9 +45,9 @@ MAIN CONTENT
         <form id="myform" class="form-login" action="/login" method="post">
             <h2 class="form-login-heading">sign in now</h2>
             <div class="login-wrap">
-                <input type="text" class="form-control" placeholder="User ID" name="username" autofocus>
+                <input type="text" class="form-control" placeholder="User ID" name="username" autocomplete="off" autofocus>
                 <br>
-                <input type="password" class="form-control" placeholder="Password" name="password">
+                <input type="password" class="form-control" placeholder="Password" autocomplete="off" name="password">
                 <br/>
                 <button id="submitButton" class="btn btn-theme btn-block" ><i class="fa fa-lock"></i> SIGN IN</button>
                 <hr>
