@@ -8,79 +8,83 @@ import java.util.Date;
 public class RiskItem {
     //4.风险条目：风险编号（主键）、项目编号、风险提出者编号、风险内容、风险类别（性能风险、进度风险、成本风险.......）
     // 风险概率（高、中、低）、风险影响程度（高、中、低）、建立时间
-    private long rid;
-    private long pid;
-    private long uid;
-    private String content;
-    private String type;
-    private String probability;
-    private String influence;
+    private int rid;
+    private int projectId;
+    private int createrId;
+    private String descript;
+    private int typeId;
+    private int prob;
+    private int affect;
     private Date time;
-    public RiskItem(long rid, long pid, long uid, String content, String type, String probability, String influence, Date time) {
-        this.rid = rid;
-        this.pid = pid;
-        this.uid = uid;
-        this.content = content;
-        this.type = type;
-        this.probability = probability;
-        this.influence = influence;
-        this.time = time;
+
+    public RiskItem() {
     }
 
-    public  long   getRid() {
+    public RiskItem(int rid, int projectId, int createrId,
+                    String descript, int typeId, int prob, int affect) {
+        this.rid = rid;
+        this.projectId = projectId;
+        this.createrId = createrId;
+        this.descript = descript;
+        this.typeId = typeId;
+        this.prob = prob;
+        this.affect = affect;
+    }
+
+    public int getRid() {
         return rid;
     }
 
-    public void setRid(long rid) {
+    public void setRid(int rid) {
         this.rid = rid;
     }
 
-    public long getPid() {
-        return pid;
+    public int getProjectId() {
+        return projectId;
     }
 
-    public void setPid(long pid) {
-        this.pid = pid;
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 
-    public long getUid() {
-        return uid;
+    public int getCreaterId() {
+        return createrId;
     }
 
-    public void setUid(long uid) {
-        this.uid = uid;
+    public void setCreaterId(int createrId) {
+        this.createrId = createrId;
     }
 
-    public String getContent() {
-        return content;
+    public String getDescript() {
+        return descript;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setDescript(String descript) {
+        this.descript = descript;
     }
 
-    public String getType() {
-        return type;
+    public int getTypeId() {
+        return typeId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
     }
 
-    public String getProbability() {
-        return probability;
+    public int getProb() {
+        return prob;
     }
 
-    public void setProbability(String probability) {
-        this.probability = probability;
+    public void setProb(int prob) {
+        this.prob = prob;
     }
 
-    public String getInfluence() {
-        return influence;
+    public int getAffect() {
+        return affect;
     }
 
-    public void setInfluence(String influence) {
-        this.influence = influence;
+    public void setAffect(int affect) {
+        this.affect = affect;
     }
 
     public Date getTime() {
@@ -90,7 +94,4 @@ public class RiskItem {
     public void setTime(Date time) {
         this.time = time;
     }
-
-
-
 }

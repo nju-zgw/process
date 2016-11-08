@@ -10,10 +10,10 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Dashboard">
-    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <meta name="viewport" descript="width=device-width, initial-scale=1.0">
+    <meta name="description" descript="">
+    <meta name="author" descript="Dashboard">
+    <meta name="keyword" descript="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
     <title>DASHGUM - FREE Bootstrap Admin Template</title>
 
@@ -123,8 +123,8 @@
     <!-- **********************************************************************************************************************************************************
     MAIN CONTENT
     *********************************************************************************************************************************************************** -->
-    <!--main content start-->
-    <section id="main-content">
+    <!--main descript start-->
+    <section id="main-descript">
         <section class="wrapper">
 
             <div class="row">
@@ -324,7 +324,7 @@
         </section>
     </section>
 
-    <!--main content end-->
+    <!--main descript end-->
     <!--footer start-->
     <footer class="site-footer">
         <div class="text-center">

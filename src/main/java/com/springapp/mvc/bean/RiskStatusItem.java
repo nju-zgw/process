@@ -7,14 +7,23 @@ import java.util.Date;
  */
 public class RiskStatusItem {
     //风险状态：状态编号（主键）、风险编号、跟踪者编号、状态描述（风险、问题）、文本描述、跟进时间
-    private long id;
+    private int id;
     private long rid;
     private long uid;
     private String status;
     private String content;
     private Date time;
 
-    public RiskStatusItem(long id, long rid, long uid, String status, String content, Date time) {
+    /**
+     *
+     * @param id
+     * @param rid
+     * @param uid
+     * @param status
+     * @param content
+     * @param time
+     */
+    public RiskStatusItem(int id, long rid, long uid, String status, String content, Date time) {
         this.id = id;
         this.rid = rid;
         this.uid = uid;
@@ -23,11 +32,11 @@ public class RiskStatusItem {
         this.time = time;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
