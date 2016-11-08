@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by WH on 2016/11/8.
  */
 @Controller
-@RequestMapping("/")
+//@RequestMapping("/")
 public class LoginController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = {"/login","/Access_Denied"}, method = RequestMethod.GET)
     public String transToLoginPage() {
         System.out.println("Head to Login Page...");
         return "login";
@@ -35,7 +35,7 @@ public class LoginController {
      * (0,"用户名密码错误")
      * (1,"验证成功")
      */
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+//    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public @ResponseBody
     ValidInfo processLoginRequest(@RequestParam(value = "username", required = false)
                                             String name, @RequestParam(value = "password", required = false)
