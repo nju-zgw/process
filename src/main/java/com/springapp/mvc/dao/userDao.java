@@ -7,13 +7,16 @@ import java.sql.SQLException;
 /**
  * Created by H77 on 2016/11/7 0007.
  */
-public interface userDao {
-    public void insert(User user) throws SQLException;
+public interface UserDao {
+    public void insert(User user);
 
-    public void delete(User user) throws SQLException;
+    public void delete(User user);
 
-    public void modify(User user) throws SQLException;
+    public void modify(User user);
 
-    public User getUserById(long id) throws SQLException;
+    public User getUserById(long id);
 
+    public boolean checkExistByName(String username);
+
+    public User getUserByName(String username);
 }

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by H77 on 2016/11/7 0007.
  */
-public interface projectDao {
+public interface ProjectDao {
     public void insert(Project project) throws SQLException;
 
     public void delete(Project project) throws SQLException;

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by H77 on 2016/11/7 0007.
  */
-public interface riskStatusDao {
+public interface RiskStatusDao {
 
     public void insert(RiskStatusItem status) throws SQLException;
 

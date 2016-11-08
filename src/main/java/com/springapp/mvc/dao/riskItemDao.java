@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by H77 on 2016/11/7 0007.
  */
-public interface riskItemDao {
+public interface RiskItemDao {
     public void insert(RiskItem project) throws SQLException;
 
     public void delete(RiskItem project) throws SQLException;

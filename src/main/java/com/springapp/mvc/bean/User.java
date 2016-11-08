@@ -13,7 +13,9 @@ public class User {
     private String type;
     private String content;
 
+    public User(){
 
+    }
     public User(long id, String account, String password, String name, String type, String content) {
         this.id = id;
         this.account = account;
