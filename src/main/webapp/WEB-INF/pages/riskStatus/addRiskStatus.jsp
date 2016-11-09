@@ -3,7 +3,6 @@
   User: zgw
   Date: 2016/11/8
   Time: 23:57
-  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -20,14 +19,15 @@
             <div class="modal-body">
 
                 <%--<div class="form-group row">--%>
-                    <%--<label class="text-right col-sm-2 control-label">风险名称</label>--%>
+                <%--<label class="text-right col-sm-2 control-label">风险名称</label>--%>
 
-                    <%--<div class="col-sm-10">--%>
-                        <%--<span class="form-group"> 名字 </span>--%>
-                    <%--</div>--%>
+                <%--<div class="col-sm-10">--%>
+                <%--<span class="form-group"> 名字 </span>--%>
+                <%--</div>--%>
                 <%--</div>--%>
                 <div class="form-group row">
                     <label class="text-right col-sm-2  control-label"> 分配</label>
+
                     <div class="col-sm-10">
                         <select class="form-group">
                             <option>无</option>
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">提交</button>
+                <button type="button" class="btn btn-primary" onclick = "addRisk()">提交</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 
             </div>
@@ -70,9 +70,23 @@
 </div>
 
 <%--<script>--%>
-    <%--$(function () {--%>
-        <%--$('#addStatus').modal({--%>
-            <%--keyboard: true--%>
-        <%--})--%>
-    <%--});--%>
+<%--$(function () {--%>
+<%--$('#addStatus').modal({--%>
+<%--keyboard: true--%>
+<%--})--%>
+<%--});--%>
 <%--</script>--%>
+<script>
+
+    // ajax example
+    var addRisk = function () {
+        $.post(
+                '/addRisk',
+                {projectId: 1, riskTypeId: 1, descript: '123', riskProb: 1, riskAffect: 2},
+                function (status, data) {
+                    alert(data);
+                }, "text"
+        );
+    };
+
+</script>
