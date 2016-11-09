@@ -3,15 +3,17 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:tx="http://www.springframework.org/schema/tx"
-
+       xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
-         http://www.springframework.org/schema/mvc
-                        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task-3.0.xsd ">
 
     <context:component-scan base-package="com.springapp.mvc"/>
 
@@ -48,6 +50,12 @@
     <bean id="riskItemDao" class="com.springapp.mvc.dao.daoImpl.RiskItemDaoImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"></property>
     </bean>
+    <bean id="messageDao" class="com.springapp.mvc.dao.daoImpl.MessageDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+    </bean>
+    <bean id="triggerDao" class="com.springapp.mvc.dao.daoImpl.TriggerDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+    </bean>
 
     <!--事务管理，jdbcTemplate本身没有事务的支持-->
     <bean id="transactionManager"
@@ -57,5 +65,6 @@
     </bean>
     <!--开启@Transactional注解支持-->
     <tx:annotation-driven transaction-manager="transactionManager"/>
-
+    <!-- 启动定时器 -->
+    <task:annotation-driven/>
 </beans>
