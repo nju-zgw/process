@@ -23,7 +23,7 @@ public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao{
     /**
      *
      * @param project
-     * 传入RiskItem对象，分别插入到两张表中risk_descripts和risk_items
+     * 传入RiskItem对象，分别插入到两张表中risk_descripts和risk_items，返回RiskItemID
      */
     @Override
     @Transactional
@@ -67,6 +67,7 @@ public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao{
                 riskKey
         );
         System.out.println("新增一条风险条目，id是: "+riskKey.getKey());
+        project.setRid(riskKey.getKey().intValue());
     }
 
     @Override

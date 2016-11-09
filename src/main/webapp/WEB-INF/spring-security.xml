@@ -8,7 +8,9 @@
 	http://www.springframework.org/schema/security/spring-security-4.1.xsd">
     <security:http auto-config="true">
         <security:intercept-url pattern="/" access="hasRole('ROLE_USER')"/>
-        <security:intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')" />
+        <security:intercept-url pattern="/admin**" access="hasRole('ROLE_SYS_ADMIN')" />
+        <security:intercept-url pattern="/addRisk" access="hasRole('ROLE_DEV') or hasRole('ROLE_MANAGER')"/>
+
         <security:form-login login-page="/login"
                              username-parameter="username"
                              password-parameter="password"
@@ -23,7 +25,10 @@
     <security:authentication-manager>
         <security:authentication-provider>
             <security:user-service>
-                <security:user name="bill"  password="abc123"  authorities="ROLE_USER" />
+                <security:user name="wanghao"  password="wang"  authorities="ROLE_USER,ROLE_DEV" />
+                <security:user name="yuanrui"  password="yuan"  authorities="ROLE_USER,ROLE_MANAGER" />
+                <security:user name="zhangguanwei"  password="zhang"  authorities="ROLE_USER,ROLE_ADMIN"/>
+                <security:user name="hanqiqi"  password="han"  authorities="ROLE_USER,ROLE_SYS_ADMIN"/>
             </security:user-service>
         </security:authentication-provider>
     </security:authentication-manager>

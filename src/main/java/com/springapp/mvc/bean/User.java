@@ -5,48 +5,16 @@ package com.springapp.mvc.bean;
  */
 public class User {
 
-    //1.用户： 账号、密码、姓名、角色类别（主管、开发人员、实习生）、个人简介、用户编号（主键）
-    private long id;
-    private String account;
-    private String password;
+    private int id;
     private String name;
-    private String type;
-    private String content;
+    private String password;
 
-    public User(){
-
-    }
-    public User(long id, String account, String password, String name, String type, String content) {
-        this.id = id;
-        this.account = account;
-        this.password = password;
-        this.name = name;
-        this.type = type;
-        this.content = content;
-    }
-
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getName() {
@@ -57,22 +25,20 @@ public class User {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getPassword() {
+        return password;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getContent() {
-        return content;
+    public User() {
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public User(int id, String name, String password) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
     }
-
-
-
 }

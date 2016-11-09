@@ -17,6 +17,6 @@ public class AuthSuccessHandlerImpl implements AuthenticationSuccessHandler {
             (HttpServletRequest request,
              HttpServletResponse response,
              Authentication authentication) throws IOException, ServletException {
-        response.sendRedirect(request.getContextPath()+"/loginSuccess");
+        response.sendRedirect(request.getContextPath()+"/riskPage");
     }
 }

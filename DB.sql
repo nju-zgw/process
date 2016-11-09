@@ -110,3 +110,6 @@ INSERT INTO role_right_rel (role_id, right_id) VALUES (1,1), (1,2), (1,4),
   (2,1), (2,2), (2,3), (2,4), (2,8), (2,9),
   (3,5), (3,6), (3,7), (3,8), (3,9);
 
+
+#Users表和Spring-security的信息要一致
+
