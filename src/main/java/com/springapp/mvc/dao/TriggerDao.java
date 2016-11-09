@@ -1,8 +1,9 @@
 package com.springapp.mvc.dao;
 
 import com.springapp.mvc.bean.Trigger;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -23,4 +24,17 @@ public interface TriggerDao {
      * @param date
      */
     public void          updateTriggers(Date date);
+
+    /**
+     * 新增一条触发器
+     * @param type
+     * @param event
+     * @param riskId
+     * @param projectId
+     * @param deadline
+     * @param threshold
+     * @param operator
+     */
+    public void          insertTrigger(int  type, int  event, int  riskId, int  projectId,Date deadline, int  threshold,int  operator);
+
 }

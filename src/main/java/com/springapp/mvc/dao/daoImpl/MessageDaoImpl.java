@@ -8,6 +8,9 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -21,7 +24,7 @@ public class MessageDaoImpl extends JdbcDaoSupport implements MessageDao{
     @Override
     public List<Message> findMessagesByUser(long userId) {
         String sql = "select * from messages where status = 1 and userId = " + userId  ;
-        List messages =  this.getJdbcTemplate().query(sql,new MessageRowMapper());
+        List messages =  this.getJdbcTemplate().query(sql, new MessageRowMapper());
         return messages;
     }
 
@@ -37,5 +40,15 @@ public class MessageDaoImpl extends JdbcDaoSupport implements MessageDao{
     public void deleteMessageByUser(long userId) {
         String sql = "update messages set status = 0 where userId=?";
         this.getJdbcTemplate().update(sql,userId);
+    }
+
+    @Override
+    public void insertMessages(List<Integer> userIds,int riskId,Date createAt){
+        String sql = "INSERT INTO messages(riskId,userId,status,createAt) VALUES ";
+
+        for(int userId : userIds){
+            sql += ("( "+riskId+", "+userId+", "+1+", '"+createAt+"' ) ");
+        }
+        this.getJdbcTemplate().execute(sql);
     }
 }

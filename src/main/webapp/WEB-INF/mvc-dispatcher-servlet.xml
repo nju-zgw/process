@@ -50,12 +50,16 @@
     <bean id="riskItemDao" class="com.springapp.mvc.dao.daoImpl.RiskItemDaoImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"></property>
     </bean>
-    <!--<bean id="messageDao" class="com.springapp.mvc.dao.daoImpl.MessageDaoImpl">
+    <bean id="messageDao" class="com.springapp.mvc.dao.daoImpl.MessageDaoImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"></property>
     </bean>
     <bean id="triggerDao" class="com.springapp.mvc.dao.daoImpl.TriggerDaoImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"></property>
-    </bean>-->
+    </bean>
+    <bean id="projectDao" class="com.springapp.mvc.dao.daoImpl.ProjectDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+    </bean>
+
 
     <!--事务管理，jdbcTemplate本身没有事务的支持-->
     <bean id="transactionManager"

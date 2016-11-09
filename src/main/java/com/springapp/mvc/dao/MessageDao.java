@@ -2,6 +2,7 @@ package com.springapp.mvc.dao;
 
 import com.springapp.mvc.bean.Message;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -15,4 +16,5 @@ public interface MessageDao {
     public List<Message> findMessagesByUser(long userId) throws SQLException;
     public void       deleteMessageById(int id) throws SQLException;
     public void       deleteMessageByUser(long userId) throws SQLException;
+    public void       insertMessages(List<Integer> userIds,int riskId,Date createAt)  throws SQLException;
 }

@@ -6,7 +6,7 @@ import com.springapp.mvc.dao.TriggerDao;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -21,7 +21,7 @@ public class TriggerDaoImpl extends JdbcDaoSupport implements TriggerDao {
     @Override
     public List<Trigger> findAllActiveTriggers(Date date) {
 
-        String sql = "select * from triggers where status = 0 and deadline = " + date  ;
+        String sql = "select * from triggers where status = 0 and deadline = '" + date.toString()+"'"  ;
         List triggers =  this.getJdbcTemplate().query(sql,new TriggerRowMapper());
         return triggers;
 
@@ -32,4 +32,13 @@ public class TriggerDaoImpl extends JdbcDaoSupport implements TriggerDao {
         String sql = "update triggers set status = 1 where deadline = ?";
         this.getJdbcTemplate().update(sql,date);
     }
+
+    @Override
+    public void insertTrigger(int type, int event, int riskId, int projectId, Date deadline, int threshold, int operator) {
+        String sql = "INSERT INTO triggers(type,event,riskId,projectId,deadline, threshold,operator,status) VALUES ("+
+                     type + ", " + event +  ", " + riskId + ", " + projectId + ", '" + deadline + "', " + threshold + ", " + operator + ",0)" ;
+        this.getJdbcTemplate().execute(sql);
+    }
+
+
 }

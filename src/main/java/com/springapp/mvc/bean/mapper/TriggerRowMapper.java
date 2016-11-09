@@ -16,7 +16,7 @@ public class TriggerRowMapper implements RowMapper<Trigger> {
                            resultSet.getInt("type"),
                            resultSet.getInt("event"),
                            resultSet.getInt("riskId"),
-                           resultSet.getInt("riskId"),
+                           resultSet.getInt("projectId"),
                            resultSet.getInt("status"),
                            resultSet.getDate("deadline"),
                            resultSet.getInt("threshold"),
