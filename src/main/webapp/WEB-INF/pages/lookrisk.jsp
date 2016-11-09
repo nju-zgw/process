@@ -183,12 +183,52 @@
             <textarea class="col-sm-8" rows="10" cols="30" style="position:relative;left:9%;top:35px;height:245px">我是一个文本框。</textarea>
           </div>
 
-          <button type="button" class="btn btn-round btn-info" style="position:relative;width:21%;left:34%;top:55px">添加状态</button>
+          <button type="button" class="btn btn-round btn-info" style="position:relative;width:21%;left:34%;top:55px"
+                  data-toggle="modal" data-target="#addStatus">添加状态</button>
+
         </div>
       </div>
     </div>
   </section>
+  <div class="panel panel-default">
 
+    <div class="col-md-9 col-md-offset-2 mb" style="position:relative;top:75px">
+
+        <div class="col-md-13">
+          <div class="content-panel">
+            <h4><i class="fa fa-angle-right"></i>状态跟踪列表</h4>
+            <hr>
+            <table class="table">
+              <thead>
+              <tr>
+                <th>跟踪时间</th>
+                <th>风险描述</th>
+                <th>状态</th>
+                <th>跟踪人</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>2016/11/9 7:48</td>
+                <td>尼玛写不完了</td>
+                <td>跟踪中</td>
+                <td>韩奇祺</td>
+              </tr>
+              <tr>
+                <td>2016/11/9 7:48</td>
+                <td>尼玛写不完了</td>
+                <td>跟踪中</td>
+                <td>韩奇祺</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+  </div>
 </section>
+
+
+
 </body>
 </html>
