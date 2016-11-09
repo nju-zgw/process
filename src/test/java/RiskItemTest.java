@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 /**
  * Created by WH on 2016/11/8.
  */
@@ -17,10 +19,17 @@ public class RiskItemTest {
     @Autowired
     RiskItemDao riskItemDao;
 
-    @Test
+//    @Test
     public void testInsert() {
         RiskItem item = new RiskItem(1,1,2,"你好啊我是描述",1,0,1);
         riskItemDao.insert(item);
+    }
+
+    @Test
+    public void testQuery() {
+        List<RiskItem> itemList = riskItemDao.getRisks(1);
+        System.out.println(itemList.size());
+        System.out.println(itemList);
     }
 
 }

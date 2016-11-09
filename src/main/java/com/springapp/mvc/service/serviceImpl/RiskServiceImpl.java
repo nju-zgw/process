@@ -9,6 +9,9 @@ import com.springapp.mvc.service.RiskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by WH on 2016/11/9.
  */
@@ -87,5 +90,28 @@ public class RiskServiceImpl implements RiskService {
             vo.setOperateInfo("创建新RiskItem成功!");
         }
         return vo;
+    }
+
+    @Override
+    public List<RiskItemVO> getRisks(String username) {
+        List<RiskItemVO> results = new ArrayList<>();
+        User user = userDao.getUserByName(username);
+        if(user == null)
+            return results;
+        int userId = user.getId();
+        List<RiskItem> itemList = riskItemDao.getRisks(userId);
+        System.out.println("RiskItem counts : " + itemList.size());
+        for(RiskItem item : itemList) {
+            RiskItemVO vo = new RiskItemVO();
+            vo.setRiskItemId(item.getRid());
+            vo.setProjectId(item.getProjectId());
+            vo.setCreaterId(item.getCreaterId());
+            vo.setRiskTypeId(item.getTypeId());
+            vo.setDescript(item.getDescript());
+            vo.setRiskProb(item.getProb());
+            vo.setRiskAffect(item.getAffect());
+            results.add(vo);
+        }
+        return results;
     }
 }

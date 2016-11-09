@@ -1,6 +1,7 @@
 package com.springapp.mvc.dao.daoImpl;
 
 import com.springapp.mvc.bean.RiskItem;
+import com.springapp.mvc.bean.mapper.RiskItemsRowMapper;
 import com.springapp.mvc.dao.RiskItemDao;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -14,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by WH on 2016/11/8.
@@ -30,18 +32,18 @@ public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao{
     public void insert(final RiskItem project) {
         final String insertToRiskDescripts = "insert into risk_descripts (risk_descript) values (?)";
         final KeyHolder keyHolder = new GeneratedKeyHolder();
-        this.getJdbcTemplate().update(
-                new PreparedStatementCreator() {
-                    @Override
-                    public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                        PreparedStatement ps = connection.prepareStatement(insertToRiskDescripts,
-                                new String[]{"risk_descript_id"});
-                        ps.setString(1, project.getDescript());
-                        return ps;
-                    }
-                },
-                keyHolder
-        );
+            this.getJdbcTemplate().update(
+                    new PreparedStatementCreator() {
+                        @Override
+                        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                            PreparedStatement ps = connection.prepareStatement(insertToRiskDescripts,
+                                    new String[]{"risk_descript_id"});
+                            ps.setString(1, project.getDescript());
+                            return ps;
+                        }
+                    },
+                    keyHolder
+            );
         final String insertToRiskItems = "insert into risk_items " +
                 "( project_id, creater_id," +
                 "risk_type_id, risk_descript_id," +
@@ -81,12 +83,20 @@ public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao{
     }
 
     @Override
-    public RiskItem findRiskItemByRid(long rid) {
-        return null;
+    public List<RiskItem> getRisks(int userId) {
+        final String querySql ="select risk_item_id,p.project_id as projectId, creater_id, risk_type_id, " +
+                "ri.risk_descript_id as descript_id ,risk_prob ,risk_affect,create_time, " +
+                "p.project_name as pname, " +
+                "risk_descript " +
+                "from risk_items ri " +
+                "join projects p on p.project_id = ri.project_id " +
+                "join risk_descripts rd on rd.risk_descript_id = ri.risk_descript_id " +
+                "where ri.project_id in (select upr.project_id from user_project_rel upr where user_id=?)";
+//        Integer cnt = this.getJdbcTemplate().queryForObject(
+//                "SELECT count(*) FROM risk_items WHERE creater_id=?", Integer.class, userId);
+//        System.out.println(cnt);
+        return this.getJdbcTemplate().query(querySql,new RiskItemsRowMapper(), userId);
     }
 
-    @Override
-    public RiskItem findRiskItemByPid(long pid) {
-        return null;
-    }
+
 }

@@ -113,3 +113,24 @@ INSERT INTO role_right_rel (role_id, right_id) VALUES (1,1), (1,2), (1,4),
 
 #Users表和Spring-security的信息要一致
 
+select risk_item_id,p.project_id,creater_id,risk_type_id,risk_descript_id,risk_prob,risk_affect,create_time,
+  p.project_name as pname
+from risk_items ri
+  join projects p on p.project_id = ri.project_id
+where ri.project_id in (select upr.project_id from user_project_rel upr where user_id = 1 );
+
+
+#插入Project数据
+insert into projects
+(project_name, project_descript,project_period, manager_id, project_status )
+values
+  ('企业信息管理项目', '为南京大学软件学院开发的项目，投资巨大，功能复杂',30, 2, 1),
+  ('数据收集和分析软件', '1.适用行业场景：产品连锁店面 2.周期要求：长期 3.详细功能描述：数据采集和数据分析等 4.终端要求：电脑和手机',90, 2, 1),
+  ('考核试卷自动生成PC端软件', '软件功能：类似于驾考科目一那种类型的试题生成软件，员工考核完成后自动输出成绩。',50, 2, 1),
+  ('二手车置换交易管理系统', '梳理了二手车置换交易中，二手车经营公司、汽车厂商、汽车4S店与经纪公司信息流通的过程，解决了二手车置换流程的信息化管理。',30, 2, 1),
+  ('合同执行管理系统', '该系统分为合同管理、合同分拆、合同评审、生成计划、生产管理、发货管理、物流管理、售后服务八个主要部分贯穿整个系统',30, 2, 1);
+
+#插入user project relation
+INSERT INTO user_project_rel (user_id, project_id)
+    VALUES
+      (1,1),(1,2),(1,3),(1,4),(1,5);

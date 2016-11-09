@@ -10,7 +10,9 @@ public class RiskItem {
     // 风险概率（高、中、低）、风险影响程度（高、中、低）、建立时间
     private int rid;
     private int projectId;
+    private String projectName;
     private int createrId;
+    private int descriptId;
     private String descript;
     private int typeId;
     private int prob;
@@ -29,6 +31,22 @@ public class RiskItem {
         this.typeId = typeId;
         this.prob = prob;
         this.affect = affect;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public int getDescriptId() {
+        return descriptId;
+    }
+
+    public void setDescriptId(int descriptId) {
+        this.descriptId = descriptId;
     }
 
     public int getRid() {
@@ -93,5 +111,22 @@ public class RiskItem {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+
+    @Override
+    public String toString() {
+        return "RiskItem{" +
+                "rid=" + rid +
+                ", projectId=" + projectId +
+                ", projectName='" + projectName + '\'' +
+                ", createrId=" + createrId +
+                ", descriptId=" + descriptId +
+                ", descript='" + descript + '\'' +
+                ", typeId=" + typeId +
+                ", prob=" + prob +
+                ", affect=" + affect +
+                ", time=" + time +
+                '}';
     }
 }

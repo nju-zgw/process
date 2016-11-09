@@ -15,8 +15,7 @@ public interface RiskItemDao {
 
     public void modify(RiskItem project);
 
-    public RiskItem findRiskItemByRid(long rid);
+    public List<RiskItem> getRisks(int userId);
 
-    public RiskItem findRiskItemByPid(long pid);
 
 }

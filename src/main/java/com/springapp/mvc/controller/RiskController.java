@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,6 +25,11 @@ public class RiskController {
     @RequestMapping(value = "/riskPage", method = RequestMethod.GET)
     public String transToRiskPage() {
         return "addRiskForTest";
+    }
+
+    @RequestMapping(value = "/allRisks", method = RequestMethod.GET)
+    public String transToAllRisksPage() {
+        return "showRiskForTest";
     }
 
     @Autowired
@@ -78,12 +84,18 @@ public class RiskController {
      *
      * @param request
      * @return
-     * 获得当前和该用户项目相关的所有风险
+     * 获得当前和该用户项目相关的所有风险条目
      */
     @RequestMapping(value = "/getRisks", method = RequestMethod.GET)
     public @ResponseBody
     List<RiskItemVO> getRisks(HttpServletRequest request) {
-        return null;
+        //get username
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        if(username == null || username.length() == 0)
+            return new ArrayList<>();
+        List<RiskItemVO> results = riskService.getRisks(username);
+        return results;
     }
 
     /**
