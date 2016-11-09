@@ -124,7 +124,7 @@
                        <div class="form-group row">
                            <label class="col-sm-2 col-sm-2 control-label">风险名</label>
                            <div class="col-sm-4">
-                               <input type="text" class="form-control round-form">
+                               <input type="text" class="form-control" style="width:50%;height:4%">
                            </div>
                        </div>
                        <div class="form-group row">
@@ -172,19 +172,34 @@
                            <textarea class="col-sm-6" rows="10" cols="30" style="position:relative;left:10px">我是一个文本框。</textarea>
                        </div>
                        <div class="form-group row">
-                           <label class="col-sm-2 col-sm-2 control-label">触发器</label>
+                           <label class="col-sm-2 col-sm-2 control-label">触发器类别</label>
                            <div class="col-sm-10">
                                <select class="form-group">
-                                   <option>条件111</option>
-                                   <option>条件222</option>
-                                   <option>条件333</option>
+                                   <option>Bug数量</option>
+                                   <option>进度</option>
                                </select>
                            </div>
                        </div>
                        <div class="form-group row">
-                           <label class="col-sm-2 col-sm-2 control-label">阈值</label>
-                           <div class="col-sm-3">
-                               <input type="text" class="form-control round-form">
+                           <label class="col-sm-2 control-label">阈值</label>
+                           <div class="col-sm-1">
+                               <select class="form-group" style="width:60%;height:3%">
+                                   <option> < </option>
+                                   <option> > </option>
+                               </select>
+                           </div>
+                           <div class="col-sm-2">
+                           <input type="text" class="form-control" style="position:relative;width:50%;height:3%;left:-20%">
+                            </div>
+                       </div>
+                       <div class="form-group row">
+                           <label class="col-sm-2    control-label">事件</label>
+                           <div class="col-sm-6">
+                               <select class="form-group">
+                                   <option>群发</option>
+                                   <option>回发</option>
+                                   <option>条件333</option>
+                               </select>
                            </div>
                        </div>
                        <button type="button" class="btn btn-round btn-info" style="position:relative;width:9%;left:15%;top:40px">提交</button>

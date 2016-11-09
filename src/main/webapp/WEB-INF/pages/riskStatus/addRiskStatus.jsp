@@ -19,31 +19,35 @@
             </div>
             <div class="modal-body">
 
-                <div class="form-group row">
-                    <label class="text-right col-sm-2 control-label">风险名称</label>
+                <%--<div class="form-group row">--%>
+                    <%--<label class="text-right col-sm-2 control-label">风险名称</label>--%>
 
-                    <div class="col-sm-10">
-                        <span class="form-group"> 名字 </span>
-                    </div>
-                </div>
+                    <%--<div class="col-sm-10">--%>
+                        <%--<span class="form-group"> 名字 </span>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
                 <div class="form-group row">
-                    <label class="text-right col-sm-2  control-label">跟踪者</label>
+                    <label class="text-right col-sm-2  control-label"> 分配</label>
                     <div class="col-sm-10">
                         <select class="form-group">
+                            <option>无</option>
                             <option>王昊</option>
                             <option>张冠炜</option>
                             <option>韩77</option>
                             <option>袁睿</option>
                         </select>
                     </div>
-
                 </div>
 
                 <div class="form-group row">
-                    <label class="text-right col-sm-2  control-label">状态描述</label>
+                    <label class="text-right col-sm-2  control-label">状态</label>
 
                     <div class="col-sm-10">
-                        <input type="text" class="form-control round-form">
+                        <select class="form-group">
+                            <option>跟踪中</option>
+                            <option>准备跟踪</option>
+                            <option>已解决</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
