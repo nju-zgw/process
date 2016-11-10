@@ -37,4 +37,7 @@ public interface TriggerDao {
      */
     public void          insertTrigger(int  type, int  event, int  riskId, int  projectId,Date deadline, int  threshold,int  operator);
 
+
+    public Trigger findTrigger(int riskId);
+
 }

@@ -10,5 +10,7 @@ import java.util.List;
 public interface UserService {
     public boolean checkUserExisted(String username);
     public boolean checkCorrect(String username, String password);
+    public int getUserId(String username);
+    public String getUserNameById(int userid);
     public List<User> getAllUsers();
 }

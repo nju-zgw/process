@@ -117,6 +117,17 @@ public class RiskServiceImpl implements RiskService {
 
     @Override
     public String getRiskName(int riskId) {
-        return riskItemDao.getRiskNameById(riskId);
+        RiskItem risk = riskItemDao.getRisk(riskId);
+        if(risk != null){
+            return risk.getProjectName();
+        }
+        return "这是这个系统的风险。。";
     }
+
+    @Override
+    public RiskItem getRisk(int riskId) {
+        RiskItem risk = riskItemDao.getRisk(riskId);
+        return risk;
+    }
+
 }

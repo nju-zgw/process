@@ -1,9 +1,11 @@
 package com.springapp.mvc.controller;
 
-import com.springapp.mvc.bean.TriggerCreateInfo;
+import com.springapp.mvc.bean.*;
 import com.springapp.mvc.bean.vo.RiskItemVO;
+import com.springapp.mvc.service.RiskItemStatusService;
 import com.springapp.mvc.service.RiskService;
 import com.springapp.mvc.service.TriggerService;
+import com.springapp.mvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,24 +34,75 @@ public class RiskController {
 
     @RequestMapping(value = "/allRisks", method = RequestMethod.GET)
     public String transToAllRisksPage() {
+        //get username
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
         return "index";
     }
 
 
     @RequestMapping(value = "/createRisk", method = RequestMethod.GET)
     public String transToCreateRisk() {
-        return "createrisk";
+        return "createRisk";
     }
 
     @RequestMapping(value = "/lookRisk", method = RequestMethod.GET)
     public String transToRiskView() {
-        return "lookrisk";
+        return "lookRisk";
     }
+
+    @RequestMapping(value = "/seeRisk", method = RequestMethod.GET)
+    public String ToRiskView( @RequestParam(value = "riskId", required = true) int riskId) {
+
+
+        RiskItem risk = riskService.getRisk(riskId);
+        Trigger  trigger = triggerService.findTrigger(riskId);
+
+        RiskView view =new RiskView();  //这些是风险 创建时 原有的信息
+        view.setRiskName(risk.getRiskName());
+        view.setProject(risk.getProjectName());
+        view.setProvider(userService.getUserNameById(risk.getCreaterId()));
+        view.setTime(risk.getTime().toLocaleString());
+        view.setRiskType(this.getType(risk.getTypeId()));
+        view.setRiskPro(this.getType(risk.getProb()));
+        view.setRiskAffect(this.getType(risk.getAffect()));
+
+
+        //风险描述
+        view.setContent(risk.getDescript());
+
+        //查 这个风险跟踪的人   风险状态
+        List<RiskStatusItem>  riskStatus = riskItemStatusService.getStatusItemsByriskId(riskId);
+        view.setPeopleNum(riskStatus.size());
+        if(riskStatus.size()>0) { //至少有一个风险状态
+            RiskStatusItem status = riskStatus.get(riskStatus.size() - 1);
+            //StatusDescriptId() 当作 风险状态 的 状态
+            view.setStatus(this.getStatus(status.getStatusDescriptId()));
+            view.setFollowName(userService.getUserNameById(status.getTracerId()));
+         }
+
+
+        //触发器内容
+        view.setType(this.getTriggerType(trigger.getType()));
+        view.setEvent(this.getEvent(trigger.getEvent()));
+        view.setValue(this.getOperator(trigger.getOperator())+"  "+trigger.getThreshold());
+        view.setDeadline(trigger.getDeadline().toLocaleString());
+
+        return "lookRisk";
+    }
+
     @Autowired
     RiskService riskService;
 
     @Autowired
     TriggerService triggerService;
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    RiskItemStatusService riskItemStatusService;
 
     /**
      *
@@ -182,6 +235,63 @@ public class RiskController {
     private boolean isLegalInfo(RiskItemVO vo) {
         boolean result = true;
         return result;
+    }
+
+
+    private  String  getType(int type){
+       switch (type) {
+           case 1:
+               return "低";
+           case 2:
+               return "中";
+           case 3:
+                return "高";
+       }
+        return "低";
+    }
+
+    private String getStatus(int type){
+        switch (type){
+            case 1:
+                return "准备跟踪";
+            case 2:
+                return "跟踪中";
+            case 3:
+                return "已解决";
+        }
+        return "准备跟踪";
+    }
+
+    private String getTriggerType(int type){
+        switch (type){
+            case 0:
+                return "Bug数量";
+            case 1:
+                return "进度";
+        }
+        return "Bug数量";
+    }
+
+    private String getEvent(int event){
+        switch (event){
+            case 1:
+                return "群发";
+            case 2:
+                return "回发";
+            case 3:
+                return "结束";
+        }
+        return "群发";
+    }
+
+    private String getOperator(int type){
+        switch (type){
+            case 0:
+                return "<";
+            case 1:
+                return ">";
+        }
+        return "<";
     }
 
 

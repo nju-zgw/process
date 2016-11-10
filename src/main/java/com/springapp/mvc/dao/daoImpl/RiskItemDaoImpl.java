@@ -99,6 +99,13 @@ public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao{
     }
 
     @Override
+    public RiskItem getRisk(int riskId) {
+        String sql ="SELECT * FROM risk_items WHERE risk_item_id=?";
+        return this.getJdbcTemplate().queryForObject(sql,new RiskItemsRowMapper(),riskId);
+
+    }
+
+    @Override
     public String getRiskNameById(int riskId) {
         String riskName = this.getJdbcTemplate().queryForObject(
                 "SELECT risk_name FROM risk_items WHERE risk_item_id=?", String.class, riskId);

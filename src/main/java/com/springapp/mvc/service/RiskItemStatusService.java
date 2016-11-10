@@ -9,4 +9,7 @@ import java.util.List;
  */
 public interface RiskItemStatusService {
     public List<RiskStatusItem> getStatusItems(String username);
+
+    public List<RiskStatusItem> getStatusItemsByriskId(int riskId);
+
 }

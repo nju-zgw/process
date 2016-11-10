@@ -10,6 +10,7 @@ public class RiskItem {
     // 风险概率（高、中、低）、风险影响程度（高、中、低）、建立时间
     private int rid;
     private int projectId;
+    private String riskName;
     private String projectName;
     private int createrId;
     private int descriptId;
@@ -116,6 +117,14 @@ public class RiskItem {
 
     public int getProcessed() {
         return processed;
+    }
+
+    public String getRiskName() {
+        return riskName;
+    }
+
+    public void setRiskName(String riskName) {
+        this.riskName = riskName;
     }
 
     public void setProcessed(int processed) {

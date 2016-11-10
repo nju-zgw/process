@@ -1,5 +1,6 @@
 package com.springapp.mvc.service;
 
+import com.springapp.mvc.bean.RiskItem;
 import com.springapp.mvc.bean.vo.RiskItemVO;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface RiskService {
     public RiskItemVO addRiskItem(RiskItemVO vo);
     public List<RiskItemVO> getRisks(String username);
     public String getRiskName(int riskId);
+
+    public RiskItem getRisk(int riskId);
 }

@@ -1,5 +1,7 @@
 package com.springapp.mvc.service;
 
+import com.springapp.mvc.bean.Trigger;
+
 import java.sql.Date;
 
 /**
@@ -10,5 +12,5 @@ import java.sql.Date;
 public interface TriggerService {
     public void trigger(Date date);
     public void addTrigger(int  type, int  event, int  riskId, int  projectId, Date deadline, int  threshold,int  operator);
-
+    public Trigger findTrigger(int riskId);
 }

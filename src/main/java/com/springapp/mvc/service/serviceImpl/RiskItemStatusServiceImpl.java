@@ -24,4 +24,11 @@ public class RiskItemStatusServiceImpl implements RiskItemStatusService{
         User user = userDao.getUserByName(username);
         return riskStatusDao.getStatusByTracer(user.getId());
     }
+
+    @Override
+    public List<RiskStatusItem> getStatusItemsByriskId(int riskId) {
+        return riskStatusDao.getStatusList(riskId);
+    }
+
+
 }

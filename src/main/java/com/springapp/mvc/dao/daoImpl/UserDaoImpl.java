@@ -33,4 +33,10 @@ public class UserDaoImpl extends JdbcDaoSupport implements UserDao{
         String sql = "select user_id, user_name ,'' as user_pwd from users";
         return this.getJdbcTemplate().query(sql, new UserRowMapper());
     }
+
+    @Override
+    public User getUserByUid(int uid) {
+        String sql = "select * from users where user_id=?";
+        return this.getJdbcTemplate().queryForObject(sql, new UserRowMapper(),uid);
+    }
 }

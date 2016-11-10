@@ -77,4 +77,9 @@ public class TriggerServiceImpl implements TriggerService {
         triggerDao.insertTrigger(type,event,riskId,projectId,deadline,threshold,operator);
     }
 
+    @Override
+    public Trigger findTrigger(int riskId) {
+        return triggerDao.findTrigger(riskId);
+    }
+
 }

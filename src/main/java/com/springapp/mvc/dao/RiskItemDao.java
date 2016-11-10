@@ -17,6 +17,8 @@ public interface RiskItemDao {
 
     public List<RiskItem> getRisks(int userId);
 
+    public RiskItem getRisk(int riskId);
+
     public String getRiskNameById(int riskId);
 
 

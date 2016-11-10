@@ -42,14 +42,14 @@ MAIN CONTENT
 <div id="login-page">
     <div class="container">
 
-        <form id="myform" class="form-login" action="/login" method="post">
-            <h2 class="form-login-heading">sign in now</h2>
+        <form id="myform" class="form-login" action="login" method="post">
+            <h2 class="form-login-heading">软件风险管理系统</h2>
             <div class="login-wrap">
-                <input type="text" class="form-control" placeholder="User ID" name="username" autocomplete="off" autofocus>
+                <input type="text" class="form-control" placeholder="用户名" name="username" autocomplete="off" autofocus>
                 <br>
-                <input type="password" class="form-control" placeholder="Password" autocomplete="off" name="password">
+                <input type="password" class="form-control" placeholder="密码" autocomplete="off" name="password">
                 <br/>
-                <button id="submitButton" class="btn btn-theme btn-block" ><i class="fa fa-lock"></i> SIGN IN</button>
+                <button id="submitButton" class="btn btn-theme btn-block" ><i class="fa fa-lock"></i> 登录</button>
                 <hr>
             </div>
 
@@ -66,7 +66,7 @@ MAIN CONTENT
 <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
 <script src="<c:url value="/resources/js/jquery.backstretch.min.js" />"></script>
 <script>
-    $.backstretch("assets/img/login-bg.jpg", {speed: 500});
+    $.backstretch("resources/img/login-bg.jpg", {speed: 500});
     $(document).ready(function(){
 
     });

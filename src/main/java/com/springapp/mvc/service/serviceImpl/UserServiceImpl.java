@@ -41,6 +41,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int getUserId(String username) {
+        if(username == null || username.length() == -1){
+            return -1;
+        }
+        User user = userDao.getUserByName(username);
+        if(user !=null){
+            return user.getId();
+        }
+        return -1;
+    }
+
+    @Override
+    public String getUserNameById(int userid) {
+      User user = userDao.getUserByUid(userid);
+        if(user != null){
+            return  user.getName();
+        }
+        return "º«Ææì÷";
+    }
+
+    @Override
     public List<User> getAllUsers() {
         List<User> userList = userDao.getUserList();
         return userList;
