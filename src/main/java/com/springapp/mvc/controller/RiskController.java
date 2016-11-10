@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -123,8 +124,9 @@ public class RiskController {
                           @RequestParam(value = "triggerType", required = true) int triggerType,
                           @RequestParam(value = "valueType", required = true) int valueType,
                           @RequestParam(value = "value", required = true) int value,
-                          @RequestParam(value = "eventType", required = true) int eventType
-                          ) {
+                          @RequestParam(value = "eventType", required = true) int eventType,
+                          @RequestParam(value = "time", required = true) Date time
+    ) {
 
         RiskItemVO vo = new RiskItemVO();
         vo.setRiskName(riskName);
@@ -141,7 +143,7 @@ public class RiskController {
         triggerInfo.setValueType(valueType);
         triggerInfo.setValue(value);
         triggerInfo.setEventType(eventType);
-
+        triggerInfo.setTime(time); //这个注意一下 可能有问题
         //creater Name
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String createrName = auth.getName();
@@ -165,7 +167,7 @@ public class RiskController {
         }
         System.out.println(vo);
         triggerService.addTrigger(triggerInfo.getTriggerType(),
-                triggerInfo.getEventType(),vo.getRiskItemId(),projectId,null,
+                triggerInfo.getEventType(),vo.getRiskItemId(),projectId,triggerInfo.getTime(),
                 triggerInfo.getValue(),triggerInfo.getValueType());
         return vo;
     }

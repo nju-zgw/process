@@ -182,7 +182,7 @@
 
                                             <button type="button" class="btn btn-round btn-info"
                                                     style="position:relative;width:6%;left:40%;top:40px"
-                                                    onclick="javascrtpt:window.location.href='lookrisk'">查看
+                                                    onclick="javascrtpt:window.location.href='lookRisk'">查看
                                             </button>
                                         </div>
                                     </div>
@@ -216,7 +216,7 @@
 
                                             <button type="button" class="btn btn-round btn-info"
                                                     style="position:relative;width:6%;left:40%;top:40px"
-                                                    onclick="javascrtpt:window.location.href='lookrisk'">查看
+                                                    onclick="javascrtpt:window.location.href='lookRisk'">查看
                                             </button>
                                         </div>
                                     </div>
@@ -250,7 +250,7 @@
 
                                             <button type="button" class="btn btn-round btn-info"
                                                     style="position:relative;width:6%;left:40%;top:40px"
-                                                    onclick="javascrtpt:window.location.href='lookrisk'">查看
+                                                    onclick="javascrtpt:window.location.href='lookRisk'">查看
                                             </button>
                                         </div>
                                     </div>

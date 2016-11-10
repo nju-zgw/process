@@ -79,6 +79,7 @@ public class RiskServiceImpl implements RiskService {
         itemToInsert.setTypeId(vo.getRiskTypeId());
         itemToInsert.setProb(vo.getRiskProb());
         itemToInsert.setAffect(vo.getRiskAffect());
+        itemToInsert.setRiskName(vo.getRiskName());
 
         riskItemDao.insert(itemToInsert);
 

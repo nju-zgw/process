@@ -88,7 +88,7 @@
     </aside>
 
     <section id="main-descript">
-        <div class="col-lg-9 col-md-4 col-sm-4 col-md-offset-2 mb" style="position:relative;height:800px;top:85px">
+        <div class="col-lg-9 col-md-4 col-sm-4 col-md-offset-2 mb" style="position:relative;height:850px;top:85px">
             <div class="panel panel-default" style="height: 100%;">
                 <div class="panel-heading">
                     <p style="font-size:20px">创建风险</p>
@@ -99,16 +99,16 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-sm-2 control-label">风险名</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" style="width:50%;height:4%">
+                                <input type="text" name="riskName" class="form-control" style="width:50%;height:4%">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-sm-2 control-label">项目</label>
                             <div class="col-sm-10">
-                                <select class="form-group" name="pname">
-                                    <option>NBA数据分析系统</option>
-                                    <option>甜品屋</option>
-                                    <option>进销存系统</option>
+                                <select class="form-group" name="projectId">
+                                    <option value="1">NBA数据分析系统</option>
+                                    <option value="2">甜品屋</option>
+                                    <option value="3">进销存系统</option>
                                 </select>
                             </div>
                         </div>
@@ -116,9 +116,9 @@
                             <label class="col-sm-2 col-sm-2 control-label">风险类别</label>
                             <div class="col-sm-10">
                                 <select class="form-group" name="type">
-                                    <option>性能风险</option>
-                                    <option>进度风险</option>
-                                    <option>成本风险</option>
+                                    <option value="1">性能风险</option>
+                                    <option value="2">进度风险</option>
+                                    <option value="3">成本风险</option>
                                 </select>
                             </div>
                         </div>
@@ -126,9 +126,9 @@
                             <label class="col-sm-2 col-sm-2 control-label">风险概率</label>
                             <div class="col-sm-10">
                                 <select class="form-group" name="probability">
-                                    <option>高</option>
-                                    <option>中</option>
-                                    <option>低</option>
+                                    <option value="3">高</option>
+                                    <option value="2">中</option>
+                                    <option value="1">低</option>
                                 </select>
                             </div>
                         </div>
@@ -136,9 +136,9 @@
                             <label class="col-sm-2 col-sm-2 control-label">风险影响程度</label>
                             <div class="col-sm-10">
                                 <select class="form-group" name="affect">
-                                    <option>高</option>
-                                    <option>中</option>
-                                    <option>低</option>
+                                    <option value="3">高</option>
+                                    <option value="2">中</option>
+                                    <option value="1">低</option>
                                 </select>
                             </div>
                         </div>
@@ -151,8 +151,8 @@
                             <label class="col-sm-2 col-sm-2 control-label">触发器类别</label>
                             <div class="col-sm-10">
                                 <select class="form-group" name="triggerType">
-                                    <option>Bug数量</option>
-                                    <option>进度</option>
+                                    <option value="0">Bug数量</option>
+                                    <option value="1">进度</option>
                                 </select>
                             </div>
                         </div>
@@ -160,8 +160,8 @@
                             <label class="col-sm-2 control-label">阈值</label>
                             <div class="col-sm-1">
                                 <select class="form-group" style="width:60%;height:3%" name="triggerOpe">
-                                    <option> < </option>
-                                    <option> > </option>
+                                    <option value="0"> < </option>
+                                    <option value="1"> > </option>
                                 </select>
                             </div>
                             <div class="col-sm-2">
@@ -173,10 +173,16 @@
                             <label class="col-sm-2 control-label">事件</label>
                             <div class="col-sm-6">
                                 <select class="form-group" name="triggerEvent">
-                                    <option>群发</option>
-                                    <option>回发</option>
-                                    <option>条件333</option>
+                                    <option value="0">群发</option>
+                                    <option value="1">回发</option>
+                                    <option value="2">条件333</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label">触发时间</label>
+                            <div class="col-sm-6">
+                                <input type="date"  name class="form-control">
                             </div>
                         </div>
                         <input type="button" class="btn btn-round btn-info"

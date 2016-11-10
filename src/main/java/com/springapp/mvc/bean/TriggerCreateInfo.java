@@ -4,6 +4,9 @@ package com.springapp.mvc.bean;
  * Created by WH on 2016/11/10.
  */
 
+
+import java.sql.Date;
+
 /**
  * 创建risk的时候创建trigger的数据载体
  */
@@ -13,6 +16,7 @@ public class TriggerCreateInfo {
     int value; //阈值数量
     int eventType; //事件类型
     int riskItemId;//风险条目id
+    Date time;
 
     public TriggerCreateInfo(int triggerType, int valueType, int value, int eventType) {
         this.triggerType = triggerType;
@@ -24,6 +28,13 @@ public class TriggerCreateInfo {
     public TriggerCreateInfo() {
     }
 
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
     public int getTriggerType() {
         return triggerType;
     }
