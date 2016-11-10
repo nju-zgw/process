@@ -11,5 +11,7 @@ import java.util.List;
 public interface RiskStatusDao {
     public List<RiskStatusItem> getStatusList(int riskId);
 
+    public List<RiskStatusItem> getStatusByTracer(int tracerId);
+
     public RiskStatusItem addStatusForRisk(RiskStatusItem item);
 }

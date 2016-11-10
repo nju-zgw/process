@@ -114,4 +114,9 @@ public class RiskServiceImpl implements RiskService {
         }
         return results;
     }
+
+    @Override
+    public String getRiskName(int riskId) {
+        return riskItemDao.getRiskNameById(riskId);
+    }
 }

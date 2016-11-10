@@ -30,6 +30,15 @@ public class RiskStatusDaoImpl extends JdbcDaoSupport implements RiskStatusDao{
     }
 
     @Override
+    public List<RiskStatusItem> getStatusByTracer(int tracerId) {
+        final String querySql = "SELECT status_id, risk_item_id, tracer_id, risk_status_descript_id, " +
+                "  status_descript, create_time from risk_status rs " +
+                "JOIN risk_status_descripts rsd on rs.risk_status_descript_id = rsd.status_descript_id " +
+                "WHERE rs.tracer_id = ?";
+        return this.getJdbcTemplate().query(querySql, new RiskStatusItemRowMapper(), tracerId);
+    }
+
+    @Override
     @Transactional
     public RiskStatusItem addStatusForRisk(final RiskStatusItem item) {
         final String insertDescriptSql = "INSERT INTO risk_status_descripts " +

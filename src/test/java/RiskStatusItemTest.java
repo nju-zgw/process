@@ -1,5 +1,6 @@
 import com.springapp.mvc.bean.RiskStatusItem;
 import com.springapp.mvc.dao.RiskStatusDao;
+import com.springapp.mvc.service.RiskItemStatusService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,17 @@ import java.util.List;
 public class RiskStatusItemTest {
     @Autowired
     RiskStatusDao riskStatusDao;
-
-    @Test
+    @Autowired
+    RiskItemStatusService riskItemStatusService;
+//    @Test
     public void testRiskStatusGet() {
         List<RiskStatusItem> itemList = riskStatusDao.getStatusList(13);
         System.out.println(itemList);
+    }
+
+    @Test
+    public void testRiskStatusByTracer() {
+        List<RiskStatusItem> items = riskItemStatusService.getStatusItems("wanghao");
+        System.out.println(items);
     }
 }
