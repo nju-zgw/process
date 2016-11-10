@@ -31,4 +31,23 @@ public class RiskItemStatusServiceImpl implements RiskItemStatusService{
     }
 
 
+    @Override
+    public RiskStatusItem createRiskStatusItem(
+            int riskId,
+            String createrName ,
+            String acceptorName,
+            String statusDescript) {
+        User creater = userDao.getUserByName(createrName);
+        User acceptor = userDao.getUserByName(acceptorName);
+        RiskStatusItem statusItem = new RiskStatusItem();
+        statusItem.setRiskId(riskId);
+        statusItem.setTracerId(creater.getId());
+        statusItem.setAcceptorId(acceptor.getId());
+        statusItem.setStatusDescript(statusDescript);
+
+        statusItem = riskStatusDao.addStatusForRisk(statusItem);
+        return statusItem;
+    }
+
+
 }

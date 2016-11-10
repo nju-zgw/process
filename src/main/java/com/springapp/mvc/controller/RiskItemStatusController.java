@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -29,5 +30,17 @@ public class RiskItemStatusController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         return riskItemStatusService.getStatusItems(username);
+    }
+
+    @RequestMapping(value = "/createRiskStatus", method = RequestMethod.POST)
+    public @ResponseBody RiskStatusItem
+        createRiskStatus(
+            @RequestParam(value = "riskId", required = true) int riskId,
+            @RequestParam(value = "acceptorName", required = true) String acceptorName,
+            @RequestParam(value = "descript", required = true) String statusDescript
+    ) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String tracerName = auth.getName();
+        return riskItemStatusService.createRiskStatusItem(riskId, tracerName, acceptorName, statusDescript);
     }
 }

@@ -12,4 +12,10 @@ public interface RiskItemStatusService {
 
     public List<RiskStatusItem> getStatusItemsByriskId(int riskId);
 
+    public RiskStatusItem createRiskStatusItem(
+            int riskId,
+            String createrName ,
+            String acceptorName,
+            String statusDescript);
+
 }

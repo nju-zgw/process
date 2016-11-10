@@ -47,8 +47,8 @@ public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao{
         final String insertToRiskItems = "insert into risk_items " +
                 "( project_id, creater_id," +
                 "risk_type_id, risk_descript_id," +
-                "risk_prob, risk_affect) values " +
-                "(?,?,?,?, ?,?)";
+                "risk_prob, risk_affect, risk_name) values " +
+                "(?,?,?,?, ?,?, ?)";
 
         KeyHolder riskKey = new GeneratedKeyHolder();
         this.getJdbcTemplate().update(
@@ -63,6 +63,7 @@ public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao{
                         ps.setInt(4, keyHolder.getKey().intValue());
                         ps.setInt(5, project.getProb());
                         ps.setInt(6, project.getAffect());
+                        ps.setString(7, project.getRiskName());
                         return ps;
                     }
                 },
@@ -85,7 +86,7 @@ public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao{
     @Override
     public List<RiskItem> getRisks(int userId) {
         final String querySql ="select risk_item_id,p.project_id as projectId, creater_id, risk_type_id, " +
-                "ri.risk_descript_id as descript_id ,risk_prob ,risk_affect,create_time, " +
+                "ri.risk_descript_id as descript_id ,risk_prob ,risk_affect,create_time, risk_name" +
                 "p.project_name as pname, processed, " +
                 "risk_descript " +
                 "from risk_items ri " +
