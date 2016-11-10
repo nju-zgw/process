@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface RiskStatusDao {
     public List<RiskStatusItem> getStatusList(int riskId);
+
+    public RiskStatusItem addStatusForRisk(RiskStatusItem item);
 }

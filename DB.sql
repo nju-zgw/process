@@ -134,3 +134,51 @@ values
 INSERT INTO user_project_rel (user_id, project_id)
     VALUES
       (1,1),(1,2),(1,3),(1,4),(1,5);
+
+INSERT INTO risk_status (risk_item_id, tracer_id, risk_status_descript_id) VALUES
+  (13,1,1);
+
+INSERT INTO risk_status_descripts (status_descript) VALUES
+  ('风险很大，短期内难以解决');
+
+SELECT status_id, risk_item_id, tracer_id, risk_status_descript_id,
+  status_descript, create_time from risk_status rs
+  JOIN risk_status_descripts rsd on rs.risk_status_descript_id = rsd.status_descript_id
+WHERE rs.risk_item_id = 13;
+
+INSERT INTO risk_types (type_name,parent_type)
+VALUES ('硬件资源和环境风险',NULL),
+  ('技术风险',NULL),
+  ('质量风险',NULL),
+  #硬件风险
+  ('缺少必要的软件',1),
+  ('硬件设备不具备',1),
+  ('办公环境落后',1),
+  ('测试所需的软硬件资源不满足',1),
+  ('测试环境的准备不充分',1),
+  #技术风险
+  ('项目经理、项目人员的能力不足',2),
+  ('项目组未正确理解客户需求',2),
+  ('项目组设计出的方案不能完全满足客户需求',2),
+  ('没有合适的需求分析方法和建模工具',2),
+  ('测试范围不合理、无法明确定义测试项',2),
+  ('测试用例的选择缺乏代表性、不完备',2),
+  #质量风险
+  ('软件产品出现功能性错误',3),
+  ('软件产品出现性能问题',3),
+  ('软件产品未通过公司内部评审',3),
+  ('软件复制构成中产生质量问题',3),
+  ('不能完成软件产品安装',3),
+  ('测试期间产生问题',3),
+  ('试运行阶段发现软件产品存在错误',3) ;
+
+#添加RiskStatusItem ,同时更新risk_status_descripts
+INSERT INTO risk_status_descripts (status_descript)
+VALUES
+  (?)
+;
+
+INSERT INTO risk_status (risk_item_id, tracer_id, risk_status_descript_id)
+VALUES
+  (?,?,?);
+
