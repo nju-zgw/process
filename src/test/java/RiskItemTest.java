@@ -33,4 +33,10 @@ public class RiskItemTest {
     }
 
 
+    @Test
+    public void testGetRiskNameById() {
+        String name = riskItemDao.getRiskNameById(13);
+        System.out.println(name);
+    }
+
 }
