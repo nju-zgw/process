@@ -23,7 +23,7 @@ public class RiskStatusDaoImpl extends JdbcDaoSupport implements RiskStatusDao{
     @Override
     public List<RiskStatusItem> getStatusList(int riskId) {
         final String querySql = "SELECT status_id, risk_item_id, tracer_id, risk_status_descript_id, " +
-                "  status_descript, create_time from risk_status rs " +
+                "  status_descript, create_time, status_value from risk_status rs " +
                 "JOIN risk_status_descripts rsd on rs.risk_status_descript_id = rsd.status_descript_id " +
                 "WHERE rs.risk_item_id = ?";
         return this.getJdbcTemplate().query(querySql, new RiskStatusItemRowMapper(), riskId);
@@ -32,7 +32,7 @@ public class RiskStatusDaoImpl extends JdbcDaoSupport implements RiskStatusDao{
     @Override
     public List<RiskStatusItem> getStatusByTracer(int tracerId) {
         final String querySql = "SELECT status_id, risk_item_id, tracer_id, risk_status_descript_id, " +
-                "  status_descript, create_time from risk_status rs " +
+                "  status_descript, create_time, status_value from risk_status rs " +
                 "JOIN risk_status_descripts rsd on rs.risk_status_descript_id = rsd.status_descript_id " +
                 "WHERE rs.tracer_id = ?";
         return this.getJdbcTemplate().query(querySql, new RiskStatusItemRowMapper(), tracerId);
@@ -86,7 +86,7 @@ public class RiskStatusDaoImpl extends JdbcDaoSupport implements RiskStatusDao{
     @Override
     public List<RiskStatusItem> getStatusByAcceptor(int acceptorId) {
         final String querySql = "SELECT status_id, risk_item_id, tracer_id, risk_status_descript_id, " +
-                "  status_descript, create_time from risk_status rs " +
+                "  status_descript, create_time, status_value from risk_status rs " +
                 "JOIN risk_status_descripts rsd on rs.risk_status_descript_id = rsd.status_descript_id " +
                 "WHERE rs.acceptor_id = ?";
         return this.getJdbcTemplate().query(querySql, new RiskStatusItemRowMapper(), acceptorId);

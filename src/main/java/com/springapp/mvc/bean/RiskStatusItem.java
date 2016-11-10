@@ -11,6 +11,7 @@ public class RiskStatusItem {
     private int riskId;
     private int tracerId ;
     private int acceptorId;   //分配给下一个人
+    private int riskStatusValue;
     private int statusDescriptId;
     private String statusDescript;
     private Date createTime;
@@ -76,6 +77,14 @@ public class RiskStatusItem {
     }
     public int getAcceptorId() {
         return acceptorId;
+    }
+
+    public int getRiskStatusValue() {
+        return riskStatusValue;
+    }
+
+    public void setRiskStatusValue(int riskStatusValue) {
+        this.riskStatusValue = riskStatusValue;
     }
 
     public void setAcceptorId(int acceptorId) {
