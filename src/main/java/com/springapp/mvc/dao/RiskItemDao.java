@@ -15,7 +15,11 @@ public interface RiskItemDao {
 
     public void modify(RiskItem project);
 
-    public List<RiskItem> getRisks(int userId);
+    public List<RiskItem> getRisks(int userId);//全部风险列表
+
+    public List<RiskItem> getRisksCreated(int createrId);
+
+    public List<RiskItem> getRisksAccepted(int acceptorId);
 
     public RiskItem getRisk(int riskId);
 

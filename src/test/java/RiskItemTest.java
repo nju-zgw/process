@@ -25,15 +25,15 @@ public class RiskItemTest {
         riskItemDao.insert(item);
     }
 
-//    @Test
+    @Test
     public void testQuery() {
-        List<RiskItem> itemList = riskItemDao.getRisks(1);
+        List<RiskItem> itemList = riskItemDao.getRisksAccepted(2);
         System.out.println(itemList.size());
         System.out.println(itemList);
     }
 
 
-    @Test
+//    @Test
     public void testGetRiskNameByqId() {
         String name = riskItemDao.getRiskNameById(13);
         System.out.println(name);

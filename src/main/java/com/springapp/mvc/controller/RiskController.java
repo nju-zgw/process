@@ -203,13 +203,13 @@ public class RiskController {
      */
     @RequestMapping(value = "/getRisks", method = RequestMethod.GET)
     public @ResponseBody
-    List<RiskItemVO> getRisks(HttpServletRequest request) {
+    List<List<RiskItemVO>> getRisks(HttpServletRequest request) {
         //get username
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         if(username == null || username.length() == 0)
             return new ArrayList<>();
-        List<RiskItemVO> results = riskService.getRisks(username);
+        List<List<RiskItemVO>> results = riskService.getRisks(username);
         return results;
     }
 

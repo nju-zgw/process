@@ -93,15 +93,31 @@ public class RiskServiceImpl implements RiskService {
         return vo;
     }
 
+    /**
+     *
+     * @param username
+     * @return 返回一个List的集合，第一个List是全部有关项目的风险，第2个List是创建的风险，第3个List是接受并处理的风险
+     */
     @Override
-    public List<RiskItemVO> getRisks(String username) {
-        List<RiskItemVO> results = new ArrayList<>();
+    public List<List<RiskItemVO>> getRisks(String username) {
+        List<List<RiskItemVO>> results = new ArrayList<>();
         User user = userDao.getUserByName(username);
         if(user == null)
             return results;
         int userId = user.getId();
         List<RiskItem> itemList = riskItemDao.getRisks(userId);
-        System.out.println("RiskItem counts : " + itemList.size());
+        List<RiskItem> createItemList = riskItemDao.getRisksCreated(userId);
+        List<RiskItem> acceptItemList = riskItemDao.getRisksAccepted(userId);
+
+        results.add(transform(itemList));
+        results.add(transform(createItemList));
+        results.add(transform(acceptItemList));
+        return results;
+    }
+
+
+    private List<RiskItemVO> transform (List<RiskItem> itemList) {
+        List<RiskItemVO> results = new ArrayList<>();
         for(RiskItem item : itemList) {
             RiskItemVO vo = new RiskItemVO();
             vo.setRiskItemId(item.getRid());
@@ -115,7 +131,6 @@ public class RiskServiceImpl implements RiskService {
         }
         return results;
     }
-
     @Override
     public String getRiskName(int riskId) {
         RiskItem risk = riskItemDao.getRisk(riskId);

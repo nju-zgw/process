@@ -87,16 +87,43 @@ public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao{
     public List<RiskItem> getRisks(int userId) {
         final String querySql ="select risk_item_id,p.project_id as projectId, creater_id, risk_type_id, " +
                 "ri.risk_descript_id as descript_id ,risk_prob ,risk_affect,create_time, risk_name" +
-                "p.project_name as pname, processed, " +
+                "p.name as pname, processed, " +
                 "risk_descript " +
                 "from risk_items ri " +
                 "join projects p on p.project_id = ri.project_id " +
                 "join risk_descripts rd on rd.risk_descript_id = ri.risk_descript_id " +
                 "where ri.project_id in (select upr.project_id from user_project_rel upr where user_id=?)";
-//        Integer cnt = this.getJdbcTemplate().queryForObject(
-//                "SELECT count(*) FROM risk_items WHERE creater_id=?", Integer.class, userId);
-//        System.out.println(cnt);
+
         return this.getJdbcTemplate().query(querySql,new RiskItemsRowMapper(), userId);
+    }
+
+    @Override
+    public List<RiskItem> getRisksCreated(int createrId) {
+        final String querySql ="select risk_item_id,p.project_id as projectId, creater_id, risk_type_id, " +
+                "ri.risk_descript_id as descript_id ,risk_prob ,risk_affect,create_time, risk_name, " +
+                "p.name as pname, processed," +
+                "risk_descript " +
+                "from risk_items ri " +
+                "join projects p on p.project_id = ri.project_id " +
+                "join risk_descripts rd on rd.risk_descript_id = ri.risk_descript_id " +
+                "where ri.creater_id = ?";
+
+        return this.getJdbcTemplate().query(querySql,new RiskItemsRowMapper(), createrId);
+    }
+
+    @Override
+    public List<RiskItem> getRisksAccepted(int acceptorId) {
+        final String querySql ="select ri.risk_item_id as risk_item_id,p.project_id as projectId, creater_id, risk_type_id, " +
+                "ri.risk_descript_id as descript_id ,risk_prob ,risk_affect,ri.create_time as create_time, risk_name, " +
+                "p.name as pname, processed, " +
+                "risk_descript " +
+                "from risk_items ri " +
+                "join projects p on p.project_id = ri.project_id " +
+                "join risk_descripts rd on rd.risk_descript_id = ri.risk_descript_id " +
+                "join risk_status rs on rs.risk_item_id = ri.risk_item_id " +
+                "where rs.acceptor_id = ? ";
+
+        return this.getJdbcTemplate().query(querySql,new RiskItemsRowMapper(), acceptorId);
     }
 
     @Override

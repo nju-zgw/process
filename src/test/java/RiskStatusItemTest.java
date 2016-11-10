@@ -19,13 +19,13 @@ public class RiskStatusItemTest {
     RiskStatusDao riskStatusDao;
     @Autowired
     RiskItemStatusService riskItemStatusService;
-//    @Test
+    @Test
     public void testRiskStatusGet() {
-        List<RiskStatusItem> itemList = riskStatusDao.getStatusList(13);
+        List<RiskStatusItem> itemList = riskStatusDao.getStatusByAcceptor(2);
         System.out.println(itemList);
     }
 
-    @Test
+//    @Test
     public void testRiskStatusByTracer() {
         List<RiskStatusItem> items = riskItemStatusService.getStatusItems("wanghao");
         System.out.println(items);
