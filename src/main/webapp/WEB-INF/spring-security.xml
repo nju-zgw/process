@@ -11,6 +11,7 @@
         <security:intercept-url pattern="/admin**" access="hasRole('ROLE_SYS_ADMIN')" />
         <security:intercept-url pattern="/addRisk" access="hasRole('ROLE_DEV') or hasRole('ROLE_MANAGER')"/>
         <security:intercept-url pattern="/getRisks" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/getUserList" access="hasRole('ROLE_USER')"/>
 
         <security:form-login login-page="/login"
                              username-parameter="username"
