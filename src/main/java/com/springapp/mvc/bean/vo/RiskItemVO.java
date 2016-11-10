@@ -1,5 +1,10 @@
 package com.springapp.mvc.bean.vo;
 
+import com.springapp.mvc.bean.RiskStatusItem;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by WH on 2016/11/8.
  */
@@ -13,6 +18,8 @@ public class RiskItemVO {
     String descript;
     int riskProb;
     int riskAffect;
+
+    List<RiskStatusItem> riskStatusList = new ArrayList<>();
 
     boolean operateSuccess = true;//操作状态结果
     String operateInfo;//操作结果信息
@@ -104,6 +111,10 @@ public class RiskItemVO {
 
     public void setCreaterName(String createrName) {
         this.createrName = createrName;
+    }
+
+    public List<RiskStatusItem> getRiskStatusList() {
+        return riskStatusList;
     }
 
     @Override

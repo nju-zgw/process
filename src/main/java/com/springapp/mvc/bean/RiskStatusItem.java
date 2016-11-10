@@ -7,81 +7,82 @@ import java.util.Date;
  */
 public class RiskStatusItem {
     //风险状态：状态编号（主键）、风险编号、跟踪者编号、状态描述（风险、问题）、文本描述、跟进时间
-    private int id;
-    private long rid;
-    private long uid;
-    private String status;
-    private String content;
-    private Date time;
+    private int statusId;
+    private int riskId;
+    private int tracerId ;
+    private int statusDescriptId;
+    private String statusDescript;
+    private Date createTime;
 
-    /**
-     *
-     * @param id
-     * @param rid
-     * @param uid
-     * @param status
-     * @param content
-     * @param time
-     */
-    public RiskStatusItem(int id, long rid, long uid, String status, String content, Date time) {
-        this.id = id;
-        this.rid = rid;
-        this.uid = uid;
-        this.status = status;
-        this.content = content;
-        this.time = time;
+    public RiskStatusItem() {
     }
 
-    public int getId() {
-        return id;
+    public RiskStatusItem(int statusId, int riskId, int tracerId, int statusDescriptId, String statusDescript, Date createTime) {
+        this.statusId = statusId;
+        this.riskId = riskId;
+        this.tracerId = tracerId;
+        this.statusDescriptId = statusDescriptId;
+        this.statusDescript = statusDescript;
+        this.createTime = createTime;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getStatusId() {
+        return statusId;
     }
 
-    public long getRid() {
-        return rid;
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
     }
 
-    public void setRid(long rid) {
-        this.rid = rid;
+    public int getRiskId() {
+        return riskId;
     }
 
-    public long getUid() {
-        return uid;
+    public void setRiskId(int riskId) {
+        this.riskId = riskId;
     }
 
-    public void setUid(long uid) {
-        this.uid = uid;
+    public int getTracerId() {
+        return tracerId;
     }
 
-    public String getStatus() {
-        return status;
+    public void setTracerId(int tracerId) {
+        this.tracerId = tracerId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public int getStatusDescriptId() {
+        return statusDescriptId;
     }
 
-    public String getContent() {
-        return content;
+    public void setStatusDescriptId(int statusDescriptId) {
+        this.statusDescriptId = statusDescriptId;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public String getStatusDescript() {
+        return statusDescript;
     }
 
-    public Date getTime() {
-        return time;
+    public void setStatusDescript(String statusDescript) {
+        this.statusDescript = statusDescript;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public Date getCreateTime() {
+        return createTime;
     }
 
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-
-
-
+    @Override
+    public String toString() {
+        return "RiskStatusItem{" +
+                "statusId=" + statusId +
+                ", riskId=" + riskId +
+                ", tracerId=" + tracerId +
+                ", statusDescriptId=" + statusDescriptId +
+                ", statusDescript='" + statusDescript + '\'' +
+                ", createTime=" + createTime +
+                '}';
+    }
 }

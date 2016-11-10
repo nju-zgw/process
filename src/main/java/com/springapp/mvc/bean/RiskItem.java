@@ -18,6 +18,7 @@ public class RiskItem {
     private int prob;
     private int affect;
     private Date time;
+    private int processed;
 
     public RiskItem() {
     }
@@ -113,6 +114,13 @@ public class RiskItem {
         this.time = time;
     }
 
+    public int getProcessed() {
+        return processed;
+    }
+
+    public void setProcessed(int processed) {
+        this.processed = processed;
+    }
 
     @Override
     public String toString() {

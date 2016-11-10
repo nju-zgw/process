@@ -22,7 +22,7 @@ public class RiskItemsRowMapper implements RowMapper<RiskItem>{
         item.setProb(resultSet.getInt("risk_prob"));
         item.setAffect(resultSet.getInt("risk_affect"));
         item.setProjectName(resultSet.getString("pname"));
-
+        item.setProcessed(resultSet.getInt("processed"));
         return item;
     }
 }

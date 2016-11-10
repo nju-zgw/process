@@ -59,6 +59,9 @@
     <bean id="projectDao" class="com.springapp.mvc.dao.daoImpl.ProjectDaoImpl">
         <property name="jdbcTemplate" ref="jdbcTemplate"></property>
     </bean>
+    <bean id="riskStatusDao" class="com.springapp.mvc.dao.daoImpl.RiskStatusDaoImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+    </bean>
 
 
     <!--事务管理，jdbcTemplate本身没有事务的支持-->

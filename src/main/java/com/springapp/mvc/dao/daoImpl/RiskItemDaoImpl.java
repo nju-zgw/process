@@ -86,7 +86,7 @@ public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao{
     public List<RiskItem> getRisks(int userId) {
         final String querySql ="select risk_item_id,p.project_id as projectId, creater_id, risk_type_id, " +
                 "ri.risk_descript_id as descript_id ,risk_prob ,risk_affect,create_time, " +
-                "p.project_name as pname, " +
+                "p.project_name as pname, processed, " +
                 "risk_descript " +
                 "from risk_items ri " +
                 "join projects p on p.project_id = ri.project_id " +

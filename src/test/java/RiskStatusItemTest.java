@@ -1,5 +1,5 @@
-import com.springapp.mvc.bean.RiskItem;
-import com.springapp.mvc.dao.RiskItemDao;
+import com.springapp.mvc.bean.RiskStatusItem;
+import com.springapp.mvc.dao.RiskStatusDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,28 +9,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.List;
 
 /**
- * Created by WH on 2016/11/8.
+ * Created by WH on 2016/11/10.
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml"})
-public class RiskItemTest {
-
+public class RiskStatusItemTest {
     @Autowired
-    RiskItemDao riskItemDao;
+    RiskStatusDao riskStatusDao;
 
-//    @Test
-    public void testInsert() {
-        RiskItem item = new RiskItem(1,1,2,"你好啊我是描述",1,0,1);
-        riskItemDao.insert(item);
-    }
-
-//    @Test
-    public void testQuery() {
-        List<RiskItem> itemList = riskItemDao.getRisks(1);
-        System.out.println(itemList.size());
+    @Test
+    public void testRiskStatusGet() {
+        List<RiskStatusItem> itemList = riskStatusDao.getStatusList(13);
         System.out.println(itemList);
     }
-
-
 }
