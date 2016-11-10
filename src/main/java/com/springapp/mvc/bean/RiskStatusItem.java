@@ -10,6 +10,7 @@ public class RiskStatusItem {
     private int statusId;
     private int riskId;
     private int tracerId ;
+    private int acceptorId;   //分配给下一个人
     private int statusDescriptId;
     private String statusDescript;
     private Date createTime;
@@ -73,7 +74,13 @@ public class RiskStatusItem {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+    public int getAcceptorId() {
+        return acceptorId;
+    }
 
+    public void setAcceptorId(int acceptorId) {
+        this.acceptorId = acceptorId;
+    }
     @Override
     public String toString() {
         return "RiskStatusItem{" +
