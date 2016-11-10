@@ -54,7 +54,7 @@ public class RiskController {
     }
 
     @RequestMapping(value = "/seeRisk", method = RequestMethod.GET)
-    public String ToRiskView( @RequestParam(value = "riskId", required = true) int riskId) {
+    public RiskView ToRiskView( @RequestParam(value = "riskId", required = true) int riskId) {
 
 
         RiskItem risk = riskService.getRisk(riskId);
@@ -65,7 +65,7 @@ public class RiskController {
         view.setProject(risk.getProjectName());
         view.setProvider(userService.getUserNameById(risk.getCreaterId()));
         view.setTime(risk.getTime().toLocaleString());
-        view.setRiskType(this.getType(risk.getTypeId()));
+        view.setRiskType(this.getriskType(risk.getTypeId()));
         view.setRiskPro(this.getType(risk.getProb()));
         view.setRiskAffect(this.getType(risk.getAffect()));
 
@@ -78,8 +78,7 @@ public class RiskController {
         view.setPeopleNum(riskStatus.size());
         if(riskStatus.size()>0) { //至少有一个风险状态
             RiskStatusItem status = riskStatus.get(riskStatus.size() - 1);
-            //StatusDescriptId() 当作 风险状态 的 状态
-            view.setStatus(this.getStatus(status.getStatusDescriptId()));
+            view.setStatus(this.getStatus(status.getRiskStatusValue()));
             view.setFollowName(userService.getUserNameById(status.getTracerId()));
          }
 
@@ -90,7 +89,19 @@ public class RiskController {
         view.setValue(this.getOperator(trigger.getOperator())+"  "+trigger.getThreshold());
         view.setDeadline(trigger.getDeadline().toLocaleString());
 
-        return "lookRisk";
+        //需要判断这个风险条目  状态 是否现在能由他跟踪
+
+        List<RiskStatusItem> statusItems = riskItemStatusService.getStatusItemsByriskId(riskId);
+
+        RiskStatusItem status = statusItems.get(statusItems.size()-1);
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        if(status.getAcceptorId() == userService.getUserId(username)){
+             view.setFollower(true);
+        }
+        return view;
     }
 
     @Autowired
@@ -165,6 +176,18 @@ public class RiskController {
         }else{
             System.out.println("创建RiskItem失败，权限不足....");
         }
+
+        //默认创建风险条目的那个人第一个被分配去跟踪风险
+        RiskStatusItem  statusItem = new RiskStatusItem();
+        statusItem.setRiskId(vo.getRiskItemId());
+        statusItem.setAcceptorId(userService.getUserId(createrName));
+        statusItem.setStatusDescript(riskDescript);
+        statusItem.setTracerId(0);
+        statusItem.setRiskStatusValue(1);
+        statusItem.setCreateTime(time);
+        riskItemStatusService.createRiskStatusItem(statusItem);
+
+
         System.out.println(vo);
         triggerService.addTrigger(triggerInfo.getTriggerType(),
                 triggerInfo.getEventType(),vo.getRiskItemId(),projectId,triggerInfo.getTime(),
@@ -198,6 +221,8 @@ public class RiskController {
      */
     @RequestMapping(value = "/processRisk", method = RequestMethod.POST)
     public @ResponseBody RiskItemVO processRisk(HttpServletRequest request) {
+
+
         return null;
     }
 
@@ -237,6 +262,18 @@ public class RiskController {
     private boolean isLegalInfo(RiskItemVO vo) {
         boolean result = true;
         return result;
+    }
+
+    private String getriskType(int type){
+        switch (type){
+            case 1:
+                return "性能风险";
+            case 2:
+                return "进度风险";
+            case 3:
+                return "成本风险";
+        }
+        return "性能风险";
     }
 
 

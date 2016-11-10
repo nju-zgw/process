@@ -20,4 +20,6 @@ public interface RiskItemStatusService {
             String acceptorName,
             String statusDescript);
 
+    public void  createRiskStatusItem(RiskStatusItem Status);
+
 }

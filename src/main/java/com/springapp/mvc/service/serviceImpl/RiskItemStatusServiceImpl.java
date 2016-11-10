@@ -55,5 +55,10 @@ public class RiskItemStatusServiceImpl implements RiskItemStatusService{
         return statusItem;
     }
 
+    @Override
+    public void createRiskStatusItem(RiskStatusItem item) {
+        riskStatusDao.addStatusForRisk(item);
+    }
+
 
 }

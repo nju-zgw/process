@@ -25,8 +25,20 @@ public class RiskView {
     String deadline;
 
 
-    public RiskView(){
 
+    boolean isFollower;
+
+
+    public RiskView(){
+        isFollower = false;
+    }
+
+    public boolean isFollower() {
+        return isFollower;
+    }
+
+    public void setFollower(boolean follower) {
+        isFollower = follower;
     }
 
     public String getRiskName() {
