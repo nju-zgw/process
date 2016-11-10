@@ -14,4 +14,7 @@ public interface RiskStatusDao {
     public List<RiskStatusItem> getStatusByTracer(int tracerId);
 
     public RiskStatusItem addStatusForRisk(RiskStatusItem item);
+
+    public List<RiskStatusItem> getStatusByAcceptor(int acceptorId);
+
 }

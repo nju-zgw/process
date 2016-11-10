@@ -26,6 +26,12 @@ public class RiskItemStatusServiceImpl implements RiskItemStatusService{
     }
 
     @Override
+    public List<RiskStatusItem> getStatusByAcceptorName(String acceptor) {
+        User user = userDao.getUserByName(acceptor);
+        return riskStatusDao.getStatusByAcceptor(user.getId());
+    }
+
+    @Override
     public List<RiskStatusItem> getStatusItemsByriskId(int riskId) {
         return riskStatusDao.getStatusList(riskId);
     }

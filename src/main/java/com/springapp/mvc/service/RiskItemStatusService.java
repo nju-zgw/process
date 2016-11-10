@@ -10,6 +10,8 @@ import java.util.List;
 public interface RiskItemStatusService {
     public List<RiskStatusItem> getStatusItems(String username);
 
+    public List<RiskStatusItem> getStatusByAcceptorName(String acceptor);
+
     public List<RiskStatusItem> getStatusItemsByriskId(int riskId);
 
     public RiskStatusItem createRiskStatusItem(
