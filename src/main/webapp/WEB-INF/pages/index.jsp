@@ -72,19 +72,18 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
 
-                <p class="centered"><a href="profile.html"><img src="/resources/img/ui-sam.jpg" class="img-circle"
-                                                                width="60"></a></p>
-                <h5 class="centered">用户名xyz</h5>
+
+                <h5 class="centered">用户名</h5>
 
                 <li class="mt">
-                    <a class="active" href="index.html">
+                    <a class="active" href="allRisks">
                         <i class="fa fa-dashboard"></i>
                         <span>风险列表</span>
                     </a>
                 </li>
 
                 <li class="sub-menu">
-                    <a href="javascript:;">
+                    <a href="createRisk">
                         <i class="fa fa-desktop"></i>
                         <span>创建风险</span>
                     </a>
@@ -116,12 +115,12 @@
     <section id="main-descript">
         <section class="wrapper">
             <div class="row">
-                <div class="col-lg-9 main-chart">
+                <div class="col-lg-8 col-lg-offset-1 main-chart">
 
                     <%--<div class="panel panel-success container" id="id_panel" style="position:relative;left:8%;top:30px;width:88%">--%>
 
                         <nav class="navbar navbar-default" role="navigation"
-                             style="position:relative;left:14%;width:87%;top:-17px">
+                             style="position:relative;left:3%;width:98%;top:-17px">
                             <div style="position:relative;left:2%">
                                 <ul class="nav navbar-nav">
                                     <li class="active"><a href="#all" data-toggle="tab">所有风险</a></li>
@@ -154,13 +153,13 @@
                         <%--<p>用户数量</p>--%>
                         <%--</div>--%>
                         <%--</div><!-- /row mt -->--%>
-                        <div id="myTabContent" class="tab-content">
+                        <div id="myTabContent" class="tab-content" style="position:relative;left:11%;">
 
                             <div class="tab-pane fade in active" id="all">
 
                                 <div class="row mt" style="position:relative;">
                                     <!--col-md-4 mb starts-->
-                                    <div class="col-md-8 col-md-offset-3 mb">
+                                    <div class="col-md-8 col-md-offset-1 mb">
                                         <!-- WHITE PANEL - TOP USER -->
                                         <div class="white-panel pn" style="height:20%">
                                             <div class="white-header">
@@ -182,7 +181,8 @@
                                             </div>
 
                                             <button type="button" class="btn btn-round btn-info"
-                                                    style="position:relative;width:6%;left:40%;top:40px">查看
+                                                    style="position:relative;width:6%;left:40%;top:40px"
+                                                    onclick="javascrtpt:window.location.href='lookrisk'">查看
                                             </button>
                                         </div>
                                     </div>
@@ -193,7 +193,7 @@
 
                                 <div class="row mt" style="position:relative;">
                                     <!--col-md-4 mb starts-->
-                                    <div class="col-md-8 col-md-offset-3 mb">
+                                    <div class="col-md-8 col-md-offset-1 mb">
                                         <!-- WHITE PANEL - TOP USER -->
                                         <div class="white-panel pn" style="height:20%">
                                             <div class="white-header">
@@ -215,7 +215,8 @@
                                             </div>
 
                                             <button type="button" class="btn btn-round btn-info"
-                                                    style="position:relative;width:6%;left:40%;top:40px">查看
+                                                    style="position:relative;width:6%;left:40%;top:40px"
+                                                    onclick="javascrtpt:window.location.href='lookrisk'">查看
                                             </button>
                                         </div>
                                     </div>
@@ -226,7 +227,7 @@
 
                                 <div class="row mt" style="position:relative;">
                                     <!--col-md-4 mb starts-->
-                                    <div class="col-md-8 col-md-offset-3 mb">
+                                    <div class="col-md-8 col-md-offset-1 mb">
                                         <!-- WHITE PANEL - TOP USER -->
                                         <div class="white-panel pn" style="height:20%">
                                             <div class="white-header">
@@ -248,20 +249,16 @@
                                             </div>
 
                                             <button type="button" class="btn btn-round btn-info"
-                                                    style="position:relative;width:6%;left:40%;top:40px">查看
+                                                    style="position:relative;width:6%;left:40%;top:40px"
+                                                    onclick="javascrtpt:window.location.href='lookrisk'">查看
                                             </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-
-
                         </div>
 
-                        <div class="row mt" style="position:relative;">
-                            <%@ include file="riskStatus/addRiskStatus.jsp" %>
-                        </div>
 
                         <!-- /row -->
                     </div>
@@ -353,8 +350,8 @@
 
 <!--common script for all pages-->
 <script src="<c:url value="/resources/js/common-scripts.js"/>></script>
-    <script type=" text
-/javascript" src="<c:url value="/resources/js/gritter/js/jquery.gritter.js"/>" > </script>
+<script type=" text/javascript"
+              src="<c:url value="/resources/js/gritter/js/jquery.gritter.js"/>" > </script>
 <
 script
 type = "text/javascript"

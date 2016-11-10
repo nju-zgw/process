@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,9 +30,19 @@ public class RiskController {
 
     @RequestMapping(value = "/allRisks", method = RequestMethod.GET)
     public String transToAllRisksPage() {
-        return "showRiskForTest";
+        return "index";
     }
 
+
+    @RequestMapping(value = "/createRisk", method = RequestMethod.GET)
+    public String transToCreateRisk() {
+        return "createRisk";
+    }
+
+    @RequestMapping(value = "/lookRisk", method = RequestMethod.GET)
+    public String transToRiskView() {
+        return "lookRisk";
+    }
     @Autowired
     RiskService riskService;
     /**
@@ -40,6 +51,7 @@ public class RiskController {
      * @return
      * 创建新的风险条目，返回RiskItemVO 的json表示
      */
+
     @RequestMapping(value = "/addRisk", method = RequestMethod.POST)
     public @ResponseBody
     RiskItemVO createRisk(HttpServletRequest request,
@@ -146,4 +158,6 @@ public class RiskController {
         boolean result = true;
         return result;
     }
+
+
 }

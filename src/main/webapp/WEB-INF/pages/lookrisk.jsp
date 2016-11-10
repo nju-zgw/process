@@ -25,11 +25,16 @@
   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/js/gritter/css/jquery.gritter.css" />" />
   <link rel="stylesheet" type="text/css" href="<c:url value="/resources/lineicons/style.css" />" />
 
+
   <!-- Custom styles for this template -->
   <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
   <link href="<c:url value="/resources/css/style-responsive.css" />" rel="stylesheet">
 
+  <script src="<c:url value="/resources/js/jquery.js" />"></script>
+  <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+
   <script src="<c:url  value="/resources/js/chart-master/Chart.js" />"></script>
+
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -63,39 +68,23 @@
       <!-- sidebar menu start-->
       <ul class="sidebar-menu" id="nav-accordion">
 
-        <p class="centered"><a href="profile.html"><img src="/resources/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
         <h5 class="centered">用户名xyz</h5>
 
         <li class="mt">
-          <a class="active" href="index.html">
+          <a  href="allRisks">
             <i class="fa fa-dashboard"></i>
-            <span>主页</span>
+            <span>风险列表</span>
           </a>
         </li>
 
         <li class="sub-menu">
-          <a href="javascript:;" >
+          <a href="createRisk">
             <i class="fa fa-desktop"></i>
-            <span>风险管理</span>
+            <span>创建风险</span>
           </a>
-          <ul class="sub">
-            <li><a  href="general.html">新增风险</a></li>
-            <li><a  href="buttons.html">查看风险</a></li>
-            <!--<li><a  href="panels.html">风险</a></li>-->
-          </ul>
         </li>
 
-        <li class="sub-menu">
-          <a href="javascript:;" >
-            <i class="fa fa-cogs"></i>
-            <span>用户管理</span>
-          </a>
-          <ul class="sub">
-            <li><a  href="calendar.html">编辑用户</a></li>
-            <li><a  href="gallery.html">编辑角色</a></li>
-            <li><a  href="todo_list.html">编辑风险</a></li>
-          </ul>
-        </li>
+
       </ul>
       <!-- sidebar menu end-->
     </div>
@@ -183,11 +172,81 @@
             <textarea class="col-sm-8" rows="10" cols="30" style="position:relative;left:9%;top:35px;height:245px">我是一个文本框。</textarea>
           </div>
 
+          <div class ="row mt">
           <button type="button" class="btn btn-round btn-info" style="position:relative;width:21%;left:34%;top:55px"
                   data-toggle="modal" data-target="#addStatus">添加状态</button>
 
+
+            <div class="modal fade" id="addStatus" role="dialog" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">新增风险状态</h4>
+                  </div>
+                  <div class="modal-body">
+
+                    <%--<div class="form-group row">--%>
+                    <%--<label class="text-right col-sm-2 control-label">风险名称</label>--%>
+
+                    <%--<div class="col-sm-10">--%>
+                    <%--<span class="form-group"> 名字 </span>--%>
+                    <%--</div>--%>
+                    <%--</div>--%>
+                    <div class="form-group row">
+                      <label class="text-right col-sm-2  control-label"> 分配</label>
+
+                      <div class="col-sm-10">
+                        <select class="form-group">
+                          <option>无</option>
+                          <option>王昊</option>
+                          <option>张冠炜</option>
+                          <option>韩77</option>
+                          <option>袁睿</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label class="text-right col-sm-2  control-label">状态</label>
+
+                      <div class="col-sm-10">
+                        <select class="form-group">
+                          <option>跟踪中</option>
+                          <option>准备跟踪</option>
+                          <option>已解决</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="text-right col-sm-2  control-label">内容描述</label>
+
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control round-form">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick = "addRisk()">提交</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+
+                  </div>
+                </div>
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
+
+
+          </div>
+
+
+
         </div>
       </div>
+    </div>
+
+      <!-- /.modal-dialog -->
     </div>
   </section>
   <div class="panel panel-default">
@@ -229,6 +288,13 @@
 </section>
 
 
+<script type="text/javascript">
+  $(document).ready(function () {
+
+  });
+</script>
+
 
 </body>
 </html>
+
