@@ -1,7 +1,9 @@
 package com.springapp.mvc.controller;
 
+import com.springapp.mvc.bean.TriggerCreateInfo;
 import com.springapp.mvc.bean.vo.RiskItemVO;
 import com.springapp.mvc.service.RiskService;
+import com.springapp.mvc.service.TriggerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -36,15 +38,19 @@ public class RiskController {
 
     @RequestMapping(value = "/createRisk", method = RequestMethod.GET)
     public String transToCreateRisk() {
-        return "createRisk";
+        return "createrisk";
     }
 
     @RequestMapping(value = "/lookRisk", method = RequestMethod.GET)
     public String transToRiskView() {
-        return "lookRisk";
+        return "lookrisk";
     }
     @Autowired
     RiskService riskService;
+
+    @Autowired
+    TriggerService triggerService;
+
     /**
      *
      * @param request
@@ -55,19 +61,34 @@ public class RiskController {
     @RequestMapping(value = "/addRisk", method = RequestMethod.POST)
     public @ResponseBody
     RiskItemVO createRisk(HttpServletRequest request,
+                          @RequestParam(value = "riskName", required = true) String riskName,
                           @RequestParam(value = "projectId", required = true) int projectId,
                           @RequestParam(value = "riskTypeId", required = true) int riskTypeId,
                           @RequestParam(value = "descript", required = true) String riskDescript,
                           @RequestParam(value = "riskProb", required = true) int riskProb,
-                          @RequestParam(value = "riskAffect", required = true) int riskAffect
+                          @RequestParam(value = "riskAffect", required = true) int riskAffect,
+                          @RequestParam(value = "triggerType", required = true) int triggerType,
+                          @RequestParam(value = "valueType", required = true) int valueType,
+                          @RequestParam(value = "value", required = true) int value,
+                          @RequestParam(value = "eventType", required = true) int eventType
                           ) {
 
         RiskItemVO vo = new RiskItemVO();
+        vo.setRiskName(riskName);
         vo.setProjectId(projectId);
         vo.setRiskTypeId(riskTypeId);
         vo.setDescript(riskDescript);
         vo.setRiskProb(riskProb);
         vo.setRiskAffect(riskAffect);
+
+        //触发器相关,使用TriggerCreateInfo作为载体
+        //在set之前应该做数据的范围检查,此处暂时先不写
+        TriggerCreateInfo triggerInfo = new TriggerCreateInfo();
+        triggerInfo.setTriggerType(triggerType);
+        triggerInfo.setValueType(valueType);
+        triggerInfo.setValue(value);
+        triggerInfo.setEventType(eventType);
+
         //creater Name
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String createrName = auth.getName();
@@ -79,6 +100,7 @@ public class RiskController {
             return vo;
         }
 
+        //在service add之后，vo的id字段已经设置好了，可以直接拿来用
         if(hasRole("ROLE_MANAGER")) {
             System.out.println(createrName + " 增加一条RiskItem....");
             riskService.addRiskItem(vo);
@@ -89,6 +111,9 @@ public class RiskController {
             System.out.println("创建RiskItem失败，权限不足....");
         }
         System.out.println(vo);
+        triggerService.addTrigger(triggerInfo.getTriggerType(),
+                triggerInfo.getEventType(),vo.getRiskItemId(),projectId,null,
+                triggerInfo.getValue(),triggerInfo.getValueType());
         return vo;
     }
 

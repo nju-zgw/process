@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class RiskItemVO {
     int riskItemId;
+    String riskName;
     int projectId;
     int createrId;
     String createrName;
@@ -117,10 +118,21 @@ public class RiskItemVO {
         return riskStatusList;
     }
 
+    public String getRiskName() {
+        return riskName;
+    }
+
+    public void setRiskName(String riskName) {
+        this.riskName = riskName;
+    }
+
     @Override
     public String toString() {
         return "RiskItemVO{" +
-                "riskItemId=" + riskItemId +
+                "operateSuccess=" + operateSuccess +
+                ", operateInfo='" + operateInfo + '\'' +
+                ", riskItemId=" + riskItemId +
+                ", riskName='" + riskName + '\'' +
                 ", projectId=" + projectId +
                 ", createrId=" + createrId +
                 ", createrName='" + createrName + '\'' +
@@ -129,8 +141,6 @@ public class RiskItemVO {
                 ", descript='" + descript + '\'' +
                 ", riskProb=" + riskProb +
                 ", riskAffect=" + riskAffect +
-                ", operateSuccess=" + operateSuccess +
-                ", operateInfo='" + operateInfo + '\'' +
                 '}';
     }
 }
