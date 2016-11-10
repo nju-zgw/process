@@ -2,6 +2,7 @@ package com.springapp.mvc.dao.daoImpl;
 
 import com.springapp.mvc.bean.Trigger;
 import com.springapp.mvc.bean.mapper.TriggerRowMapper;
+import com.springapp.mvc.bean.mapper.UserRowMapper;
 import com.springapp.mvc.dao.TriggerDao;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -38,6 +39,14 @@ public class TriggerDaoImpl extends JdbcDaoSupport implements TriggerDao {
         String sql = "INSERT INTO triggers(type,event,riskId,projectId,deadline, threshold,operator,status) VALUES ("+
                      type + ", " + event +  ", " + riskId + ", " + projectId + ", '" + deadline + "', " + threshold + ", " + operator + ",0)" ;
         this.getJdbcTemplate().execute(sql);
+    }
+
+    @Override
+    public Trigger findTrigger(int riskId) {
+        String sql = "select * from triggers where riskId =?" ;
+        Trigger trigger =  this.getJdbcTemplate().queryForObject(sql,new TriggerRowMapper(),riskId);
+        return trigger;
+
     }
 
 
