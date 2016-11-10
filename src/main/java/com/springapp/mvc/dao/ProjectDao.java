@@ -20,4 +20,6 @@ public interface ProjectDao {
     public List<Project> findProjectsByProvider(long uid) throws  SQLException;
 
     public List<Integer> findAllMembersByProject(long projectId) throws  SQLException;
+
+    public List<Project> findAllProjects() throws  SQLException;
 }

@@ -49,4 +49,12 @@ public class ProjectDaoImpl extends JdbcDaoSupport implements ProjectDao {
         List users =  this.getJdbcTemplate().queryForList(sql,Integer.class);
         return users;
     }
+
+    @Override
+    public List<Project> findAllProjects() throws SQLException {
+        String sql = "select * from projects " ;
+        return this.getJdbcTemplate().query(sql, new ProjectRowMapper());
+    }
+
+
 }
