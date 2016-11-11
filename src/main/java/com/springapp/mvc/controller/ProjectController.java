@@ -24,7 +24,7 @@ public class ProjectController {
 
     @RequestMapping(value = "/getProjects",method = RequestMethod.GET)
     @ResponseBody
-    public List<Project> getMessage(){
+    public List<Project> getProjects(){
 
         List<Project> projects = projectService.getAllProjects();
         return projects;

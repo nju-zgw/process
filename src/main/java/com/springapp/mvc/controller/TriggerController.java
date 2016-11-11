@@ -22,7 +22,7 @@ public class TriggerController {
 
     @RequestMapping(value = "addTrigger",method = RequestMethod.POST)
     @ResponseBody
-    public void readAllMessage(@RequestParam("type")        int  type,
+    public void addTriggers(@RequestParam("type")        int  type,
                                @RequestParam("event")       int  event,
                                @RequestParam("riskId")      int  riskId,
                                @RequestParam("projectId")   int  projectId,
