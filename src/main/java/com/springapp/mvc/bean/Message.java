@@ -3,7 +3,7 @@ package com.springapp.mvc.bean;
 import java.sql.Date;
 
 /**
- * ÏûÏ¢
+ * æ¶ˆæ¯
  * Created by NJUYuanRui
  * Created  2016/11/8
  * Modufied 2016/11/8
@@ -13,7 +13,7 @@ public class Message {
     private int  id;
     private int  riskId;
     private long userId;
-    private int  status;    //0 ÒÑ¶Á£¬1 Î´¶Á
+    private int  status;    //0 å·²è¯»ï¼Œ1 æœªè¯»
     private Date createAt;
 
 

@@ -41,7 +41,7 @@ public class TriggerServiceImpl implements TriggerService {
                         case 0 : users = projectDao.findAllMembersByProject(prj.getPid()); break;
                         case 1 : users = Arrays.asList(prj.getUid());break;
                         case 2 :
-                        default: users = Arrays.asList(prj.getUid()); //Ã»ÓĞ½Ó¿Ú ÔİÊ±ÓÃ¾­Àí´úÌæ
+                        default: users = Arrays.asList(prj.getUid()); //æ²¡æœ‰æ¥å£ æš‚æ—¶ç”¨ç»ç†ä»£æ›¿
                     }
                     messageDao.insertMessages(users,trigger.getRiskId(),date);
                 }

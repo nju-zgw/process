@@ -14,19 +14,19 @@ import java.util.List;
 public interface TriggerDao {
 
     /**
-     * 获取所有触发器
+     * 鑾峰彇鎵�鏈夎Е鍙戝櫒
      * @param date
      */
     public List<Trigger> findAllActiveTriggers(Date date);
 
     /**
-     * 将处理过的触发器设为失效
+     * 灏嗗鐞嗚繃鐨勮Е鍙戝櫒璁句负澶辨晥
      * @param date
      */
     public void          updateTriggers(Date date);
 
     /**
-     * 新增一条触发器
+     * 鏂板涓�鏉¤Е鍙戝櫒
      * @param type
      * @param event
      * @param riskId

@@ -40,7 +40,7 @@ public class RiskItemStatusController {
     }
 
 
-    //µÃµ½Óë·çÏÕÏà¹ØµÄËùÓĞ·çÏÕ×´Ì¬
+    //å¾—åˆ°ä¸é£é™©ç›¸å…³çš„æ‰€æœ‰é£é™©çŠ¶æ€
     @RequestMapping(value = "/getRiskStatusByRiskId", method = RequestMethod.GET)
     public @ResponseBody
     List<RiskStatusItemView> getRiskStatusByRiskId( @RequestParam(value = "riskId", required = true) int riskId) {
@@ -58,14 +58,14 @@ public class RiskItemStatusController {
         }
         return itemviews;
     }
-    //´´½¨Ä³·çÏÕ ĞÂµÄ·çÏÕ×´Ì¬
+    //åˆ›å»ºæŸé£é™© æ–°çš„é£é™©çŠ¶æ€
     @RequestMapping(value = "/createRiskStatus", method = RequestMethod.GET)
     public String  createRiskStatus(@RequestParam(value = "riskId", required = true) int riskId,
                                     @RequestParam(value = "user", required = true) String name,
                                     @RequestParam(value = "status", required = true) int status,
                                     @RequestParam(value = "content", required = true) String content ){
 
-        //ĞÂ½¨Ò»¸ö×´Ì¬
+        //æ–°å»ºä¸€ä¸ªçŠ¶æ€
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         RiskStatusItem  statusItem = new RiskStatusItem();
@@ -83,13 +83,13 @@ public class RiskItemStatusController {
     private String getStatus(int type){
         switch (type){
             case 1:
-                return "×¼±¸¸ú×Ù";
+                return "å‡†å¤‡è·Ÿè¸ª";
             case 2:
-                return "¸ú×ÙÖĞ";
+                return "è·Ÿè¸ªä¸­";
             case 3:
-                return "ÒÑ½â¾ö";
+                return "å·²è§£å†³";
         }
-        return "×¼±¸¸ú×Ù";
+        return "å‡†å¤‡è·Ÿè¸ª";
     }
 
 }
