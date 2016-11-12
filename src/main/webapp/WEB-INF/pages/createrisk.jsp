@@ -7,6 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
+<%
+    SimpleDateFormat simpledateformat = new SimpleDateFormat("yyyy-MM-dd");
+    java.util.Date date = new Date();
+%>
 <html>
 <head>
     <meta charset="utf-8">
@@ -29,6 +35,7 @@
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/css/style-responsive.css" />" rel="stylesheet">
 
+    <script src="<c:url value="/resources/js/jquery.js" />"></script>
     <script src="<c:url  value="/resources/js/chart-master/Chart.js" />"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -95,27 +102,31 @@
                 </div>
                 <div class="panel-body" style="position:relative;left:25%;top:10px">
 
-                    <form id="riskForm" action="/addRisk" method="post">
+                    <form id="riskForm">
                         <div class="form-group row">
                             <label class="col-sm-2 col-sm-2 control-label">风险名</label>
+
                             <div class="col-sm-4">
-                                <input type="text" name="riskName" class="form-control" style="width:50%;height:4%">
+                                <input id="riskName" type="text" name="riskName" class="form-control"
+                                       style="width:50%;height:4%" required="required">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-sm-2 control-label">项目</label>
+
                             <div class="col-sm-10">
-                                <select class="form-group" name="projectId">
-                                    <option value="1">NBA数据分析系统</option>
-                                    <option value="2">甜品屋</option>
-                                    <option value="3">进销存系统</option>
+                                <select class="form-group" name="projectId" id="projectId">
+                                    <c:forEach items="${projects}" var="item" >
+                                        <option value="${item.pid}"><c:out value="${item.name}"/></option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-sm-2 control-label">风险类别</label>
+
                             <div class="col-sm-10">
-                                <select class="form-group" name="type">
+                                <select class="form-group" name="riskTypeId" id="riskTypeId">
                                     <option value="1">性能风险</option>
                                     <option value="2">进度风险</option>
                                     <option value="3">成本风险</option>
@@ -124,8 +135,9 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-sm-2 control-label">风险概率</label>
+
                             <div class="col-sm-10">
-                                <select class="form-group" name="probability">
+                                <select class="form-group" name="riskProb" id="riskProb">
                                     <option value="3">高</option>
                                     <option value="2">中</option>
                                     <option value="1">低</option>
@@ -134,8 +146,9 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-sm-2 control-label">风险影响程度</label>
+
                             <div class="col-sm-10">
-                                <select class="form-group" name="affect">
+                                <select class="form-group" name="riskAffect" id="riskAffect">
                                     <option value="3">高</option>
                                     <option value="2">中</option>
                                     <option value="1">低</option>
@@ -145,12 +158,14 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-sm-2 control-label">风险描述</label>
                             <textarea class="col-sm-6" rows="10" cols="30"
-                                      style="position:relative;left:10px" name="content">我是一个文本框。</textarea>
+                                      style="position:relative;left:10px" name="descript" id="descript"
+                                      placeholder="请输入风险描述" required="required"></textarea>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-sm-2 control-label">触发器类别</label>
+
                             <div class="col-sm-10">
-                                <select class="form-group" name="triggerType">
+                                <select class="form-group" name="triggerType" id="triggerType">
                                     <option value="0">Bug数量</option>
                                     <option value="1">进度</option>
                                 </select>
@@ -158,21 +173,23 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 control-label">阈值</label>
+
                             <div class="col-sm-1">
-                                <select class="form-group" style="width:60%;height:3%" name="triggerOpe">
-                                    <option value="0"> < </option>
-                                    <option value="1"> > </option>
+                                <select class="form-group" style="width:60%;height:3%" name="valueType" id="valueType">
+                                    <option value="0"> <</option>
+                                    <option value="1"> ></option>
                                 </select>
                             </div>
                             <div class="col-sm-2">
-                                <input type="text" class="form-control"
-                                       style="position:relative;width:50%;height:3%;left:-20%">
+                                <input type="text" class="form-control" name="value"
+                                       style="position:relative;width:50%;height:3%;left:-20%" id="value" required="required">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 control-label">事件</label>
+
                             <div class="col-sm-6">
-                                <select class="form-group" name="triggerEvent">
+                                <select class="form-group" name="eventType" id="eventType">
                                     <option value="0">群发</option>
                                     <option value="1">回发</option>
                                     <option value="2">条件333</option>
@@ -181,21 +198,62 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 control-label">触发时间</label>
+
                             <div class="col-sm-6">
-                                <input type="date"  name class="form-control">
+                                <input type="date" class="form-control" name="time" id="time"
+                                       value="<%= simpledateformat.format(date)%>" required="required">
+
                             </div>
                         </div>
                         <input type="button" class="btn btn-round btn-info"
-                                style="position:relative;width:9%;left:15%;top:40px" value="提交">
+                               style="position:relative;width:9%;left:15%;top:40px" value="提交" onclick="addRisk()">
                         </input>
                     </form>
 
                 </div>
             </div>
+        </div>
     </section>
 
 </section>
 
+<script>
 
+    // ajax example
+    var addRisk = function () {
+        var param = {
+            riskName: $('#riskName').val(),
+            projectId: $('#projectId').val(),
+            riskTypeId: $('#riskTypeId').val(),
+            descript: $('#descript').val(),
+            riskProb: $('#riskProb').val(),
+            riskAffect: $('#riskAffect').val(),
+            triggerType: $('#triggerType').val(),
+            valueType: $('#valueType').val(),
+            value: $('#value').val(),
+            eventType: $('#eventType').val(),
+            time: $('#time').val()
+        };
+        for(var k in param){
+            if(!param[k]){
+                alert('请填写所有字段');
+                return;
+            }
+        }
+
+        $.post(
+                '/addRisk',
+                param,
+                function (data, status) {
+                    if (status === 'success') {
+                        location.href = '/allRisks';
+                    } else {
+                        alert(data);
+                    }
+                }, "text"
+        );
+    };
+
+</script>
 </body>
 </html>

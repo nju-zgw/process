@@ -76,17 +76,3 @@
 <%--})--%>
 <%--});--%>
 <%--</script>--%>
-<script>
-
-    // ajax example
-    var addRisk = function () {
-        $.post(
-                '/addRisk',
-                {projectId: 1, riskTypeId: 1, descript: '123', riskProb: 1, riskAffect: 2},
-                function (status, data) {
-                    alert(data);
-                }, "text"
-        );
-    };
-
-</script>

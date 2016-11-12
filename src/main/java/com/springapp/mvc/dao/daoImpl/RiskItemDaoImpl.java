@@ -13,37 +13,33 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 /**
  * Created by WH on 2016/11/8.
  */
 @Repository("riskItemDao")
-public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao{
+public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao {
     /**
-     *
-     * @param project
-     * 传入RiskItem对象，分别插入到两张表中risk_descripts和risk_items，返回RiskItemID
+     * @param project 传入RiskItem对象，分别插入到两张表中risk_descripts和risk_items，返回RiskItemID
      */
     @Override
     @Transactional
     public void insert(final RiskItem project) {
         final String insertToRiskDescripts = "insert into risk_descripts (risk_descript) values (?)";
         final KeyHolder keyHolder = new GeneratedKeyHolder();
-            this.getJdbcTemplate().update(
-                    new PreparedStatementCreator() {
-                        @Override
-                        public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-                            PreparedStatement ps = connection.prepareStatement(insertToRiskDescripts,
-                                    new String[]{"risk_descript_id"});
-                            ps.setString(1, project.getDescript());
-                            return ps;
-                        }
-                    },
-                    keyHolder
-            );
+        this.getJdbcTemplate().update(
+                new PreparedStatementCreator() {
+                    @Override
+                    public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+                        PreparedStatement ps = connection.prepareStatement(insertToRiskDescripts,
+                                new String[]{"risk_descript_id"});
+                        ps.setString(1, project.getDescript());
+                        return ps;
+                    }
+                },
+                keyHolder
+        );
         final String insertToRiskItems = "insert into risk_items " +
                 "( project_id, creater_id," +
                 "risk_type_id, risk_descript_id," +
@@ -69,7 +65,7 @@ public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao{
                 },
                 riskKey
         );
-        System.out.println("新增一条风险条目，id是: "+riskKey.getKey());
+        System.out.println("新增一条风险条目，id是: " + riskKey.getKey());
         project.setRid(riskKey.getKey().intValue());
     }
 
@@ -85,8 +81,8 @@ public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao{
 
     @Override
     public List<RiskItem> getRisks(int userId) {
-        final String querySql ="select risk_item_id,p.project_id as projectId, creater_id, risk_type_id, " +
-                "ri.risk_descript_id as descript_id ,risk_prob ,risk_affect,create_time, risk_name" +
+        final String querySql = "select risk_item_id,p.project_id as projectId, creater_id, risk_type_id, " +
+                "ri.risk_descript_id as descript_id ,risk_prob ,risk_affect,create_time, risk_name, " +
                 "p.name as pname, processed, " +
                 "risk_descript " +
                 "from risk_items ri " +
@@ -94,12 +90,12 @@ public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao{
                 "join risk_descripts rd on rd.risk_descript_id = ri.risk_descript_id " +
                 "where ri.project_id in (select upr.project_id from user_project_rel upr where user_id=?)";
 
-        return this.getJdbcTemplate().query(querySql,new RiskItemsRowMapper(), userId);
+        return this.getJdbcTemplate().query(querySql, new RiskItemsRowMapper(), userId);
     }
 
     @Override
     public List<RiskItem> getRisksCreated(int createrId) {
-        final String querySql ="select risk_item_id,p.project_id as projectId, creater_id, risk_type_id, " +
+        final String querySql = "select risk_item_id,p.project_id as projectId, creater_id, risk_type_id, " +
                 "ri.risk_descript_id as descript_id ,risk_prob ,risk_affect,create_time, risk_name, " +
                 "p.name as pname, processed," +
                 "risk_descript " +
@@ -108,12 +104,12 @@ public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao{
                 "join risk_descripts rd on rd.risk_descript_id = ri.risk_descript_id " +
                 "where ri.creater_id = ?";
 
-        return this.getJdbcTemplate().query(querySql,new RiskItemsRowMapper(), createrId);
+        return this.getJdbcTemplate().query(querySql, new RiskItemsRowMapper(), createrId);
     }
 
     @Override
     public List<RiskItem> getRisksAccepted(int acceptorId) {
-        final String querySql ="select ri.risk_item_id as risk_item_id,p.project_id as projectId, creater_id, risk_type_id, " +
+        final String querySql = "select ri.risk_item_id as risk_item_id,p.project_id as projectId, creater_id, risk_type_id, " +
                 "ri.risk_descript_id as descript_id ,risk_prob ,risk_affect,ri.create_time as create_time, risk_name, " +
                 "p.name as pname, processed, " +
                 "risk_descript " +
@@ -123,13 +119,13 @@ public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao{
                 "join risk_status rs on rs.risk_item_id = ri.risk_item_id " +
                 "where rs.acceptor_id = ? ";
 
-        return this.getJdbcTemplate().query(querySql,new RiskItemsRowMapper(), acceptorId);
+        return this.getJdbcTemplate().query(querySql, new RiskItemsRowMapper(), acceptorId);
     }
 
     @Override
     public RiskItem getRisk(int riskId) {
-        String sql ="SELECT * FROM risk_items WHERE risk_item_id=?";
-        return this.getJdbcTemplate().queryForObject(sql,new RiskItemsRowMapper(),riskId);
+        String sql = "SELECT * FROM risk_items WHERE risk_item_id=?";
+        return this.getJdbcTemplate().queryForObject(sql, new RiskItemsRowMapper(), riskId);
 
     }
 

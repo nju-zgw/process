@@ -2,10 +2,7 @@ package com.springapp.mvc.controller;
 
 import com.springapp.mvc.bean.*;
 import com.springapp.mvc.bean.vo.RiskItemVO;
-import com.springapp.mvc.service.RiskItemStatusService;
-import com.springapp.mvc.service.RiskService;
-import com.springapp.mvc.service.TriggerService;
-import com.springapp.mvc.service.UserService;
+import com.springapp.mvc.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -27,30 +25,46 @@ import java.util.List;
  */
 @Controller
 public class RiskController {
-
+    @Autowired
+    ProjectService projectService;
     @RequestMapping(value = "/riskPage", method = RequestMethod.GET)
     public String transToRiskPage() {
         return "addRiskForTest";
     }
 
     @RequestMapping(value = "/allRisks", method = RequestMethod.GET)
-    public String transToAllRisksPage() {
+    public String transToAllRisksPage(ModelMap model) {
         //get username
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
 
+
+        List<List<RiskItemVO>> risksList = new ArrayList<List<RiskItemVO>>();
+
+
+        if(hasRole("ROLE_MANAGER")||hasRole("ROLE_USER")||hasRole("ROLE_DEV")){
+            risksList = riskService.getRisks(username);
+        }else if(hasRole("ROLE_SYS_ADMIN")){
+            // 管理员获得所有风险
+            //risksList.add(riskService.);
+        }
+
+        System.out.println(risksList);
+        model.addAttribute("risksList",risksList);
         return "index";
     }
 
 
     @RequestMapping(value = "/createRisk", method = RequestMethod.GET)
-    public String transToCreateRisk() {
-        return "createRisk";
+    public String transToCreateRisk(ModelMap model) {
+        List<?> projects = projectService.getAllProjects();
+        model.addAttribute("projects", projects);
+        return "createrisk";
     }
 
     @RequestMapping(value = "/lookRisk", method = RequestMethod.GET)
     public String transToRiskView() {
-        return "lookRisk";
+        return "lookrisk";
     }
 
     @RequestMapping(value = "/seeRisk", method = RequestMethod.GET)
@@ -190,7 +204,7 @@ public class RiskController {
 
         System.out.println(vo);
         triggerService.addTrigger(triggerInfo.getTriggerType(),
-                triggerInfo.getEventType(),vo.getRiskItemId(),projectId,triggerInfo.getTime(),
+                triggerInfo.getEventType(), vo.getRiskItemId(), projectId, triggerInfo.getTime(),
                 triggerInfo.getValue(),triggerInfo.getValueType());
         return vo;
     }
@@ -237,7 +251,7 @@ public class RiskController {
         return null;
     }
 
-    private boolean hasRole(String role) {
+    public static boolean hasRole(String role) {
         Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>)
                 SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         boolean hasRole = false;

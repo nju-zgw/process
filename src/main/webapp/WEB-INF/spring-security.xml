@@ -29,7 +29,7 @@
             <security:user-service>
                 <security:user name="wanghao"  password="wang"  authorities="ROLE_USER,ROLE_DEV" />
                 <security:user name="yuanrui"  password="yuan"  authorities="ROLE_USER,ROLE_MANAGER" />
-                <security:user name="zhangguanwei"  password="zhang"  authorities="ROLE_USER,ROLE_ADMIN"/>
+                <security:user name="zhangguanwei"  password="zhang"  authorities="ROLE_USER,ROLE_SYS_ADMIN"/>
                 <security:user name="hanqiqi"  password="han"  authorities="ROLE_USER,ROLE_SYS_ADMIN"/>
             </security:user-service>
         </security:authentication-provider>
