@@ -10,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -63,7 +62,7 @@ public class RiskItemStatusController {
         return itemviews;
     }
     //创建某风险 新的风险状态
-    @RequestMapping(value = "/createRiskStatus", method = RequestMethod.GET)
+    @RequestMapping(value = "/createRiskStatus", method = RequestMethod.POST)
     public @ResponseBody ValidInfo  createRiskStatus(@RequestParam(value = "riskId", required = true) int riskId,
                                     @RequestParam(value = "user", required = true) String name,
                                     @RequestParam(value = "status", required = true) int status,

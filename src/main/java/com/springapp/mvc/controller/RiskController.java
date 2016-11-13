@@ -133,7 +133,11 @@ public class RiskController {
             view.setFollower(true);
         }
 
+        List<User> users = userService.getAllUsers();
         model.addAttribute("riskView", view);
+        model.addAttribute("users",users);
+        // 需要一个statusView的list
+       // model.addAttribute("statusItems",statusItems);
         return "lookrisk";
     }
 
