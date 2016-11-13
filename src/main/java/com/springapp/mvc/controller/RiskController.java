@@ -52,7 +52,7 @@ public class RiskController {
             List<RiskView> riskItems =new ArrayList<RiskView>();
             for(RiskItemVO riskview : list){
                 RiskView view =new RiskView();
-                view.setRiskItemId(riskview.getRiskItemId());
+                view.setRiskId(riskview.getRiskItemId());
                 view.setProject(projectService.getProjectNanmeById(riskview.getProjectId()));
                 view.setRiskAffect(this.getType(riskview.getRiskAffect()));
                 view.setRiskType(this.getriskType(riskview.getRiskTypeId()));

@@ -5,7 +5,10 @@ package com.springapp.mvc.bean;
  */
 public class RiskView {
 
-    int riskId;
+
+
+    int  riskId;
+
     String riskName;
     String project;
     String provider;
@@ -33,6 +36,10 @@ public class RiskView {
     public RiskView(){
         isFollower = false;
     }
+
+
+
+
 
     public boolean isFollower() {
         return isFollower;
@@ -169,5 +176,4 @@ public class RiskView {
     public void setRiskId(int riskId) {
         this.riskId = riskId;
     }
-
 }
