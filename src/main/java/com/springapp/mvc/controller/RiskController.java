@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -45,6 +46,8 @@ public class RiskController {
     public String transToRiskPage() {
         return "addRiskForTest";
     }
+
+    static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
     @RequestMapping(value = "/allRisks", method = RequestMethod.GET)
     public String transToAllRisksPage(ModelMap model) {
@@ -94,7 +97,7 @@ public class RiskController {
         for(Message mes : ret){
             MessageView mv = new MessageView();
             mv.setRisk(riskService.getRiskName(mes.getRiskId()));
-            mv.setTime(mes.getCreateAt().toLocaleString());
+            mv.setTime(formatter.format(mes.getCreateAt()));
             res.add(mv);
         }
 
@@ -129,7 +132,7 @@ public class RiskController {
         view.setProject(projectService.getProjectNanmeById(risk.getProjectId()));
         view.setProvider(userService.getUserNameById(risk.getCreaterId()));
         System.out.println( view.getProvider());
-        view.setTime(risk.getTime().toString());
+        view.setTime(formatter.format(risk.getTime()));
         view.setRiskType(this.getriskType(risk.getTypeId()));
         view.setRiskPro(this.getType(risk.getProb()));
         view.setRiskAffect(this.getType(risk.getAffect()));
@@ -172,7 +175,7 @@ public class RiskController {
         List<RiskStatusItemView> itemviews = new ArrayList<RiskStatusItemView>();
         for(RiskStatusItem item:items){
             RiskStatusItemView statusView = new RiskStatusItemView();
-            statusView.setTime(item.getCreateTime().toString());
+            statusView.setTime(formatter.format(item.getCreateTime()));
             statusView.setContent(item.getStatusDescript());
             statusView.setUsername(userService.getUserNameById(item.getTracerId()));
             statusView.setStatus(this.getStatus(item.getRiskStatusValue()));

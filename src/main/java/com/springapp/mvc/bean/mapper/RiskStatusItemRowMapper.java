@@ -19,7 +19,7 @@ public class RiskStatusItemRowMapper implements RowMapper<RiskStatusItem> {
         item.setAcceptorId(resultSet.getInt("acceptor_id"));
         item.setStatusDescriptId(resultSet.getInt("risk_status_descript_id"));
         item.setStatusDescript(resultSet.getString("status_descript"));
-        item.setCreateTime(resultSet.getTime("create_time"));
+        item.setCreateTime(resultSet.getTimestamp("create_time"));
         item.setRiskStatusValue(resultSet.getInt("status_value"));
         return item;
     }
