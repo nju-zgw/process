@@ -1,14 +1,17 @@
 package com.springapp.mvc.service.serviceImpl;
 
+import com.springapp.mvc.bean.Project;
 import com.springapp.mvc.bean.RiskItem;
 import com.springapp.mvc.bean.User;
 import com.springapp.mvc.bean.vo.RiskItemVO;
+import com.springapp.mvc.dao.ProjectDao;
 import com.springapp.mvc.dao.RiskItemDao;
 import com.springapp.mvc.dao.UserDao;
 import com.springapp.mvc.service.RiskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +24,9 @@ public class RiskServiceImpl implements RiskService {
     RiskItemDao riskItemDao;
     @Autowired
     UserDao userDao;
+
+    @Autowired
+    ProjectDao projectDao;
 
     //各项最大值级别设定为常量
     final static int MAX_RISK_TYPE_ID = 5;
@@ -153,7 +159,13 @@ public class RiskServiceImpl implements RiskService {
     public String getRiskName(int riskId) {
         RiskItem risk = riskItemDao.getRisk(riskId);
         if(risk != null){
-            return risk.getProjectName();
+            Project p = null;
+            try {
+                p = projectDao.findProject(risk.getProjectId());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return p.getName();
         }
         return "这是这个系统的风险。。";
     }

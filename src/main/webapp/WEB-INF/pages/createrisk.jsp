@@ -74,7 +74,7 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
 
-                <h5 class="centered">用户名xyz</h5>
+                <h5 class="centered">用户名:${username}</h5>
 
                 <li class="mt">
                     <a href="/allRisks">

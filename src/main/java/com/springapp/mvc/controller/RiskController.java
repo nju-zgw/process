@@ -23,6 +23,24 @@ import java.util.List;
 @Controller
 public class RiskController {
 
+
+    @Autowired
+    RiskService riskService;
+
+    @Autowired
+    TriggerService triggerService;
+
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    ProjectService projectService;
+
+    @Autowired
+    RiskItemStatusService riskItemStatusService;
+
+    @Autowired
+    MessageService messageService;
     @RequestMapping(value = "/riskPage", method = RequestMethod.GET)
     public String transToRiskPage() {
         return "addRiskForTest";
@@ -68,8 +86,21 @@ public class RiskController {
             riskItemsList.add(riskItems);
         }
 
+        int userId = userService.getUserId(username);
+        //消息直接加在这里了
+        List<Message> ret = messageService.getMessages(userId);
 
+        List<MessageView> res = new ArrayList<MessageView>();
+        for(Message mes : ret){
+            MessageView mv = new MessageView();
+            mv.setRisk(riskService.getRiskName(mes.getRiskId()));
+            mv.setTime(mes.getCreateAt().toLocaleString());
+            res.add(mv);
+        }
+
+        model.addAttribute("username",username);
         model.addAttribute("riskviewList", riskItemsList);
+        model.addAttribute("messageList",res);
         return "index";
     }
 
@@ -77,7 +108,10 @@ public class RiskController {
     @RequestMapping(value = "/createRisk", method = RequestMethod.GET)
     public String transToCreateRisk(ModelMap model) {
         List<?> projects = projectService.getAllProjects();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
         model.addAttribute("projects", projects);
+        model.addAttribute("username",username);
         return "createrisk";
     }
 
@@ -92,7 +126,7 @@ public class RiskController {
         RiskView view = new RiskView();  //这些是风险 创建时 原有的信息
         view.setRiskId(riskId);
         view.setRiskName(risk.getRiskName());
-        view.setProject(risk.getProjectName());
+        view.setProject(projectService.getProjectNanmeById(risk.getProjectId()));
         view.setProvider(userService.getUserNameById(risk.getCreaterId()));
         System.out.println( view.getProvider());
         view.setTime(risk.getTime().toLocaleString());
@@ -133,28 +167,29 @@ public class RiskController {
             view.setFollower(true);
         }
 
+        //风险条目列表中的状态相关的信息
+        List<RiskStatusItem> items = riskItemStatusService.getStatusItemsByriskId(riskId);
+        List<RiskStatusItemView> itemviews = new ArrayList<RiskStatusItemView>();
+        for(RiskStatusItem item:items){
+            RiskStatusItemView statusView = new RiskStatusItemView();
+            statusView.setTime(item.getCreateTime().toLocaleString());
+            statusView.setContent(item.getStatusDescript());
+            statusView.setUsername(userService.getUserNameById(item.getTracerId()));
+            statusView.setStatus(this.getStatus(item.getRiskStatusValue()));
+            itemviews.add(statusView);
+        }
+
         List<User> users = userService.getAllUsers();
+
+        model.addAttribute("username",username);
         model.addAttribute("riskView", view);
-        model.addAttribute("users",users);
-        // 需要一个statusView的list
-       // model.addAttribute("statusItems",statusItems);
+        model.addAttribute("statusView",itemviews);
+        model.addAttribute("users", users);
         return "lookrisk";
     }
 
-    @Autowired
-    RiskService riskService;
 
-    @Autowired
-    TriggerService triggerService;
 
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    ProjectService projectService;
-
-    @Autowired
-    RiskItemStatusService riskItemStatusService;
 
     /**
      * @param request

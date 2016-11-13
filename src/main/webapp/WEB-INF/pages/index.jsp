@@ -74,7 +74,7 @@
             <ul class="sidebar-menu" id="nav-accordion">
 
 
-                <h5 class="centered">用户名</h5>
+                <h5 class="centered">用户名:${username}</h5>
 
                 <li class="mt">
                     <a class="active" href="/allRisks">
@@ -275,39 +275,16 @@
                         <div class="thumb">
                             <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
                         </div>
+                        <c:forEach items="${messageList}" var="item" >
                         <div class="details" style="position: relative;left:15%;top:-19px;width:200%">
                             <p>
-                                <muted>2 分钟前</muted>
+                                <muted><c:out value="${item.time}"/></muted>
                                 <br/>
-                                <a href="#">糖果屋项目</a>风险正在跟进中.<a href="#">张冠炜</a>更新了新的风险状态<br/>
-
+                                <a href="#"><c:out value="${item.risk}"/></a>风险正在跟进中
                             </p>
                         </div>
-                    </div>
-                    <div class="desc">
-                        <div class="thumb">
-                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
+                        </c:forEach>
                         <div class="details" style="position: relative;left:15%;top:-19px;width:200%">
-                            <p>
-                                <muted>2 分钟前</muted>
-                                <br/>
-                                <a href="#">糖果屋项目</a>风险正在跟进中.<a href="#">张冠炜</a>更新了新的风险状态<br/>
-
-                            </p>
-                        </div>
-                    </div>
-                    <div class="desc">
-                        <div class="thumb">
-                            <span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>
-                        </div>
-                        <div class="details" style="position: relative;left:15%;top:-19px;width:200%">
-                            <p>
-                                <muted>2 分钟前</muted>
-                                <br/>
-                                <a href="#">糖果屋项目</a>风险正在跟进中.<a href="#">张冠炜</a>更新了新的风险状态<br/>
-
-                            </p>
                         </div>
                     </div>
 
