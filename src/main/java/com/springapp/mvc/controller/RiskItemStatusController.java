@@ -10,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -92,7 +91,7 @@ public class RiskItemStatusController {
                 valid.setInfo("你没有足够的权限");
             }
         }else {
-            if(userid !=0) {
+            if(userid !=6) {
                 riskItemStatusService.createRiskStatusItem(statusItem);
                 valid.setStatusCode(100);
                 valid.setInfo("状态创建成功");

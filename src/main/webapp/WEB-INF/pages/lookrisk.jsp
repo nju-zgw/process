@@ -215,7 +215,7 @@
 
                                             <div class="col-sm-10">
                                                 <select class="form-group" id="user">
-                                                    <option value="0">无</option>
+                                                    <option value="6">无</option>
                                                     <c:forEach items="${users}" var="item">
                                                         <option value="${item.id}"><c:out
                                                                 value="${item.name}"/></option>
