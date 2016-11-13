@@ -129,7 +129,7 @@ public class RiskController {
         view.setProject(projectService.getProjectNanmeById(risk.getProjectId()));
         view.setProvider(userService.getUserNameById(risk.getCreaterId()));
         System.out.println( view.getProvider());
-        view.setTime(risk.getTime().toLocaleString());
+        view.setTime(risk.getTime().toString());
         view.setRiskType(this.getriskType(risk.getTypeId()));
         view.setRiskPro(this.getType(risk.getProb()));
         view.setRiskAffect(this.getType(risk.getAffect()));
@@ -152,7 +152,7 @@ public class RiskController {
         view.setType(this.getTriggerType(trigger.getType()));
         view.setEvent(this.getEvent(trigger.getEvent()));
         view.setValue(this.getOperator(trigger.getOperator()) + "  " + trigger.getThreshold());
-        view.setDeadline(trigger.getDeadline().toLocaleString());
+        view.setDeadline(trigger.getDeadline().toString());
 
         //需要判断这个风险条目  状态 是否现在能由他跟踪
 
@@ -172,7 +172,7 @@ public class RiskController {
         List<RiskStatusItemView> itemviews = new ArrayList<RiskStatusItemView>();
         for(RiskStatusItem item:items){
             RiskStatusItemView statusView = new RiskStatusItemView();
-            statusView.setTime(item.getCreateTime().toLocaleString());
+            statusView.setTime(item.getCreateTime().toString());
             statusView.setContent(item.getStatusDescript());
             statusView.setUsername(userService.getUserNameById(item.getTracerId()));
             statusView.setStatus(this.getStatus(item.getRiskStatusValue()));

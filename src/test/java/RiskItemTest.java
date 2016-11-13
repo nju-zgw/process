@@ -1,5 +1,6 @@
 import com.springapp.mvc.bean.RiskItem;
 import com.springapp.mvc.dao.RiskItemDao;
+import com.springapp.mvc.service.RiskService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class RiskItemTest {
 
     @Autowired
     RiskItemDao riskItemDao;
+    @Autowired
+    RiskService riskService;
 
 //    @Test
     public void testInsert() {
@@ -25,7 +28,7 @@ public class RiskItemTest {
         riskItemDao.insert(item);
     }
 
-    @Test
+//    @Test
     public void testQuery() {
         List<RiskItem> itemList = riskItemDao.getRisksAccepted(2);
         System.out.println(itemList.size());
@@ -37,6 +40,12 @@ public class RiskItemTest {
     public void testGetRiskNameByqId() {
         String name = riskItemDao.getRiskNameById(13);
         System.out.println(name);
+    }
+
+    @Test
+    public void testGetRiskById() {
+        RiskItem item = riskService.getRisk(13);
+        System.out.println(item.getTime().toString());
     }
 
 }
