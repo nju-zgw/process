@@ -52,7 +52,7 @@ public class RiskController {
             List<RiskView> riskItems =new ArrayList<RiskView>();
             for(RiskItemVO riskview : list){
                 RiskView view =new RiskView();
-                view.setRiskItemId(riskview.getRiskItemId());
+                view.setRiskId(riskview.getRiskItemId());
                 view.setProject(projectService.getProjectNanmeById(riskview.getProjectId()));
                 view.setRiskAffect(this.getType(riskview.getRiskAffect()));
                 view.setRiskType(this.getriskType(riskview.getRiskTypeId()));
@@ -92,6 +92,7 @@ public class RiskController {
         Trigger  trigger = triggerService.findTrigger(riskId);
 
         RiskView view =new RiskView();  //这些是风险 创建时 原有的信息
+        view.setRiskId(riskId);
         view.setRiskName(risk.getRiskName());
         view.setProject(risk.getProjectName());
         view.setProvider(userService.getUserNameById(risk.getCreaterId()));

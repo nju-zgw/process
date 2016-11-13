@@ -160,7 +160,7 @@
                             <div class="row mt" style="position:relative;">
                                 <!--col-md-4 mb starts-->
                                 <c:forEach items="${riskviewList.get(0)}" var="item" >
-                                    <a class="col-md-8 col-md-offset-1 mb" href="lookRisk/${item.riskItemId}">
+                                    <a class="col-md-8 col-md-offset-1 mb" href="lookRisk/${item.riskId}">
                                         <!-- WHITE PANEL - TOP USER -->
                                         <div class="white-panel pn" style="height:20%" >
                                             <div class="white-header">
@@ -196,7 +196,7 @@
                             <div class="row mt" style="position:relative;">
                                 <!--col-md-4 mb starts-->
                                 <c:forEach items="${riskviewList.get(1)}" var="item" >
-                                    <a class="col-md-8 col-md-offset-1 mb" href="lookRisk/${item.riskItemId}">
+                                    <a class="col-md-8 col-md-offset-1 mb" href="lookRisk/${item.riskId}">
                                         <!-- WHITE PANEL - TOP USER -->
                                         <div class="white-panel pn" style="height:20%">
                                             <div class="white-header">
@@ -227,7 +227,7 @@
                         <div class="tab-pane fade" id="mypro">
 
                             <c:forEach items="${riskviewList.get(2)}" var="item" >
-                                <a class="col-md-8 col-md-offset-1 mb" href="lookRisk/${item.riskItemId}">
+                                <a class="col-md-8 col-md-offset-1 mb" href="lookRisk/${item.riskId}">
                                     <!-- WHITE PANEL - TOP USER -->
                                     <div class="white-panel pn" style="height:20%">
                                         <div class="white-header">
