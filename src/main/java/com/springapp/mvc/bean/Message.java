@@ -1,6 +1,6 @@
 package com.springapp.mvc.bean;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * 消息
