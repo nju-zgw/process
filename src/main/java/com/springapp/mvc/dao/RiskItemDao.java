@@ -17,6 +17,7 @@ public interface RiskItemDao {
 
     public List<RiskItem> getRisks(int userId);//全部风险列表
 
+    public List<RiskItem> getAllRisks(); // 管理员能够获得全部风险
     public List<RiskItem> getRisksCreated(int createrId);
 
     public List<RiskItem> getRisksAccepted(int acceptorId);

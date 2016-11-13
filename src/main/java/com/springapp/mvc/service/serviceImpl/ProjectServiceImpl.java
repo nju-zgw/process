@@ -28,4 +28,15 @@ public class ProjectServiceImpl implements ProjectService {
             return new ArrayList<>();
         }
     }
+
+    @Override
+    public String getProjectNanmeById(long pid) {
+        Project  p = new Project(1);
+        try {
+               p = projectDao.findProject(pid);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return p.getName();
+    }
 }

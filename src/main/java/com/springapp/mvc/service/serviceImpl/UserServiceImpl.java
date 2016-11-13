@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
         if(user != null){
             return  user.getName();
         }
-        return "º«Ææì÷";
+        return "éŸ©å¥‡ç¥º";
     }
 
     @Override

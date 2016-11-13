@@ -12,6 +12,8 @@ public interface RiskService {
     public RiskItemVO addRiskItem(RiskItemVO vo);
     public List<List<RiskItemVO>> getRisks(String username);
 
+    public List<List<RiskItemVO>> getRisksForAdmin(String name);
+
     public String getRiskName(int riskId);
 
     public RiskItem getRisk(int riskId);

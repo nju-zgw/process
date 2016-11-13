@@ -10,4 +10,6 @@ import java.util.List;
 public interface ProjectService {
 
     public List<Project> getAllProjects();
+
+    public String  getProjectNanmeById(long pid);
 }

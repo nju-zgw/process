@@ -115,6 +115,24 @@ public class RiskServiceImpl implements RiskService {
         return results;
     }
 
+    @Override
+    public List<List<RiskItemVO>> getRisksForAdmin(String name) {
+
+        List<List<RiskItemVO>> results = new ArrayList<>();
+        User user = userDao.getUserByName(name);
+        if(user == null)
+            return results;
+        int userId = user.getId();
+        List<RiskItem> itemList = riskItemDao.getAllRisks();
+        List<RiskItem> createItemList = riskItemDao.getRisksCreated(userId);
+        List<RiskItem> acceptItemList = riskItemDao.getRisksAccepted(userId);
+
+        results.add(transform(itemList));
+        results.add(transform(createItemList));
+        results.add(transform(acceptItemList));
+        return results;
+    }
+
 
     private List<RiskItemVO> transform (List<RiskItem> itemList) {
         List<RiskItemVO> results = new ArrayList<>();

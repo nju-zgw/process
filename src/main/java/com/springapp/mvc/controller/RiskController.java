@@ -22,8 +22,7 @@ import java.util.List;
  */
 @Controller
 public class RiskController {
-    @Autowired
-    ProjectService projectService;
+
     @RequestMapping(value = "/riskPage", method = RequestMethod.GET)
     public String transToRiskPage() {
         return "addRiskForTest";
@@ -43,10 +42,35 @@ public class RiskController {
             risksList = riskService.getRisks(username);
         }else if(hasRole("ROLE_SYS_ADMIN")){
             // 管理员获得所有风险
+            risksList = riskService.getRisksForAdmin(username);
             //risksList.add(riskService.);
         }
 
+        List<List<RiskView>>  riskItemsList = new ArrayList<List<RiskView>>();
+
+        for(List<RiskItemVO> list : risksList){
+            List<RiskView> riskItems =new ArrayList<RiskView>();
+            for(RiskItemVO riskview : list){
+                RiskView view =new RiskView();
+                view.setRiskItemId(riskview.getRiskItemId());
+                view.setProject(projectService.getProjectNanmeById(riskview.getProjectId()));
+                view.setRiskAffect(this.getType(riskview.getRiskAffect()));
+                view.setRiskType(this.getriskType(riskview.getRiskTypeId()));
+                //查 这个风险跟踪的人   风险状态
+                List<RiskStatusItem>  riskStatus = riskItemStatusService.getStatusItemsByriskId(riskview.getRiskItemId());
+                view.setPeopleNum(riskStatus.size());
+                if(riskStatus.size()>0) { //至少有一个风险状态
+                    RiskStatusItem status = riskStatus.get(riskStatus.size() - 1);
+                    view.setStatus(this.getStatus(status.getRiskStatusValue()));
+                }
+                riskItems.add(view);
+            }
+            riskItemsList.add(riskItems);
+        }
+
+
         System.out.println(risksList);
+        model.addAttribute("riskviewList",riskItemsList);
         model.addAttribute("risksList",risksList);
         return "index";
     }
@@ -121,6 +145,9 @@ public class RiskController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    ProjectService projectService;
 
     @Autowired
     RiskItemStatusService riskItemStatusService;
@@ -313,23 +340,23 @@ public class RiskController {
     private String getTriggerType(int type){
         switch (type){
             case 0:
-                return "Bug数量";
-            case 1:
                 return "进度";
+            case 1:
+                return "缺陷";
         }
-        return "Bug数量";
+        return "进度";
     }
 
     private String getEvent(int event){
         switch (event){
+            case 0:
+                return "通知项目所有成员";
             case 1:
-                return "群发";
+                return "通知风险追踪者";
             case 2:
-                return "回发";
-            case 3:
-                return "结束";
+                return "通知项目经理";
         }
-        return "群发";
+        return "通知项目所有成员";
     }
 
     private String getOperator(int type){
@@ -337,6 +364,8 @@ public class RiskController {
             case 0:
                 return "<";
             case 1:
+                return "=";
+            case 2:
                 return ">";
         }
         return "<";
