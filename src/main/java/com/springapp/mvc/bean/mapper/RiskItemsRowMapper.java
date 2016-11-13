@@ -24,7 +24,7 @@ public class RiskItemsRowMapper implements RowMapper<RiskItem>{
         item.setProjectName(resultSet.getString("pname"));
         item.setProcessed(resultSet.getInt("processed"));
         item.setRiskName(resultSet.getString("risk_name"));
-        item.setTime(resultSet.getTimestamp("create_time"));
+        item.setTime(resultSet.getTime("create_time"));
         return item;
     }
 }
