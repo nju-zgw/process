@@ -52,7 +52,7 @@
       <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
     </div>
     <!--logo start-->
-    <a href="index.html" class="logo"><b>软件项目风险管理系统</b></a>
+    <a href="index.html" class="logo"><b><c:out value="${riskView.project}"/></b></a>
     <!--logo end-->
     <div class="top-menu">
       <ul class="nav pull-right top-menu">
@@ -100,34 +100,34 @@
 
           <div class="form-group row">
             <label class="col-sm-6  col-sm-offset-4 control-label"
-                   style=" position:relative;left:20px;font-size:20px;font-weight: bold;color:gray">代码写不完的风险</label>
+                   style=" position:relative;left:20px;font-size:20px;font-weight: bold;color:gray"><c:out value="${riskView.riskName}"/></label>
           </div>
           <div class="form-group row">
             <label class="col-sm-1 col-sm-offset-1 ontrol-label" style="color:#ccc">项目名：</label>
             <div class="col-sm-2">
-              <p>NBA数据分析系统</p>
+              <p><c:out value="${riskView.project}"/></p>
             </div>
             <label class="col-sm-1 control-label " style="color:#ccc">提出人：</label>
             <div class="col-sm-1">
-              <p>韩奇祺</p>
+              <p><c:out value="${riskView.provider}"/></p>
             </div>
             <label class="col-sm-1 control-label" style="color:#ccc">提出时间：</label>
             <div class="col-sm-2">
-              <p>2016/11/8 23:06</p>
+              <p><c:out value="${riskView.time}"/></p>
             </div>
           </div>
           <div class="form-group row">
           <label class="col-sm-1 col-sm-offset-1 control-label" style="color:#ccc">风险类别</label>
           <div class="col-sm-1">
-            <p>进度风险</p>
+            <p><c:out value="${riskView.riskType}"/></p>
           </div>
           <label class="col-sm-1 col-sm-offset-1 control-label" style="color:#ccc">风险概率</label>
           <div class="col-sm-1">
-            <p>高</p>
+            <p><c:out value="${riskView.riskPro}"/></p>
           </div>
           <label class="col-sm-2 col-sm-1 control-label" style="color:#ccc">风险影响级别</label>
           <div class="col-sm-1">
-            <p>中</p>
+            <p><c:out value="${riskView.riskAffect}"/></p>
           </div>
           </div>
           <label class="control-label"
@@ -135,15 +135,15 @@
           <div class="form-group row" style="position:relative;top:15px">
             <label class="col-sm-1 col-sm-offset-1 control-label" style="color:#ccc">跟踪人数：</label>
             <div class="col-sm-1">
-              <p>6</p>
+              <p><c:out value="${riskView.peopleNum}"/></p>
             </div>
             <label class="col-sm-1 col-sm-offset-1 control-label" style="color:#ccc">当前状态：</label>
             <div class="col-sm-1">
-              <p>跟踪中</p>
+              <p><c:out value="${riskView.status}"/></p>
             </div>
             <label class="col-sm-1  control-label" style="color:#ccc">当前跟踪人：</label>
             <div class="col-sm-1">
-              <p>张冠伟</p>
+              <p><c:out value="${riskView.followName}"/></p>
             </div>
           </div>
           <label class="control-label"
@@ -151,25 +151,25 @@
           <div class="form-group row" style="position:relative;top:30px">
             <label class="col-sm-1 col-sm-offset-1 control-label" style="color:#ccc">类型：</label>
             <div class="col-sm-1">
-              <p>缺陷数</p>
+              <p><c:out value="${riskView.type}"/></p>
             </div>
             <label class="col-sm-1 col-sm-offset-1 control-label" style="color:#ccc">事件类型：</label>
             <div class="col-sm-1">
-              <p>全体人员</p>
+              <p><c:out value="${riskView.event}"/></p>
             </div>
             <label class="col-sm-1  control-label" style="color:#ccc">阈值：</label>
             <div class="col-sm-1">
-              <p><15</p>
+              <p><c:out value="${riskView.value}"/></p>
             </div>
             <label class="col-sm-1  control-label" style="color:#ccc">期限：</label>
             <div class="col-sm-2">
-              <p>2016/11/8 23:37</p>
+              <p><c:out value="${riskView.deadline}"/></p>
             </div>
           </div>
           <label class="control-label"
                     style="position:relative;font-size:19px;font-weight: bold;left:6%;top:20px">风险描述</label>
           <div class="form-group row">
-            <textarea class="col-sm-8" rows="10" cols="30" style="position:relative;left:9%;top:35px;height:245px">我是一个文本框。</textarea>
+            <textarea class="col-sm-8" rows="10" cols="30" style="position:relative;left:9%;top:35px;height:245px"><c:out value="${riskView.content}"/></textarea>
           </div>
 
           <div class ="row mt">
@@ -197,7 +197,7 @@
                       <label class="text-right col-sm-2  control-label"> 分配</label>
 
                       <div class="col-sm-10">
-                        <select class="form-group">
+                        <select class="form-group" id="user">
                           <option>无</option>
                           <option>王昊</option>
                           <option>张冠炜</option>
@@ -211,10 +211,10 @@
                       <label class="text-right col-sm-2  control-label">状态</label>
 
                       <div class="col-sm-10">
-                        <select class="form-group">
-                          <option>跟踪中</option>
-                          <option>准备跟踪</option>
-                          <option>已解决</option>
+                        <select class="form-group" id="status">
+                          <option value="1">跟踪中</option>
+                          <option value="2">准备跟踪</option>
+                          <option value="3">已解决</option>
                         </select>
                       </div>
                     </div>
@@ -222,14 +222,13 @@
                       <label class="text-right col-sm-2  control-label">内容描述</label>
 
                       <div class="col-sm-10">
-                        <input type="text" class="form-control round-form">
+                        <input type="text" class="form-control round-form" id="content">
                       </div>
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick = "addRisk()">提交</button>
+                    <button type="button" class="btn btn-primary" onclick = "addRiskStatus()">提交</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-
                   </div>
                 </div>
                 <!-- /.modal-content -->
@@ -289,9 +288,32 @@
 
 
 <script type="text/javascript">
-  $(document).ready(function () {
+  var addRiskStatus = function () {
+    var param = {
+      riskId: <c:out value="${riskView.riskId}"/>,
+      user: $('#user').val(),
+      status: $('#status').val(),
+      content: $('#content').val(),
+    };
+    for(var k in param){
+      if(!param[k]){
+        alert('请填写所有字段');
+        return;
+      }
+    }
 
-  });
+    $.post(
+            '/createRiskStatus',
+            param,
+            function (data, status) {
+              if (status === 'success') {
+                location.reload();
+              } else {
+                alert(data);
+              }
+            }, "text"
+    );
+  };
 </script>
 
 

@@ -5,6 +5,7 @@ package com.springapp.mvc.bean;
  */
 public class RiskView {
 
+    int riskId;
     String riskName;
     String project;
     String provider;
@@ -161,6 +162,12 @@ public class RiskView {
         this.deadline = deadline;
     }
 
+    public int getRiskId() {
+        return riskId;
+    }
 
+    public void setRiskId(int riskId) {
+        this.riskId = riskId;
+    }
 
 }
