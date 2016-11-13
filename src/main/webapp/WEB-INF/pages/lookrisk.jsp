@@ -74,14 +74,14 @@
                 <h5 class="centered">用户名:${username}</h5>
 
                 <li class="mt">
-                    <a href="/allRisks">
+                    <a href="<%=request.getContextPath()%>/allRisks">
                         <i class="fa fa-dashboard"></i>
                         <span>风险列表</span>
                     </a>
                 </li>
 
                 <li class="sub-menu">
-                    <a href="/createRisk">
+                    <a href="<%=request.getContextPath()%>/createRisk">
                         <i class="fa fa-desktop"></i>
                         <span>创建风险</span>
                     </a>
@@ -318,9 +318,10 @@
         }
 
         $.post(
-                '/createRiskStatus',
+                '<%=request.getContextPath()%>/createRiskStatus',
                 param,
                 function (data, status) {
+                    data = JSON.parse(data);
                     if (data.statusCode === 100) {
                         location.reload();
                     } else {
