@@ -71,7 +71,7 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
 
-        <h5 class="centered">用户名:${username}</h5>
+                <h5 class="centered">用户名:${username}</h5>
 
                 <li class="mt">
                     <a href="/allRisks">
@@ -194,10 +194,10 @@
                                 value="${riskView.content}"/></textarea>
                     </div>
 
-                    <div class="row mt">
+                    <div class="row mt" ${!riskView.isFollower()?"hidden":""}>
                         <button type="button" class="btn btn-round btn-info"
                                 style="position:relative;width:21%;left:34%;top:55px"
-                                data-toggle="modal" data-target="#addStatus" disabled="${!riskView.isFollower()}">添加状态
+                                data-toggle="modal" data-target="#addStatus">添加状态
                         </button>
 
 
@@ -215,7 +215,7 @@
 
                                             <div class="col-sm-10">
                                                 <select class="form-group" id="user">
-                                                     <option value="0">无</option>
+                                                    <option value="0">无</option>
                                                     <c:forEach items="${users}" var="item">
                                                         <option value="${item.id}"><c:out
                                                                 value="${item.name}"/></option>
@@ -269,34 +269,34 @@
 
         <div class="col-md-9 col-md-offset-2 mb" style="position:relative;top:75px">
 
-        <div class="col-md-13">
-          <div class="content-panel">
-            <h4><i class="fa fa-angle-right"></i>状态跟踪列表</h4>
-            <hr>
-            <table class="table">
-              <thead>
-              <tr>
-                <th>跟踪时间</th>
-                <th>风险描述</th>
-                <th>状态</th>
-                <th>跟踪人</th>
-              </tr>
-              </thead>
-              <tbody>
-              <c:forEach items="${statusView}" var="item" >
-              <tr>
-                <td><c:out value="${item.time}"/></td>
-                <td><c:out value="${item.content}"/></td>
-                <td><c:out value="${item.status}"/></td>
-                <td><c:out value="${item.username}"/></td>
-              </tr>
-              </c:forEach>
-              </tbody>
-            </table>
-          </div>
+            <div class="col-md-13">
+                <div class="content-panel">
+                    <h4><i class="fa fa-angle-right"></i>状态跟踪列表</h4>
+                    <hr>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>跟踪时间</th>
+                            <th>风险描述</th>
+                            <th>状态</th>
+                            <th>跟踪人</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${statusView}" var="item">
+                            <tr>
+                                <td><c:out value="${item.time}"/></td>
+                                <td><c:out value="${item.content}"/></td>
+                                <td><c:out value="${item.status}"/></td>
+                                <td><c:out value="${item.username}"/></td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-  </div>
 </section>
 
 
@@ -318,14 +318,14 @@
         $.post(
                 '/createRiskStatus',
                 param,
-            function (data, status) {
-              if (data.statusCode === 100) {
-                location.reload();
-              } else {
-                alert(data.info);
-              }
-            }, "text"
-    );
+                function (data, status) {
+                    if (data.statusCode === 100) {
+                        location.reload();
+                    } else {
+                        alert(data.info);
+                    }
+                }, "text"
+        );
     };
 </script>
 
