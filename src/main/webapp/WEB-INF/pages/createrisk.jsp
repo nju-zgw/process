@@ -166,8 +166,8 @@
 
                             <div class="col-sm-10">
                                 <select class="form-group" name="triggerType" id="triggerType">
-                                    <option value="0">Bug数量</option>
-                                    <option value="1">进度</option>
+                                    <option value="0">进度</option>
+                                    <option value="1">缺陷</option>
                                 </select>
                             </div>
                         </div>
@@ -177,7 +177,8 @@
                             <div class="col-sm-1">
                                 <select class="form-group" style="width:60%;height:3%" name="valueType" id="valueType">
                                     <option value="0"> <</option>
-                                    <option value="1"> ></option>
+                                    <option value="1"> =</option>
+                                    <option value="2"> ></option>
                                 </select>
                             </div>
                             <div class="col-sm-2">
@@ -190,9 +191,9 @@
 
                             <div class="col-sm-6">
                                 <select class="form-group" name="eventType" id="eventType">
-                                    <option value="0">群发</option>
-                                    <option value="1">回发</option>
-                                    <option value="2">条件333</option>
+                                    <option value="0">通知项目所有成员</option>
+                                    <option value="1">通知风险追踪者</option>
+                                    <option value="2">通知项目经理</option>
                                 </select>
                             </div>
                         </div>

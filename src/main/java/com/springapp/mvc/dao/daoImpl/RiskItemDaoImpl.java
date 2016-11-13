@@ -94,6 +94,12 @@ public class RiskItemDaoImpl extends JdbcDaoSupport implements RiskItemDao {
     }
 
     @Override
+    public List<RiskItem> getAllRisks() {
+        String sql ="SELECT * FROM risk_items";
+        return this.getJdbcTemplate().query(sql , new RiskItemsRowMapper());
+    }
+
+    @Override
     public List<RiskItem> getRisksCreated(int createrId) {
         final String querySql = "select risk_item_id,p.project_id as projectId, creater_id, risk_type_id, " +
                 "ri.risk_descript_id as descript_id ,risk_prob ,risk_affect,create_time, risk_name, " +

@@ -159,26 +159,25 @@
 
                             <div class="row mt" style="position:relative;">
                                 <!--col-md-4 mb starts-->
-                                <c:forEach items="${risksList.get(0)}" var="item" >
+                                <c:forEach items="${riskviewList.get(0)}" var="item" >
                                     <a class="col-md-8 col-md-offset-1 mb" href="lookRisk/${item.riskItemId}">
                                         <!-- WHITE PANEL - TOP USER -->
                                         <div class="white-panel pn" style="height:20%" >
                                             <div class="white-header">
-                                                <h5> 糖果屋项目aa</h5>
+                                                <h5> <c:out value="${item.project}"/></h5>
                                             </div>
                                             <div class="row">
-                                                    <%--没有数据，暂时测试--%>
                                                 <div class="col-md-3">
-                                                    <p class="mt">风险类别：<c:out value="${item.descript}"/></p>
+                                                    <p class="mt">风险类别：<c:out value="${item.riskType}"/></p>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <p class="mt">风险严重性：<c:out value="${item.descript}"/></p>
+                                                    <p class="mt">风险严重性：<c:out value="${item.riskAffect}"/></p>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <p class="mt">风险状态：<c:out value="${item.descript}"/></p>
+                                                    <p class="mt">风险状态：<c:out value="${item.status}"/></p>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <p class="mt">关注人数：<c:out value="${item.descript}"/></p>
+                                                    <p class="mt">关注人数：<c:out value="${item.peopleNum}"/></p>
                                                 </div>
                                             </div>
 
@@ -196,26 +195,26 @@
 
                             <div class="row mt" style="position:relative;">
                                 <!--col-md-4 mb starts-->
-                                <c:forEach items="${risksList.get(1)}" var="item" >
+                                <c:forEach items="${riskviewList.get(1)}" var="item" >
                                     <a class="col-md-8 col-md-offset-1 mb" href="lookRisk/${item.riskItemId}">
                                         <!-- WHITE PANEL - TOP USER -->
                                         <div class="white-panel pn" style="height:20%">
                                             <div class="white-header">
-                                                <h5> 糖果屋项目aa</h5>
+                                                <h5> <c:out value="${item.project}"/></h5>
                                             </div>
                                             <div class="row">
                                                 <%--没有数据，暂时测试--%>
                                                 <div class="col-md-3">
-                                                    <p class="mt">风险类别：<c:out value="${item.descript}"/></p>
+                                                    <p class="mt">风险类别：<c:out value="${item.riskType}"/></p>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <p class="mt">风险严重性：<c:out value="${item.descript}"/></p>
+                                                    <p class="mt">风险严重性：<c:out value="${item.riskAffect}"/></p>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <p class="mt">风险状态：<c:out value="${item.descript}"/></p>
+                                                    <p class="mt">风险状态：<c:out value="${item.status}"/></p>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <p class="mt">关注人数：<c:out value="${item.descript}"/></p>
+                                                    <p class="mt">关注人数：<c:out value="${item.peopleNum}"/></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -227,26 +226,26 @@
 
                         <div class="tab-pane fade" id="mypro">
 
-                            <c:forEach items="${risksList.get(2)}" var="item" >
+                            <c:forEach items="${riskviewList.get(2)}" var="item" >
                                 <a class="col-md-8 col-md-offset-1 mb" href="lookRisk/${item.riskItemId}">
                                     <!-- WHITE PANEL - TOP USER -->
                                     <div class="white-panel pn" style="height:20%">
                                         <div class="white-header">
-                                            <h5> 糖果屋项目aa</h5>
+                                            <h5> <c:out value="${item.project}"/></h5>
                                         </div>
                                         <div class="row">
                                                 <%--没有数据，暂时测试--%>
                                             <div class="col-md-3">
-                                                <p class="mt">风险类别：<c:out value="${item.descript}"/></p>
+                                                <p class="mt">风险类别：<c:out value="${item.riskType}"/></p>
                                             </div>
                                             <div class="col-md-3">
-                                                <p class="mt">风险严重性：<c:out value="${item.descript}"/></p>
+                                                <p class="mt">风险严重性：<c:out value="${item.riskAffect}"/></p>
                                             </div>
                                             <div class="col-md-3">
-                                                <p class="mt">风险状态：<c:out value="${item.descript}"/></p>
+                                                <p class="mt">风险状态：<c:out value="${item.status}"/></p>
                                             </div>
                                             <div class="col-md-3">
-                                                <p class="mt">关注人数：<c:out value="${item.descript}"/></p>
+                                                <p class="mt">关注人数：<c:out value="${item.peopleNum}"/></p>
                                             </div>
                                         </div>
                                     </div>
