@@ -215,7 +215,7 @@
 
                                             <div class="col-sm-10">
                                                 <select class="form-group" id="user">
-                          <option>无</option>
+                                                     <option value="0">无</option>
                                                     <c:forEach items="${users}" var="item">
                                                         <option value="${item.id}"><c:out
                                                                 value="${item.name}"/></option>
@@ -304,7 +304,7 @@
     var addRiskStatus = function () {
         var param = {
             riskId: <c:out value="${riskView.riskId}"/>,
-            user: $('#user').val(),
+            userid: $('#user').val(),
             status: $('#status').val(),
             content: $('#content').val(),
         };

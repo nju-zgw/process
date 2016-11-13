@@ -65,7 +65,7 @@ public class RiskItemStatusController {
     //创建某风险 新的风险状态
     @RequestMapping(value = "/createRiskStatus", method = RequestMethod.POST)
     public @ResponseBody ValidInfo  createRiskStatus(@RequestParam(value = "riskId", required = true) int riskId,
-                                    @RequestParam(value = "user", required = true) String name,
+                                    @RequestParam(value = "userid", required = true)  int userid,
                                     @RequestParam(value = "status", required = true) int status,
                                     @RequestParam(value = "content", required = true) String content
                                     ){
@@ -74,7 +74,7 @@ public class RiskItemStatusController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         RiskStatusItem  statusItem = new RiskStatusItem();
-        statusItem.setAcceptorId(userService.getUserId(name));
+        statusItem.setAcceptorId(userid);
         statusItem.setTracerId(userService.getUserId(username));
         statusItem.setCreateTime(new Date());
         statusItem.setStatusDescript(content);
@@ -92,9 +92,14 @@ public class RiskItemStatusController {
                 valid.setInfo("你没有足够的权限");
             }
         }else {
-            riskItemStatusService.createRiskStatusItem(statusItem);
-            valid.setStatusCode(100);
-            valid.setInfo("状态创建成功");
+            if(userid !=0) {
+                riskItemStatusService.createRiskStatusItem(statusItem);
+                valid.setStatusCode(100);
+                valid.setInfo("状态创建成功");
+            }else{
+                valid.setStatusCode(200);
+                valid.setInfo("你不能把风险分配给系统");
+            }
         }
         return valid;
 
