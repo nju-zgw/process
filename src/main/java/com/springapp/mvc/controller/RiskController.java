@@ -38,28 +38,28 @@ public class RiskController {
         List<List<RiskItemVO>> risksList = new ArrayList<List<RiskItemVO>>();
 
 
-        if(hasRole("ROLE_MANAGER")||hasRole("ROLE_USER")||hasRole("ROLE_DEV")){
+        if (hasRole("ROLE_MANAGER") || hasRole("ROLE_USER") || hasRole("ROLE_DEV")) {
             risksList = riskService.getRisks(username);
-        }else if(hasRole("ROLE_SYS_ADMIN")){
+        } else if (hasRole("ROLE_SYS_ADMIN")) {
             // 管理员获得所有风险
             risksList = riskService.getRisksForAdmin(username);
             //risksList.add(riskService.);
         }
 
-        List<List<RiskView>>  riskItemsList = new ArrayList<List<RiskView>>();
+        List<List<RiskView>> riskItemsList = new ArrayList<List<RiskView>>();
 
-        for(List<RiskItemVO> list : risksList){
-            List<RiskView> riskItems =new ArrayList<RiskView>();
-            for(RiskItemVO riskview : list){
-                RiskView view =new RiskView();
+        for (List<RiskItemVO> list : risksList) {
+            List<RiskView> riskItems = new ArrayList<RiskView>();
+            for (RiskItemVO riskview : list) {
+                RiskView view = new RiskView();
                 view.setRiskId(riskview.getRiskItemId());
                 view.setProject(projectService.getProjectNanmeById(riskview.getProjectId()));
                 view.setRiskAffect(this.getType(riskview.getRiskAffect()));
                 view.setRiskType(this.getriskType(riskview.getRiskTypeId()));
                 //查 这个风险跟踪的人   风险状态
-                List<RiskStatusItem>  riskStatus = riskItemStatusService.getStatusItemsByriskId(riskview.getRiskItemId());
+                List<RiskStatusItem> riskStatus = riskItemStatusService.getStatusItemsByriskId(riskview.getRiskItemId());
                 view.setPeopleNum(riskStatus.size());
-                if(riskStatus.size()>0) { //至少有一个风险状态
+                if (riskStatus.size() > 0) { //至少有一个风险状态
                     RiskStatusItem status = riskStatus.get(riskStatus.size() - 1);
                     view.setStatus(this.getStatus(status.getRiskStatusValue()));
                 }
@@ -69,9 +69,7 @@ public class RiskController {
         }
 
 
-        System.out.println(risksList);
-        model.addAttribute("riskviewList",riskItemsList);
-        model.addAttribute("risksList",risksList);
+        model.addAttribute("riskviewList", riskItemsList);
         return "index";
     }
 
@@ -85,17 +83,18 @@ public class RiskController {
 
 
     @RequestMapping(value = "/lookRisk/{riskId}", method = RequestMethod.GET)
-    public String ToRiskView( @PathVariable("riskId") int riskId,ModelMap model) {
+    public String ToRiskView(@PathVariable("riskId") int riskId, ModelMap model) {
 
 
         RiskItem risk = riskService.getRisk(riskId);
-        Trigger  trigger = triggerService.findTrigger(riskId);
+        Trigger trigger = triggerService.findTrigger(riskId);
 
-        RiskView view =new RiskView();  //这些是风险 创建时 原有的信息
+        RiskView view = new RiskView();  //这些是风险 创建时 原有的信息
         view.setRiskId(riskId);
         view.setRiskName(risk.getRiskName());
         view.setProject(risk.getProjectName());
         view.setProvider(userService.getUserNameById(risk.getCreaterId()));
+        System.out.println( view.getProvider());
         view.setTime(risk.getTime().toLocaleString());
         view.setRiskType(this.getriskType(risk.getTypeId()));
         view.setRiskPro(this.getType(risk.getProb()));
@@ -106,35 +105,35 @@ public class RiskController {
         view.setContent(risk.getDescript());
 
         //查 这个风险跟踪的人   风险状态
-        List<RiskStatusItem>  riskStatus = riskItemStatusService.getStatusItemsByriskId(riskId);
+        List<RiskStatusItem> riskStatus = riskItemStatusService.getStatusItemsByriskId(riskId);
         view.setPeopleNum(riskStatus.size());
-        if(riskStatus.size()>0) { //至少有一个风险状态
+        if (riskStatus.size() > 0) { //至少有一个风险状态
             RiskStatusItem status = riskStatus.get(riskStatus.size() - 1);
             view.setStatus(this.getStatus(status.getRiskStatusValue()));
             view.setFollowName(userService.getUserNameById(status.getTracerId()));
-         }
+        }
 
 
         //触发器内容
         view.setType(this.getTriggerType(trigger.getType()));
         view.setEvent(this.getEvent(trigger.getEvent()));
-        view.setValue(this.getOperator(trigger.getOperator())+"  "+trigger.getThreshold());
+        view.setValue(this.getOperator(trigger.getOperator()) + "  " + trigger.getThreshold());
         view.setDeadline(trigger.getDeadline().toLocaleString());
 
         //需要判断这个风险条目  状态 是否现在能由他跟踪
 
         List<RiskStatusItem> statusItems = riskItemStatusService.getStatusItemsByriskId(riskId);
 
-        RiskStatusItem status = statusItems.get(statusItems.size()-1);
+        RiskStatusItem status = statusItems.get(statusItems.size() - 1);
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
 
-        if(status.getAcceptorId() == userService.getUserId(username)){
-             view.setFollower(true);
+        if (status.getAcceptorId() == userService.getUserId(username)) {
+            view.setFollower(true);
         }
 
-        model.addAttribute("riskView",view);
+        model.addAttribute("riskView", view);
         return "lookrisk";
     }
 
@@ -154,14 +153,13 @@ public class RiskController {
     RiskItemStatusService riskItemStatusService;
 
     /**
-     *
      * @param request
-     * @return
-     * 创建新的风险条目，返回RiskItemVO 的json表示
+     * @return 创建新的风险条目，返回RiskItemVO 的json表示
      */
 
     @RequestMapping(value = "/addRisk", method = RequestMethod.POST)
-    public @ResponseBody
+    public
+    @ResponseBody
     RiskItemVO createRisk(HttpServletRequest request,
                           @RequestParam(value = "riskName", required = true) String riskName,
                           @RequestParam(value = "projectId", required = true) int projectId,
@@ -197,25 +195,25 @@ public class RiskController {
         String createrName = auth.getName();
         vo.setCreaterName(createrName);
 
-        if(!isLegalInfo(vo)) {
+        if (!isLegalInfo(vo)) {
             vo.setOperateSuccess(false);
             vo.setOperateInfo("数据格式不合法");
             return vo;
         }
 
         //在service add之后，vo的id字段已经设置好了，可以直接拿来用
-        if(hasRole("ROLE_MANAGER")) {
+        if (hasRole("ROLE_MANAGER")) {
             System.out.println(createrName + " 增加一条RiskItem....");
             riskService.addRiskItem(vo);
-        }else if(hasRole("ROLE_DEV")){
+        } else if (hasRole("ROLE_DEV")) {
             System.out.println(createrName + " 增加一条RiskItem....");
             riskService.addRiskItem(vo);
-        }else{
+        } else {
             System.out.println("创建RiskItem失败，权限不足....");
         }
 
         //默认创建风险条目的那个人第一个被分配去跟踪风险
-        RiskStatusItem  statusItem = new RiskStatusItem();
+        RiskStatusItem statusItem = new RiskStatusItem();
         statusItem.setRiskId(vo.getRiskItemId());
         statusItem.setAcceptorId(userService.getUserId(createrName));
         statusItem.setStatusDescript(riskDescript);
@@ -228,49 +226,48 @@ public class RiskController {
         System.out.println(vo);
         triggerService.addTrigger(triggerInfo.getTriggerType(),
                 triggerInfo.getEventType(), vo.getRiskItemId(), projectId, triggerInfo.getTime(),
-                triggerInfo.getValue(),triggerInfo.getValueType());
+                triggerInfo.getValue(), triggerInfo.getValueType());
         return vo;
     }
 
     /**
-     *
      * @param request
-     * @return
-     * 获得当前和该用户项目相关的所有风险条目
+     * @return 获得当前和该用户项目相关的所有风险条目
      */
     @RequestMapping(value = "/getRisks", method = RequestMethod.GET)
-    public @ResponseBody
+    public
+    @ResponseBody
     List<List<RiskItemVO>> getRisks(HttpServletRequest request) {
         //get username
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
-        if(username == null || username.length() == 0)
+        if (username == null || username.length() == 0)
             return new ArrayList<>();
         List<List<RiskItemVO>> results = riskService.getRisks(username);
         return results;
     }
 
     /**
-     *
      * @param request
-     * @return
-     * 跟进处理某一风险条目
+     * @return 跟进处理某一风险条目
      */
     @RequestMapping(value = "/processRisk", method = RequestMethod.POST)
-    public @ResponseBody RiskItemVO processRisk(HttpServletRequest request) {
+    public
+    @ResponseBody
+    RiskItemVO processRisk(HttpServletRequest request) {
 
 
         return null;
     }
 
     /**
-     *
      * @param request
-     * @return
-     * 结束某一风险
+     * @return 结束某一风险
      */
     @RequestMapping(value = "/endRisk", method = RequestMethod.POST)
-    public @ResponseBody RiskItemVO endRisk(HttpServletRequest request) {
+    public
+    @ResponseBody
+    RiskItemVO endRisk(HttpServletRequest request) {
         return null;
     }
 
@@ -284,25 +281,23 @@ public class RiskController {
                 break;
             }
         }
-        if(hasRole) {
-            System.out.println("当前用户是: "+ role);
+        if (hasRole) {
+            System.out.println("当前用户是: " + role);
         }
         return hasRole;
     }
 
     /**
-     *
      * @param vo
-     * @return
-     * 验证RiskItemVO输入的值是否在合法范围
+     * @return 验证RiskItemVO输入的值是否在合法范围
      */
     private boolean isLegalInfo(RiskItemVO vo) {
         boolean result = true;
         return result;
     }
 
-    private String getriskType(int type){
-        switch (type){
+    private String getriskType(int type) {
+        switch (type) {
             case 1:
                 return "性能风险";
             case 2:
@@ -314,20 +309,20 @@ public class RiskController {
     }
 
 
-    private  String  getType(int type){
-       switch (type) {
-           case 1:
-               return "低";
-           case 2:
-               return "中";
-           case 3:
+    private String getType(int type) {
+        switch (type) {
+            case 1:
+                return "低";
+            case 2:
+                return "中";
+            case 3:
                 return "高";
-       }
+        }
         return "低";
     }
 
-    private String getStatus(int type){
-        switch (type){
+    private String getStatus(int type) {
+        switch (type) {
             case 1:
                 return "准备跟踪";
             case 2:
@@ -338,8 +333,8 @@ public class RiskController {
         return "准备跟踪";
     }
 
-    private String getTriggerType(int type){
-        switch (type){
+    private String getTriggerType(int type) {
+        switch (type) {
             case 0:
                 return "进度";
             case 1:
@@ -348,8 +343,8 @@ public class RiskController {
         return "进度";
     }
 
-    private String getEvent(int event){
-        switch (event){
+    private String getEvent(int event) {
+        switch (event) {
             case 0:
                 return "通知项目所有成员";
             case 1:
@@ -360,8 +355,8 @@ public class RiskController {
         return "通知项目所有成员";
     }
 
-    private String getOperator(int type){
-        switch (type){
+    private String getOperator(int type) {
+        switch (type) {
             case 0:
                 return "<";
             case 1:

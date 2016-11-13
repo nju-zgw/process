@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkUserExisted(String username) {
-        if(username == null || username.length() == 0){
+        if (username == null || username.length() == 0) {
             return false;
         }
         return userDao.checkExistByName(username);
@@ -26,27 +26,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkCorrect(String username, String password) {
-        if(username == null || password == null){
-            return  false;
+        if (username == null || password == null) {
+            return false;
         }
-        if(username.length() == 0 || password.length() == 0) {
+        if (username.length() == 0 || password.length() == 0) {
             return false;
         }
         User user = userDao.getUserByName(username);
-        if(user.getPassword().equals(password)){
+        if (user.getPassword().equals(password)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
     @Override
     public int getUserId(String username) {
-        if(username == null || username.length() == -1){
+        if (username == null || username.length() == -1) {
             return -1;
         }
         User user = userDao.getUserByName(username);
-        if(user !=null){
+        if (user != null) {
             return user.getId();
         }
         return -1;
@@ -54,9 +54,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String getUserNameById(int userid) {
-      User user = userDao.getUserByUid(userid);
-        if(user != null){
-            return  user.getName();
+        User user = userDao.getUserByUid(userid);
+        if (user != null) {
+            return user.getName();
         }
         return "韩奇祺";
     }

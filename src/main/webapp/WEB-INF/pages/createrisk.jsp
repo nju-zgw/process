@@ -77,14 +77,14 @@
                 <h5 class="centered">用户名xyz</h5>
 
                 <li class="mt">
-                    <a href="allRisks">
+                    <a href="/allRisks">
                         <i class="fa fa-dashboard"></i>
                         <span>风险列表</span>
                     </a>
                 </li>
 
                 <li class="sub-menu">
-                    <a class="active" href="createRisk">
+                    <a class="active" href="/createRisk">
                         <i class="fa fa-desktop"></i>
                         <span>创建风险</span>
                     </a>
