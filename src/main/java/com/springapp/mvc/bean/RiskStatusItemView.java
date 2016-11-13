@@ -8,6 +8,7 @@ public class RiskStatusItemView {
     private String content;
     private String status;
     private String username;
+    private String acceptname;
 
 
     public RiskStatusItemView() {
@@ -52,5 +53,12 @@ public class RiskStatusItemView {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+    public String getAcceptname() {
+        return acceptname;
+    }
+
+    public void setAcceptname(String acceptname) {
+        this.acceptname = acceptname;
     }
 }

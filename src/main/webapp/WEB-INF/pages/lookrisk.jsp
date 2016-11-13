@@ -277,18 +277,20 @@
                         <thead>
                         <tr>
                             <th>跟踪时间</th>
-                            <th>风险描述</th>
-                            <th>状态</th>
-                            <th>跟踪人</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${statusView}" var="item">
-                            <tr>
-                                <td><c:out value="${item.time}"/></td>
-                                <td><c:out value="${item.content}"/></td>
-                                <td><c:out value="${item.status}"/></td>
-                                <td><c:out value="${item.username}"/></td>
+                <th>风险描述</th>
+                <th>状态</th>
+                <th>接收人</th>
+                <th>跟踪人</th>
+              </tr>
+              </thead>
+              <tbody>
+              <c:forEach items="${statusView}" var="item" >
+              <tr>
+                <td><c:out value="${item.time}"/></td>
+                <td><c:out value="${item.content}"/></td>
+                <td><c:out value="${item.status}"/></td>
+                <td><c:out value="${item.acceptname}"/></td>
+                <td><c:out value="${item.username}"/></td>
                             </tr>
                         </c:forEach>
                         </tbody>

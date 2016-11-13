@@ -21,7 +21,7 @@ import java.util.List;
 public class RiskStatusDaoImpl extends JdbcDaoSupport implements RiskStatusDao{
     @Override
     public List<RiskStatusItem> getStatusList(int riskId) {
-        final String querySql = "SELECT status_id, risk_item_id, tracer_id, risk_status_descript_id, " +
+        final String querySql = "SELECT status_id, risk_item_id, tracer_id, acceptor_id, risk_status_descript_id, " +
                 "  status_descript, create_time, status_value from risk_status rs " +
                 "JOIN risk_status_descripts rsd on rs.risk_status_descript_id = rsd.status_descript_id " +
                 "WHERE rs.risk_item_id = ?";
