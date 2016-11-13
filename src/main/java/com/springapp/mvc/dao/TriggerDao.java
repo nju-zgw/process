@@ -1,6 +1,7 @@
 package com.springapp.mvc.dao;
 
 import com.springapp.mvc.bean.Trigger;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
 import java.util.List;

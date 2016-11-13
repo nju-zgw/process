@@ -2,18 +2,22 @@ package com.springapp.mvc.controller;
 
 import com.springapp.mvc.bean.RiskStatusItem;
 import com.springapp.mvc.bean.RiskStatusItemView;
+import com.springapp.mvc.bean.ValidInfo;
 import com.springapp.mvc.service.RiskItemStatusService;
 import com.springapp.mvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -60,10 +64,11 @@ public class RiskItemStatusController {
     }
     //创建某风险 新的风险状态
     @RequestMapping(value = "/createRiskStatus", method = RequestMethod.GET)
-    public String  createRiskStatus(@RequestParam(value = "riskId", required = true) int riskId,
+    public @ResponseBody ValidInfo  createRiskStatus(@RequestParam(value = "riskId", required = true) int riskId,
                                     @RequestParam(value = "user", required = true) String name,
                                     @RequestParam(value = "status", required = true) int status,
-                                    @RequestParam(value = "content", required = true) String content ){
+                                    @RequestParam(value = "content", required = true) String content
+                                    ){
 
         //新建一个状态
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -75,8 +80,41 @@ public class RiskItemStatusController {
         statusItem.setStatusDescript(content);
         statusItem.setRiskStatusValue(status);
         statusItem.setRiskId(riskId);
-        riskItemStatusService.createRiskStatusItem(statusItem);
-        return "createrisk";
+
+        ValidInfo  valid = new ValidInfo();
+        if(status == 3) {
+            if (hasRole("ROLE_MANAGER")) {
+                riskItemStatusService.createRiskStatusItem(statusItem);
+                valid.setStatusCode(100);
+                valid.setInfo("状态创建成功");
+            }else{
+                valid.setStatusCode(200);
+                valid.setInfo("你没有足够的权限");
+            }
+        }else {
+            riskItemStatusService.createRiskStatusItem(statusItem);
+            valid.setStatusCode(100);
+            valid.setInfo("状态创建成功");
+        }
+        return valid;
+
+    }
+
+
+    public static boolean hasRole(String role) {
+        Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>)
+                SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+        boolean hasRole = false;
+        for (GrantedAuthority authority : authorities) {
+            hasRole = authority.getAuthority().equals(role);
+            if (hasRole) {
+                break;
+            }
+        }
+        if(hasRole) {
+            System.out.println("当前用户是: "+ role);
+        }
+        return hasRole;
     }
 
 

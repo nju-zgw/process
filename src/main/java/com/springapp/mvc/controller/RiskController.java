@@ -217,8 +217,8 @@ public class RiskController {
         statusItem.setRiskId(vo.getRiskItemId());
         statusItem.setAcceptorId(userService.getUserId(createrName));
         statusItem.setStatusDescript(riskDescript);
-        statusItem.setTracerId(0);
-        statusItem.setRiskStatusValue(1);
+        statusItem.setTracerId(userService.getUserId(createrName));
+        statusItem.setRiskStatusValue(2);
         statusItem.setCreateTime(time);
         riskItemStatusService.createRiskStatusItem(statusItem);
 

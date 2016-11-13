@@ -185,14 +185,6 @@
                     <h4 class="modal-title" id="myModalLabel">新增风险状态</h4>
                   </div>
                   <div class="modal-body">
-
-                    <%--<div class="form-group row">--%>
-                    <%--<label class="text-right col-sm-2 control-label">风险名称</label>--%>
-
-                    <%--<div class="col-sm-10">--%>
-                    <%--<span class="form-group"> 名字 </span>--%>
-                    <%--</div>--%>
-                    <%--</div>--%>
                     <div class="form-group row">
                       <label class="text-right col-sm-2  control-label"> 分配</label>
 
@@ -306,10 +298,10 @@
             '/createRiskStatus',
             param,
             function (data, status) {
-              if (status === 'success') {
+              if (status.statusCode === 100) {
                 location.reload();
               } else {
-                alert(data);
+                alert(status.info);
               }
             }, "text"
     );
