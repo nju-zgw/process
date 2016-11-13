@@ -215,7 +215,7 @@
 
                                             <div class="col-sm-10">
                                                 <select class="form-group" id="user">
-                                                    <option value="0">无</option>
+                                                    <option value="6">无</option>
                                                     <c:forEach items="${users}" var="item">
                                                         <option value="${item.id}"><c:out
                                                                 value="${item.name}"/></option>
@@ -277,18 +277,20 @@
                         <thead>
                         <tr>
                             <th>跟踪时间</th>
-                            <th>风险描述</th>
-                            <th>状态</th>
-                            <th>跟踪人</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${statusView}" var="item">
-                            <tr>
-                                <td><c:out value="${item.time}"/></td>
-                                <td><c:out value="${item.content}"/></td>
-                                <td><c:out value="${item.status}"/></td>
-                                <td><c:out value="${item.username}"/></td>
+                <th>风险描述</th>
+                <th>状态</th>
+                <th>接收人</th>
+                <th>跟踪人</th>
+              </tr>
+              </thead>
+              <tbody>
+              <c:forEach items="${statusView}" var="item" >
+              <tr>
+                <td><c:out value="${item.time}"/></td>
+                <td><c:out value="${item.content}"/></td>
+                <td><c:out value="${item.status}"/></td>
+                <td><c:out value="${item.acceptname}"/></td>
+                <td><c:out value="${item.username}"/></td>
                             </tr>
                         </c:forEach>
                         </tbody>

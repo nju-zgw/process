@@ -163,7 +163,7 @@ public class RiskController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
 
-        if (status.getAcceptorId() == userService.getUserId(username)) {
+        if (status.getRiskStatusValue() != 3 && status.getAcceptorId() == userService.getUserId(username)) { //如果这个风险条目没有完结 并且分配给了他
             view.setFollower(true);
         }
 
@@ -176,6 +176,7 @@ public class RiskController {
             statusView.setContent(item.getStatusDescript());
             statusView.setUsername(userService.getUserNameById(item.getTracerId()));
             statusView.setStatus(this.getStatus(item.getRiskStatusValue()));
+            statusView.setAcceptname(userService.getUserNameById(item.getAcceptorId()));
             itemviews.add(statusView);
         }
 
@@ -256,7 +257,7 @@ public class RiskController {
         statusItem.setRiskId(vo.getRiskItemId());
         statusItem.setAcceptorId(userService.getUserId(createrName));
         statusItem.setStatusDescript(riskDescript);
-        statusItem.setTracerId(0); //这个默认是system
+        statusItem.setTracerId(6); //这个默认是system
         statusItem.setRiskStatusValue(2);
         statusItem.setCreateTime(time);
         riskItemStatusService.createRiskStatusItem(statusItem);
