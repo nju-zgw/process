@@ -58,9 +58,9 @@ public class RiskStatusDaoImpl extends JdbcDaoSupport implements RiskStatusDao{
                 desKeyHolder
         );
         final String insertRiskStatusSql = "INSERT INTO risk_status " +
-                "(risk_item_id, tracer_id, risk_status_descript_id, acceptor_id) " +
+                "(risk_item_id, tracer_id, risk_status_descript_id, acceptor_id, status_value) " +
                 " VALUES " +
-                "  (?,?,?, ?) ";
+                "  (?,?,?, ?, ?) ";
         final KeyHolder riskStatusKey = new GeneratedKeyHolder();
         this.getJdbcTemplate().update(
                 new PreparedStatementCreator() {
@@ -72,6 +72,7 @@ public class RiskStatusDaoImpl extends JdbcDaoSupport implements RiskStatusDao{
                         ps.setInt(2, item.getTracerId());
                         ps.setInt(3, desKeyHolder.getKey().intValue());
                         ps.setInt(4, item.getAcceptorId());
+                        ps.setInt(5, item.getRiskStatusValue());
                         return ps;
                     }
                 },
