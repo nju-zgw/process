@@ -245,7 +245,7 @@
                                                 <p class="mt">风险状态：<c:out value="${item.status}"/></p>
                                             </div>
                                             <div class="col-md-3">
-                                                <p class="mt">关注人数：<c:out value="${item.peopleNum}"/></p>
+                                                <p class="mt">状态数：<c:out value="${item.peopleNum}"/></p>
                                             </div>
                                         </div>
                                     </div>

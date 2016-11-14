@@ -144,7 +144,7 @@
                            style="position:relative;font-size:19px;font-weight: bold;left:6%"> 风险状态：</label>
 
                     <div class="form-group row" style="position:relative;top:15px">
-                        <label class="col-sm-1 col-sm-offset-1 control-label" style="color:#ccc">跟踪人数：</label>
+                        <label class="col-sm-1 col-sm-offset-1 control-label" style="color:#ccc">状态数：</label>
 
                         <div class="col-sm-1">
                             <p><c:out value="${riskView.peopleNum}"/></p>
