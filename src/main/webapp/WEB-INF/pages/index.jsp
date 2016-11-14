@@ -58,7 +58,7 @@
         <!--logo end-->
         <div class="top-menu">
             <ul class="nav pull-right top-menu">
-                <li><a class="logout" href="login.html">退出</a></li>
+                <li><a class="logout" href="<%=request.getContextPath()%>/login">退出</a></li>
             </ul>
         </div>
     </header>
@@ -195,7 +195,7 @@
 
                             <div class="row mt" style="position:relative;">
                                 <!--col-md-4 mb starts-->
-                                <c:forEach items="${riskviewList.get(1)}" var="item" >
+                                <c:forEach items="${riskviewList.get(2)}" var="item" >
                                     <a class="col-md-8 col-md-offset-1 mb" href="lookRisk/${item.riskId}">
                                         <!-- WHITE PANEL - TOP USER -->
                                         <div class="white-panel pn" style="height:20%">
@@ -226,7 +226,7 @@
 
                         <div class="tab-pane fade" id="mypro">
 
-                            <c:forEach items="${riskviewList.get(2)}" var="item" >
+                            <c:forEach items="${riskviewList.get(1)}" var="item" >
                                 <a class="col-md-8 col-md-offset-1 mb" href="lookRisk/${item.riskId}">
                                     <!-- WHITE PANEL - TOP USER -->
                                     <div class="white-panel pn" style="height:20%">

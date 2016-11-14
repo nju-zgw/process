@@ -47,7 +47,7 @@ public class RiskController {
         return "addRiskForTest";
     }
 
-    static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @RequestMapping(value = "/allRisks", method = RequestMethod.GET)
     public String transToAllRisksPage(ModelMap model) {
@@ -367,9 +367,9 @@ public class RiskController {
     private String getStatus(int type) {
         switch (type) {
             case 1:
-                return "准备跟踪";
-            case 2:
                 return "跟踪中";
+            case 2:
+                return "准备跟踪";
             case 3:
                 return "已解决";
         }
