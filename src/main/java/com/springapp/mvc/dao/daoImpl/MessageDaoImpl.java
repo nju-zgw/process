@@ -23,7 +23,7 @@ import java.util.List;
 public class MessageDaoImpl extends JdbcDaoSupport implements MessageDao{
     @Override
     public List<Message> findMessagesByUser(long userId) {
-        String sql = "select * from messages where status = 1 and userId = " + userId  ;
+        String sql = "select * from messages where status = 1 and userId = " + userId + " order by createAt limit 5" ;
         List messages =  this.getJdbcTemplate().query(sql, new MessageRowMapper());
         return messages;
     }
