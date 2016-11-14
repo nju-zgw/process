@@ -247,7 +247,7 @@
                 param,
                 function (data, status) {
                     if (status === 'success') {
-                        location.href = '/allRisks';
+                        location.href = '<%=request.getContextPath()%>/allRisks';
                     } else {
                         alert(data);
                     }
