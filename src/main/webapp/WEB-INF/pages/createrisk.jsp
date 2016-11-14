@@ -243,11 +243,12 @@
         }
 
         $.post(
-                "<%=request.getContextPath()%>/addRisk",
+                '<%=request.getContextPath()%>/addRisk',
                 param,
                 function (data, status) {
                     if (status === 'success') {
-                        location.href = '/allRisks';
+                        alert("创建成功");
+                        location.href = '<%=request.getContextPath()%>/allRisks';
                     } else {
                         alert(data);
                     }
