@@ -243,7 +243,7 @@
         }
 
         $.post(
-                '<%=request.getContextPath()%>/addRisk',
+                "<%=request.getContextPath()%>/addRisk",
                 param,
                 function (data, status) {
                     if (status === 'success') {
